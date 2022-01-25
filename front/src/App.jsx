@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Nav from './Nav.jsx';
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0);
   useEffect(() => {
     const timer = setTimeout(() => setCount(count + 1), 1000);
@@ -8,15 +9,16 @@ function App() {
   }, [count, setCount]);
 
   return (
-    <div className="min-h-screen dark:bg-green-900 bg-white">
+    <div className={`min-h-screen dark:bg-green-900 bg-white dark:text-white
+        text-green-900`}>
+      {/* Nav */}
+      <Nav />
       {/* Body */}
       <div className="mx-auto w-10/12">
-        <p className="dark:text-white text-grenn-900">
+        <p>
           Page has been open for <code>{count}</code> seconds.
         </p>
       </div>
     </div>
   );
 }
-
-export default App;
