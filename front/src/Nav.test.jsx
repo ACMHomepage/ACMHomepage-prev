@@ -1,12 +1,12 @@
 import React from 'react';
-import { unmountComponentAtNode, render } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { unmountComponentAtNode, render } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 
 import Nav from './Nav.jsx';
 
 let container = null;
 beforeEach(() => {
-  container = document.createElement("div");
+  container = document.createElement('div');
   document.body.appendChild(container);
 });
 
@@ -17,6 +17,7 @@ afterEach(() => {
 });
 
 test('all', () => {
+  // This will only build one child like `<nav>...</nav>`.
   act(() => {
     render(<Nav />, container);
   });
@@ -25,6 +26,7 @@ test('all', () => {
   const content = container.children[0];
   expect(content.nodeName).toBe('NAV');
 
+  // The nav will have three children: log, darkModeLabel, darkModelToggle.
   expect(content.children.length).toBe(3);
 
   const [logo, darkModeLabel, darkModelToggle] = content.children;
@@ -32,14 +34,16 @@ test('all', () => {
   expect(logo.innerHTML).toBe('ACM Homepage');
   expect(darkModeLabel.innerHTML).toBe('Dark Mode');
 
+  // `darkModelToggle` can change the root `<html>...</html>` to have or not
+  // have class `dark`.
   expect(darkModelToggle.nodeName).toBe('BUTTON');
-  expect(document.documentElement.classList.contains("dark")).toBe(false);
+  expect(document.documentElement.classList.contains('dark')).toBe(false);
   act(() => darkModelToggle.click());
-  expect(document.documentElement.classList.contains("dark")).toBe(true);
+  expect(document.documentElement.classList.contains('dark')).toBe(true);
   act(() => darkModelToggle.click());
-  expect(document.documentElement.classList.contains("dark")).toBe(false);
+  expect(document.documentElement.classList.contains('dark')).toBe(false);
   act(() => darkModelToggle.click());
-  expect(document.documentElement.classList.contains("dark")).toBe(true);
+  expect(document.documentElement.classList.contains('dark')).toBe(true);
   act(() => darkModelToggle.click());
-  expect(document.documentElement.classList.contains("dark")).toBe(false);
+  expect(document.documentElement.classList.contains('dark')).toBe(false);
 });
