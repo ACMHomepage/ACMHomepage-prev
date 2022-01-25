@@ -8,6 +8,7 @@ let container = null;
 beforeEach(() => {
   container = document.createElement('div');
   document.body.appendChild(container);
+  localStorage.clear();
 });
 
 afterEach(() => {
@@ -17,11 +18,14 @@ afterEach(() => {
 });
 
 test('all', () => {
-  // This will only build one child like `<nav>...</nav>`.
+  // This will only build one child like `<nav>...</nav>`. And is well set not
+  // dark as default.
+  expect(localStorage.isDark).toBe(undefined);
   act(() => {
     render(<Nav />, container);
   });
   expect(container.children.length).toBe(1);
+  expect(localStorage.isDark).toBe('false');
 
   const content = container.children[0];
   expect(content.nodeName).toBe('NAV');
@@ -38,12 +42,17 @@ test('all', () => {
   // have class `dark`.
   expect(darkModelToggle.nodeName).toBe('BUTTON');
   expect(document.documentElement.classList.contains('dark')).toBe(false);
+  expect(localStorage.isDark).toBe('false');
   act(() => darkModelToggle.click());
   expect(document.documentElement.classList.contains('dark')).toBe(true);
+  expect(localStorage.isDark).toBe('true');
   act(() => darkModelToggle.click());
   expect(document.documentElement.classList.contains('dark')).toBe(false);
+  expect(localStorage.isDark).toBe('false');
   act(() => darkModelToggle.click());
   expect(document.documentElement.classList.contains('dark')).toBe(true);
+  expect(localStorage.isDark).toBe('true');
   act(() => darkModelToggle.click());
   expect(document.documentElement.classList.contains('dark')).toBe(false);
+  expect(localStorage.isDark).toBe('false');
 });
