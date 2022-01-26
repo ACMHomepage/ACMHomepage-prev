@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .main-part {
+    @apply mx-auto w-full lg:w-10/12 xl:w-8/12 px-4;
+  }
+}

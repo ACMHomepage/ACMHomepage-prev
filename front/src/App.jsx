@@ -9,12 +9,14 @@ export default function App() {
   }, [count, setCount]);
 
   return (
-    <div className={`min-h-screen dark:bg-green-900 bg-white dark:text-white
-        text-green-900`}>
+    <div
+      className={`min-h-screen dark:bg-green-900 bg-white dark:text-white
+          text-green-900`}
+    >
       {/* Nav */}
       <Nav />
       {/* Body */}
-      <div className="mx-auto w-10/12">
+      <div className="main-part">
         <p>
           Page has been open for <code>{count}</code> seconds.
         </p>

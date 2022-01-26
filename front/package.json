@@ -12,17 +12,19 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.3",
+    "lucide-react": "^0.16.28",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "tailwindcss": "^3.0.16"
   },
   "devDependencies": {
+    "@snowpack/app-scripts-react": "^2.0.1",
     "@snowpack/plugin-postcss": "^1.4.3",
     "@snowpack/plugin-react-refresh": "^2.5.0",
-    "@snowpack/app-scripts-react": "^2.0.1",
     "jest": "^26.0.0",
     "postcss": "^8.4.5",
     "prettier": "^2.2.1",
-    "snowpack": "^3.8.8",
-    "tailwindcss": "^3.0.16"
+    "snowpack": "^3.8.8"
   }
 }

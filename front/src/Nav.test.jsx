@@ -17,7 +17,7 @@ afterEach(() => {
   container = null;
 });
 
-test('all', () => {
+test('Nav all', () => {
   // This will only build one child like `<nav>...</nav>`. And is well set not
   // dark as default.
   expect(localStorage.isDark).toBe(undefined);
@@ -33,10 +33,11 @@ test('all', () => {
   // The nav will have three children: log, darkModeLabel, darkModelToggle.
   expect(content.children.length).toBe(3);
 
-  const [logo, darkModeLabel, darkModelToggle] = content.children;
+  const [logo, darkMode, Menu] = content.children;
   expect(logo.nodeName).toBe('SPAN');
   expect(logo.innerHTML).toBe('ACM Homepage');
-  expect(darkModeLabel.innerHTML).toBe('Dark Mode');
+  expect(darkMode.nodeName).toBe('DIV');
+  const [darkModeLabel, darkModelToggle] = darkMode.children;
 
   // `darkModelToggle` can change the root `<html>...</html>` to have or not
   // have class `dark`.
@@ -55,4 +56,7 @@ test('all', () => {
   act(() => darkModelToggle.click());
   expect(document.documentElement.classList.contains('dark')).toBe(false);
   expect(localStorage.isDark).toBe('false');
+
+  // And There have a button `Menu`
+  expect(Menu.nodeName).toBe('BUTTON');
 });
