@@ -26,6 +26,7 @@ To-do Tree
 - [ ] `Menu` componment
   - [x] Make `Menu` button as a `Dropdown` and auto hidden/show in different
     device.
-  - [ ] Put `DarkToggle` in to the `MenuList`.
+  - [x] Put `DarkToggle` into the `MenuList`.
+  - [ ] Use redux to hold those state.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
