@@ -26,6 +26,7 @@
     "@snowpack/app-scripts-react": "^2.0.1",
     "@snowpack/plugin-postcss": "^1.4.3",
     "@snowpack/plugin-react-refresh": "^2.5.0",
+    "@testing-library/react": "^12.1.2",
     "jest": "^26.0.0",
     "postcss": "^8.4.5",
     "prettier": "^2.2.1",
