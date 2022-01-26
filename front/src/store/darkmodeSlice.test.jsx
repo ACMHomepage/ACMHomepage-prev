@@ -3,7 +3,6 @@ import { render, fireEvent } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 
-
 test('Remember the dark mode', async () => {
   // Normal mode at first.
   expect(localStorage.getItem('isDark')).toBe(null);

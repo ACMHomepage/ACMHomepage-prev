@@ -14,7 +14,7 @@ test('Nav all', async () => {
   const { getByText, container } = render(
     <Provider store={store}>
       <Nav />
-    </Provider>
+    </Provider>,
   );
 
   // There will have a logo. And it is the first child of its parent.
