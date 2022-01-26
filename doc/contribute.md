@@ -20,4 +20,10 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
   * `<subject>`, Make sure the first character is UPPERCASE and has a space
     before is. End by a period.
 
+To-do Tree
+-------------------------------------------------------------------------------
+- [ ] How about use color `primary` than just `green`?
+- [ ] Make `Menu` button as a `Dropdown` and auto hidden/show in different
+  device.
+
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
