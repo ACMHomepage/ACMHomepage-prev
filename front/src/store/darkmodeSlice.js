@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-function setLocalStorage(isDark) {
+function setDarkMode(isDark) {
+  // set localStorage.
   localStorage.setItem('isDark', isDark ? 'true' : 'false');
-}
 
-function setDocumentElementClassList(isDark) {
+  // set documentElement's classList.
   if (isDark) {
     document.documentElement.classList.add('dark');
   } else {
@@ -12,29 +12,29 @@ function setDocumentElementClassList(isDark) {
   }
 }
 
-const isDark = JSON.parse(localStorage.getItem('isDark') || 'false');
-setLocalStorage(isDark);
-setDocumentElementClassList(isDark);
-
 export const toggle = createAsyncThunk(
   'darkmode/toggle',
   async (arg, thunkAPI) => {
     const { isDark } = thunkAPI.getState().darkmode;
 
     // Toggle darkmode, so let darkmode = !darkmode.
-    setLocalStorage(!isDark);
-    setDocumentElementClassList(!isDark);
+    setDarkMode(!isDark);
   },
 );
 
-export const slice = createSlice({
-  name: 'darkmode',
-  initialState: { isDark },
-  extraReducers: {
-    [toggle.fulfilled]: (state, action) => {
-      state.isDark = !state.isDark;
+export const slice = (() => {
+  const isDark = JSON.parse(localStorage.getItem('isDark') || 'false');
+  setDarkMode(isDark);
+
+  return createSlice({
+    name: 'darkmode',
+    initialState: { isDark },
+    extraReducers: {
+      [toggle.fulfilled]: (state, action) => {
+        state.isDark = !state.isDark;
+      },
     },
-  },
-});
+  });
+})();
 
 export default slice.reducer;
