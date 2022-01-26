@@ -17,7 +17,7 @@ export default {
     // "bundle": true,
   },
   packageOptions: {
-    /* ... */
+    knownEntrypoints: ['react-is'],
   },
   devOptions: {
     tailwindConfig: './tailwind.config.js',

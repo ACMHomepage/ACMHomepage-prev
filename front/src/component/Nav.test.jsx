@@ -58,5 +58,5 @@ test('Nav all', () => {
   expect(localStorage.isDark).toBe('false');
 
   // And There have a button `Menu`
-  expect(Menu.nodeName).toBe('BUTTON');
+  expect(Menu.nodeName).toBe('DIV');
 });

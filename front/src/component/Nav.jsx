@@ -3,26 +3,18 @@ import Toggle from './Toggle.jsx';
 import { Switch, Menu } from '@headlessui/react';
 import { Menu as MenuIcon } from 'lucide-react';
 import classNames from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggle as toggleDarkMode } from '../store/darkmodeSlice.js';
 
-function DarkToggle(props) {
-  const { autofill, className } = props;
-
-  const isDark = JSON.parse(localStorage.getItem('isDark') || 'false');
-  const [darkEnabled, setDarkEnabled] = useState(isDark);
-
-  if (darkEnabled) {
-    localStorage.setItem('isDark', 'true');
-    document.documentElement.classList.add('dark');
-  } else {
-    localStorage.setItem('isDark', 'false');
-    document.documentElement.classList.remove('dark');
-  }
+function DarkToggle({ autofill, className }) {
+  const { isDark } = useSelector(state => state.darkmode);
+  const dispatch = useDispatch();
 
   return (
-    <div className={classNames("flex space-x-1", className)}>
+    <div className={classNames("flex space-x-1 items-center", className)}>
       <Switch.Group>
         <Switch.Label className={`${autofill ? 'flex-1' : ''}`}>Dark Mode</Switch.Label>
-        <Toggle enabled={darkEnabled} setEnabled={setDarkEnabled} />
+        <Toggle enabled={isDark} setEnabled={() => dispatch(toggleDarkMode())} />
       </Switch.Group>
     </div>
   );
