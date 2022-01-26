@@ -23,7 +23,9 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
 To-do Tree
 -------------------------------------------------------------------------------
 - [ ] How about use color `primary` than just `green`?
-- [ ] Make `Menu` button as a `Dropdown` and auto hidden/show in different
-  device.
+- [ ] `Menu` componment
+  - [x] Make `Menu` button as a `Dropdown` and auto hidden/show in different
+    device.
+  - [ ] Put `DarkToggle` in to the `MenuList`.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716

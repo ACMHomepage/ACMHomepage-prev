@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Toggle from './Toggle.jsx';
-import { Switch } from '@headlessui/react';
-import { Menu } from 'lucide-react';
+import { Switch, Menu } from '@headlessui/react';
+import { Menu as MenuIcon } from 'lucide-react';
 
 function DarkToggle() {
   const isDark = JSON.parse(localStorage.getItem('isDark') || 'false');
@@ -27,20 +27,32 @@ function DarkToggle() {
 
 function MenuList() {
   return (
-    <button
-      type="button"
-      className={`inline-flex items-center rounded border border-green-900
-          dark:border-white p-1 text-sm`}
-    >
-      Menu
-      <Menu size={20} />
-    </button>
+    <div className="relative md:hidden">
+      <Menu>
+        <Menu.Button
+          type="button"
+          className={`inline-flex items-center rounded border border-green-900
+              dark:border-white p-1 text-sm h-8`}
+        >
+          <span className="hidden sm:block">Menu</span>
+          <MenuIcon size={20} />
+        </Menu.Button>
+        <Menu.Items>
+          <div className={`same-bg rounded border border-green-900 dark:border-white p-1
+            absolute top-10 right-0 w-60`}>
+            <Menu.Item>
+              {({active}) => (<a>Hello</a>)}
+            </Menu.Item>
+          </div>
+        </Menu.Items>
+      </Menu>
+    </div>
   );
 }
 
 export default function Nav() {
   return (
-    <nav className="main-part py-3 flex items-center space-x-4">
+    <nav className={`main-part same-bg sticky flex items-center space-x-4 py-3`}>
       <span className="text-grenn-900 font-bold flex-1">ACM Homepage</span>
       <DarkToggle />
       <MenuList />

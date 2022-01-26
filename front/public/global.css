@@ -6,4 +6,8 @@
   .main-part {
     @apply mx-auto w-full lg:w-10/12 xl:w-8/12 px-4;
   }
+
+  .same-bg {
+    @apply bg-white dark:bg-green-900;
+  }
 }
