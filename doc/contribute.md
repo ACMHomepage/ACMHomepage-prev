@@ -6,8 +6,9 @@ Git Commit Message Style
 
 Like [this rule][joshbuchea/git-commit-message] but changed something.
 
-* 80 character each line
-* Head: `<type>: <subject>`
+* 80 character each line.
+* Use Markdown syntax.
+* Head: `<type>: <subject>`.
   * `<type>`:
     * `feat`: Add a new feature.
     * `fix`: Fix a bug.
@@ -25,6 +26,11 @@ To-do Tree
 - [ ] Change color.
   - [ ] How about use color `primary` than just `green`?
   - [ ] In dark mode, use darked color than just `white`.
-- [ ] Use `vite` instead of `snowpack`.
+- [ ] Use `vite` instead of `snowpack`. See [here][our-reply-about-react-is].
+- [ ] Try to remove `prop-types` in `package.json`. See
+  [here][our-issue-about-prop-types].
+- [ ] Update test.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
+[our-reply-about-react-is]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
+[our-issue-about-prop-types]: https://github.com/lucide-icons/lucide/issues/486
