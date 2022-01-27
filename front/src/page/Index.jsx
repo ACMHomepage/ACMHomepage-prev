@@ -24,17 +24,22 @@ function Headline({ title }) {
   );
 }
 
-export default function App() {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
+function News() {
+  return (
+    <h2 className="font-semibold text-xl md:text-2xl lg:text-3xl">
+      News of ACM
+    </h2>
+  );
+}
 
+export default function Index() {
   return (
     <React.Fragment>
       <div className="main-part">
         <Headline title={config.title} />
+      </div>
+      <div className="main-part">
+        <News />
       </div>
     </React.Fragment>
   );
