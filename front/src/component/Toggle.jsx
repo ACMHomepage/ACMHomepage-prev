@@ -9,10 +9,9 @@ export default function Toggle(props) {
       checked={enabled}
       onChange={setEnabled}
       className={`${enabled ? 'bg-green-500' : 'bg-green-900'}
-          dark:bg-white ease-in-out transform duration-300
-          relative inline-flex items-center h-6 rounded-full w-11`}
+          dark:bg-white ease-in-out duration-300 relative inline-flex
+          items-center h-6 rounded-full w-11`}
     >
-      <span className="sr-only">Use setting</span>
       <span
         aria-hidden="true"
         className={`${

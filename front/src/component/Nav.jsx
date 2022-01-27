@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Toggle from './Toggle.jsx';
-import { Switch, Menu } from '@headlessui/react';
+import { Switch, Menu, Transition } from '@headlessui/react';
 import { Menu as MenuIcon } from 'lucide-react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,19 +34,27 @@ function MenuList(props) {
         <Menu.Button
           type="button"
           className={`inline-flex items-center rounded border border-green-900
-              dark:border-white p-1 text-sm h-8`}
+              dark:border-white p-1 text-sm h-8 shadow-md`}
         >
           <span className="hidden sm:block">Menu</span>
           <MenuIcon size={20} />
         </Menu.Button>
-        <Menu.Items>
-          <div
-            className={`same-bg rounded border border-green-900
-                dark:border-white p-2 absolute top-10 right-0 w-60`}
+        <Transition
+          as={React.Fragment}
+          enter="transition ease-out duration-100"
+          enterFrom="transform opacity-0 scale-90"
+          enterTo="transform opacity-100 scale-100"
+          leave="transition ease-in duration-100"
+          leaveFrom="transform opacity-100 scale-100"
+          leaveTo="transform opacity-0 scale-90"
+        >
+          <Menu.Items
+            className={`same-bg absolute right-0 w-60 top-10 rounded border
+                  border-green-900 shadow-md dark:border-white p-2`}
           >
             <Menu.Item>{({ active }) => <DarkToggle autofill />}</Menu.Item>
-          </div>
-        </Menu.Items>
+          </Menu.Items>
+        </Transition>
       </Menu>
     </div>
   );
