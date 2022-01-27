@@ -30,6 +30,12 @@ To-do Tree
 - [ ] Try to remove `prop-types` in `package.json`. See
   [here][our-issue-about-prop-types].
 - [ ] Update test.
+  - [x] Two toggle to change dark mode. make sure they works well.
+  - [ ] And so on.
+- [ ] Add a user entrypoint.
+  - [ ] Put a button.
+  - [ ] Add a router.
+- [ ] Add news.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
 [our-reply-about-react-is]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
