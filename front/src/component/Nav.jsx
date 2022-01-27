@@ -62,12 +62,17 @@ function MenuList(props) {
 
 export default function Nav() {
   return (
-    <nav
-      className={`main-part same-bg sticky flex items-center space-x-4 py-3`}
-    >
-      <span className="text-grenn-900 font-bold flex-1">ACM Homepage</span>
-      <DarkToggle className="hidden md:block" />
-      <MenuList className="md:hidden" />
-    </nav>
+    <React.Fragment>
+      <div className="fixed w-full">
+        <nav
+          className={`main-part same-bg flex items-center space-x-4 py-3 h-16`}
+        >
+          <span className="text-grenn-900 font-bold flex-1">ACM Homepage</span>
+          <DarkToggle className="hidden md:block" />
+          <MenuList className="md:hidden" />
+        </nav>
+      </div>
+      <div className="h-16" />
+    </React.Fragment>
   );
 }

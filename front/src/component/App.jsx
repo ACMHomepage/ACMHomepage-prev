@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Nav from './Nav.jsx';
+import Index from '../page/Index.jsx';
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -16,11 +17,7 @@ export default function App() {
       {/* Nav */}
       <Nav />
       {/* Body */}
-      <div className="main-part">
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-      </div>
+      <Index />
     </div>
   );
 }
