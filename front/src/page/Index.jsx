@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import config from '../config.js';
+import config from '../config.jsx';
 
 function Headline({ title }) {
   return (
-    <div className="py-40 flex flex-col items-center gap-8">
+    <div className="py-24 sm:py-32 md:py-40 flex flex-col items-center gap-8">
       <h1
         className={`text-center text-4xl md:text-5xl lg:text-6xl
           font-extrabold`}
