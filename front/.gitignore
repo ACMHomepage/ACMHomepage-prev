@@ -3,3 +3,4 @@ node_modules
 .snowpack
 yarn-error.log
 coverage
+dist
