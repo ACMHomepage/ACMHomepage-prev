@@ -26,9 +26,6 @@ To-do Tree
 - [ ] Change color.
   - [ ] How about use color `primary` than just `green`?
   - [ ] In dark mode, use darked color than just `white`.
-- [ ] Use `vite` instead of `snowpack`. See [here][our-reply-about-react-is].
-- [ ] Try to remove `prop-types` in `package.json`. See
-  [here][our-issue-about-prop-types].
 - [ ] Update test.
   - [x] Two toggle to change dark mode. make sure they works well.
   - [ ] Add test for News.
@@ -41,5 +38,3 @@ To-do Tree
 - [ ] Make `Nav` sticky.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
-[our-reply-about-react-is]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
-[our-issue-about-prop-types]: https://github.com/lucide-icons/lucide/issues/486
