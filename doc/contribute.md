@@ -31,11 +31,14 @@ To-do Tree
   [here][our-issue-about-prop-types].
 - [ ] Update test.
   - [x] Two toggle to change dark mode. make sure they works well.
+  - [ ] Add test for News.
   - [ ] And so on.
 - [ ] Add a user entrypoint.
   - [ ] Put a button.
   - [ ] Add a router.
 - [ ] Add news.
+- [ ] Use `deno` instead of `node.js`.
+- [ ] Make `Nav` sticky.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
 [our-reply-about-react-is]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
