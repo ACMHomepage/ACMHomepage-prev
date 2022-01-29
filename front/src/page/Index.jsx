@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import News from '../component/News.jsx';
-import config from '../config.jsx';
+import { title } from '../config.jsx';
 
 function Headline({ title }) {
   return (
@@ -29,7 +29,7 @@ export default function Index() {
   return (
     <React.Fragment>
       <div className="util-main-part">
-        <Headline title={config.title} />
+        <Headline title={title} />
       </div>
       <div className="util-main-part">
         <News />
