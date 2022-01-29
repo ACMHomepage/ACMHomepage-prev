@@ -40,3 +40,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
+
+// Hot Module Replacement(HMR)
+if (import.meta.hot) {
+  import.meta.hot.accept();
+}
