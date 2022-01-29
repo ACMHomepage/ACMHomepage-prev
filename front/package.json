@@ -6,14 +6,16 @@
   "scripts": {
     "start": "vite dev",
     "build": "vite build",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" && prettier --write \"*.{js,jsx,ts,tsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" && prettier --check \"*.{js,jsx,ts,tsx}\"",
+    "format": "prettier -w \"?(@(mock|src)/**/)*.{js,jsx,ts,tsx,json}\"",
+    "lint": "prettier -c \"?(@(mock|src)/**/)*.{js,jsx,ts,tsx,json}\"",
     "test": "jest --coverage"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.8",
     "@headlessui/react": "^1.4.3",
     "@reduxjs/toolkit": "^1.6.0",
     "classnames": "^2.3.1",
+    "graphql": "^16.3.0",
     "lucide-react": "^0.16.28",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
@@ -26,10 +28,14 @@
     "@types/jest": "^27.4.0",
     "autoprefixer": "^10.4.2",
     "jest": "^27.4.7",
+    "msw": "^0.36.7",
     "postcss": "^8.4.5",
     "prettier": "^2.2.1",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5",
     "vite": "^2.7.13"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
