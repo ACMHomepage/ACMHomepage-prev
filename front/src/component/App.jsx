@@ -5,8 +5,7 @@ import Index from '../page/Index.jsx';
 export default function App() {
   return (
     <div
-      className={`min-h-screen dark:bg-green-900 bg-white dark:text-white
-          text-green-900`}
+      className={`bg-first min-h-screen dark:text-white text-green-900`}
     >
       {/* Nav */}
       <Nav />

@@ -21,10 +21,10 @@ function NewsBody() {
   }
   console.log(data);
   return (
-    <div className="rounded bg-green-100 dark:bg-green-700 p-4">
+    <div className="rounded bg-second p-4">
       Data:
       {data.news.map((value) => (
-        <div>
+        <div key={value.title}>
           <span>{value.title}</span>
           <img src={value.image_uri} className="dark:brightness-75" />
         </div>

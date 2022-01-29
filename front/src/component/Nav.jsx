@@ -34,7 +34,7 @@ function MenuList(props) {
         <Menu.Button
           type="button"
           className={`inline-flex items-center rounded border border-green-900
-              dark:border-white p-1 text-sm h-8 shadow-md`}
+              dark:border-white p-1 text-sm h-8 shadow-md bg-first`}
         >
           <span className="hidden sm:block">Menu</span>
           <MenuIcon size={20} />
@@ -49,7 +49,7 @@ function MenuList(props) {
           leaveTo="transform opacity-0 scale-90"
         >
           <Menu.Items
-            className={`same-bg absolute right-0 w-60 top-10 rounded border
+            className={`bg-first absolute right-0 w-60 top-10 rounded border
                   border-green-900 shadow-md dark:border-white p-2`}
           >
             <Menu.Item>{({ active }) => <DarkToggle autofill />}</Menu.Item>
@@ -63,16 +63,14 @@ function MenuList(props) {
 export default function Nav() {
   return (
     <React.Fragment>
-      <div className="fixed w-full">
-        <nav
-          className={`main-part same-bg flex items-center space-x-4 py-3 h-16`}
-        >
-          <span className="text-grenn-900 font-bold flex-1">ACM Homepage</span>
+      <div className="fixed w-full bg-second z-50">
+        <nav className={`util-main-part flex items-center space-x-4 py-3 h-12`}>
+          <span className="font-bold flex-1">ACM Homepage</span>
           <DarkToggle className="hidden md:block" />
           <MenuList className="md:hidden" />
         </nav>
       </div>
-      <div className="h-16" />
+      <div className="h-12" />
     </React.Fragment>
   );
 }

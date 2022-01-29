@@ -4,16 +4,20 @@
 
 /* User defined */
 @layer components {
-  .main-part {
+  .util-main-part {
     @apply mx-auto w-full lg:w-10/12 xl:w-8/12 px-4;
   }
 
-  .same-bg {
+  .bg-first {
     @apply bg-white dark:bg-green-900;
   }
-}
 
-/* Apply for all element */
-* {
-  @apply transition;
+  .bg-second {
+    @apply bg-green-100 dark:bg-green-700;
+  }
+
+  /* Apply for all element */
+  * {
+    @apply transition duration-300;
+  }
 }

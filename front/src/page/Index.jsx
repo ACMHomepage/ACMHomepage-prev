@@ -28,10 +28,10 @@ function Headline({ title }) {
 export default function Index() {
   return (
     <React.Fragment>
-      <div className="main-part">
+      <div className="util-main-part">
         <Headline title={config.title} />
       </div>
-      <div className="main-part">
+      <div className="util-main-part">
         <News />
       </div>
     </React.Fragment>
