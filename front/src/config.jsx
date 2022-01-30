@@ -8,6 +8,4 @@ export const title = (
   </span>
 );
 
-export const footer = (
-  <span>This is footer.</span>
-);
+export const footer = <span>This is footer.</span>;

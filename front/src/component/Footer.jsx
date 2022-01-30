@@ -7,9 +7,7 @@ export default function App() {
     <React.Fragment>
       <div className="flex-1" />
       <div className="bg-second mt-16 pb-16 pt-4">
-        <div className="util-main-part">
-          {footer}
-        </div>
+        <div className="util-main-part">{footer}</div>
       </div>
     </React.Fragment>
   );
