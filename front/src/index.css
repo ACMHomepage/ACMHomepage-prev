@@ -5,15 +5,23 @@
 /* User defined */
 @layer components {
   .util-main-part {
-    @apply mx-auto w-full lg:w-10/12 xl:w-8/12 px-4;
+    @apply mx-auto w-full lg:w-10/12 xl:w-8/12 px-4 2xl:w-7/12;
   }
 
   .bg-first {
     @apply bg-white dark:bg-green-900;
   }
 
+  .hover-bg-first {
+    @apply hover:bg-green-900 dark:hover:bg-white hover:text-white dark:hover:text-green-900;
+  }
+
   .bg-second {
     @apply bg-green-100 dark:bg-green-700;
+  }
+
+  .hover-bg-second {
+    @apply hover:bg-green-700 dark:hover:bg-green-100 hover:text-green-100 dark:hover:text-green-700;
   }
 
   /* Apply for all element */

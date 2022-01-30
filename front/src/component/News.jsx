@@ -1,11 +1,14 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
+import Carousel from './Carousel.jsx';
+
 const GET_NEWS = gql`
   query News {
     news {
       title
       image_uri
+      summary
     }
   }
 `;
@@ -16,21 +19,9 @@ function NewsBody() {
     return <div>Loading...</div>;
   }
   if (error) {
-    console.error(error);
     return <div>Error...</div>;
   }
-  console.log(data);
-  return (
-    <div className="rounded bg-second p-4">
-      Data:
-      {data.news.map((value) => (
-        <div key={value.title}>
-          <span>{value.title}</span>
-          <img src={value.image_uri} className="dark:brightness-75" />
-        </div>
-      ))}
-    </div>
-  );
+  return <Carousel titleAndImages={data.news} className="h-96" />;
 }
 
 export default function News() {
