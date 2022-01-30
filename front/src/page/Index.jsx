@@ -13,13 +13,11 @@ function Headline({ title }) {
         {title}
       </h1>
       <div>
-        <a
-          className={`border border-green-900 hover:bg-green-900
-            hover:text-white dark:border-white dark:hover:bg-white
-            dark:hover:text-green-900 rounded p-2 cursor-pointer`}
+        <button
+          className={`bg-first hover-bg-first border rounded p-2`}
         >
           More infomation
-        </a>
+        </button>
       </div>
     </div>
   );
