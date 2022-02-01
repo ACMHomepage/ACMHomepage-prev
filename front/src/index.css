@@ -16,12 +16,20 @@
     @apply hover:bg-green-900 dark:hover:bg-white hover:text-white dark:hover:text-green-900;
   }
 
+  .border-first {
+    @apply border border-green-900 dark:border-white;
+  }
+
   .bg-second {
     @apply bg-green-100 dark:bg-green-700;
   }
 
   .hover-bg-second {
     @apply hover:bg-green-700 dark:hover:bg-green-100 hover:text-green-100 dark:hover:text-green-700;
+  }
+
+  .border-second {
+    @apply border border-green-700 dark:border-green-100;
   }
 
   /* Apply for all element */

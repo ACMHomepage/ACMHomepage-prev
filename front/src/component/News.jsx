@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
-import Carousel from './Carousel.jsx';
+import Carousel from './Carousel.tsx';
 
 const GET_NEWS = gql`
   query News {
@@ -21,7 +21,13 @@ function NewsBody() {
   if (error) {
     return <div>Error...</div>;
   }
-  return <Carousel titleAndImages={data.news} className="h-96" />;
+  return (
+    <Carousel
+      contentMinis={data.news}
+      className="h-96"
+      rowChangeBreakPoint="md"
+    />
+  );
 }
 
 export default function News() {

@@ -14,7 +14,10 @@ module.exports = {
         900: '#32533F',
       },
       white: colors.white,
+      gray: colors.gray,
     },
+    left: { '1/2': '50%' },
+    bottom: { 2: '0.5rem', 4: '1rem' },
   },
   plugins: [],
 };

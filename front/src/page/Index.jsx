@@ -13,9 +13,7 @@ function Headline({ title }) {
         {title}
       </h1>
       <div>
-        <button
-          className={`bg-first hover-bg-first border rounded p-2`}
-        >
+        <button className={`bg-first hover-bg-first border-first rounded p-2`}>
           More infomation
         </button>
       </div>
