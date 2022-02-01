@@ -25,10 +25,10 @@ To-do Tree
 -------------------------------------------------------------------------------
 - [ ] Change color.
   - [ ] How about use color `primary` than just `green`?
-  - [ ] In dark mode, use darked color than just `white`.
 - [ ] Update test.
   - [x] Two toggle to change dark mode. make sure they works well.
-  - [ ] Add test for News.
+  - [ ] Add test for `News`.
+  - [ ] Add test for `Carousel`.
   - [ ] And so on.
 - [ ] Add a user entrypoint.
   - [ ] Put a button.
@@ -36,5 +36,6 @@ To-do Tree
 - [ ] Add news.
 - [ ] Use `deno` instead of `node.js`.
 - [ ] Make `Nav` sticky.
+- [ ] Use CSS-in-JS.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
