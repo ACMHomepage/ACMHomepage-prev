@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { footer } from '../config.jsx';
+import { footer } from '../config.tsx';
 
 export default function App() {
   return (

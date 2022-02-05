@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import News from '../component/News.jsx';
-import { title } from '../config.jsx';
+import { title } from '../config.tsx';
 
 function Headline({ title }) {
   return (

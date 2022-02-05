@@ -23,8 +23,12 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
 
 To-do Tree
 -------------------------------------------------------------------------------
+- [ ] Use CSS-in-JS.
+  - [ ] Remove tailwindcss.
+  - [ ] I like styled-system. I can try it.
 - [ ] Change color.
   - [ ] How about use color `primary` than just `green`?
+- [ ] Remove typescript's warning and error.
 - [ ] Update test.
   - [x] Two toggle to change dark mode. make sure they works well.
   - [ ] Add test for `News`.
@@ -34,8 +38,7 @@ To-do Tree
   - [ ] Put a button.
   - [ ] Add a router.
 - [ ] Add news.
-- [ ] Use `deno` instead of `node.js`.
 - [ ] Make `Nav` sticky.
-- [ ] Use CSS-in-JS.
+- [ ] Use `deno` instead of `node.js`.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
