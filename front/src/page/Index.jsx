@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import News from '../component/News.jsx';
+import Button from '../component/Button.tsx';
 import { title } from '../config.tsx';
 
 function Headline({ title }) {
@@ -13,9 +14,9 @@ function Headline({ title }) {
         {title}
       </h1>
       <div>
-        <button className={`bg-first hover-bg-first border-first rounded p-2`}>
+        <Button width="12rem" btnTheme="primary" btnSize="lg" withBorder>
           More infomation
-        </button>
+        </Button>
       </div>
     </div>
   );

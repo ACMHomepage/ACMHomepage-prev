@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Toggle from './Toggle.jsx';
 import { Switch, Menu, Transition } from '@headlessui/react';
 import { Menu as MenuIcon } from 'lucide-react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggle as toggleDarkMode } from '../store/darkmodeSlice.js';
+import { toggle as toggleDarkMode } from '../store/darkmodeSlice';
 
-function DarkToggle({ autofill, className }) {
-  const { isDark } = useSelector((state) => state.darkmode);
+function DarkToggle({ autofill, className }: any) {
+  const { isDark } = useSelector((state) => (state as any).darkmode);
   const dispatch = useDispatch();
 
   return (
@@ -25,7 +25,7 @@ function DarkToggle({ autofill, className }) {
   );
 }
 
-function MenuList(props) {
+function MenuList(props: any) {
   const { className } = props;
 
   return (

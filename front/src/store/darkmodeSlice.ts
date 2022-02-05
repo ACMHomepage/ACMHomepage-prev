@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-function setDarkMode(isDark) {
+function setDarkMode(isDark: any) {
   // set localStorage.
   localStorage.setItem('isDark', isDark ? 'true' : 'false');
 
@@ -14,8 +14,8 @@ function setDarkMode(isDark) {
 
 export const toggle = createAsyncThunk(
   'darkmode/toggle',
-  async (arg, thunkAPI) => {
-    const { isDark } = thunkAPI.getState().darkmode;
+  async (_arg, thunkAPI) => {
+    const { isDark } = (thunkAPI as any).getState().darkmode;
 
     // Toggle darkmode, so let darkmode = !darkmode.
     setDarkMode(!isDark);
@@ -30,11 +30,11 @@ export const slice = (() => {
     name: 'darkmode',
     initialState: { isDark },
     extraReducers: {
-      [toggle.fulfilled]: (state, action) => {
+      [toggle.fulfilled as any]: (state: any, _action: any) => {
         state.isDark = !state.isDark;
       },
     },
-  });
+  } as any);
 })();
 
 export default slice.reducer;
