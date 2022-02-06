@@ -1,17 +1,17 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
+import { isNull } from 'lodash';
 
-import store from '../store/store.js';
+import store from '../store/store';
 
-import Nav from './Nav.jsx';
+import Nav from './Nav';
 
 test('Nav all', async () => {
   // This will only build one child like `<nav>...</nav>`. And is well set not
   // dark as default.
   expect(localStorage.getItem('isDark')).toBe('false');
-  const { getByText, container } = render(
+  const { getByText } = render(
     <Provider store={store}>
       <Nav />
     </Provider>,
@@ -22,14 +22,16 @@ test('Nav all', async () => {
   expect(logo.nodeName).toBe('SPAN');
 
   // Test the nav.
-  const nav = logo.parentNode;
+  let nav = logo.parentNode;
+  expect(isNull(nav)).toBeFalsy();
+  if(isNull(nav)) throw new Error('nav should not be null');
   expect(nav.nodeName).toBe('NAV');
   expect(nav.children.length).toBe(3);
   expect(nav.children[0]).toBe(logo);
 
   // Split the dark mode.
-  const [_, darkMode, menu] = nav.children;
-  const [darkModelLabel, darkModeToggle] = darkMode.children;
+  const [_, darkMode, _menu] = nav.children;
+  const [_darkModelLabel, darkModeToggle] = darkMode.children;
 
   // `darkModeToggle` can change the root `<html>...</html>` to have or not
   // have class `dark`.
