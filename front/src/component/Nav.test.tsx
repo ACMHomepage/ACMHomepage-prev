@@ -24,7 +24,7 @@ test('Nav all', async () => {
   // Test the nav.
   let nav = logo.parentNode;
   expect(isNull(nav)).toBeFalsy();
-  if(isNull(nav)) throw new Error('nav should not be null');
+  if (isNull(nav)) throw new Error('nav should not be null');
   expect(nav.nodeName).toBe('NAV');
   expect(nav.children.length).toBe(3);
   expect(nav.children[0]).toBe(logo);

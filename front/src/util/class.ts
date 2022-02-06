@@ -30,7 +30,7 @@ export function size(size: Size): string {
     let [first_str, second_str] = size.split('/');
     let first = parseInt(first_str);
     let second = parseInt(second_str);
-    let value = first / second * 100;
+    let value = (first / second) * 100;
     return isNaN(value) ? '0px' : `${value}%`;
   }
 }
