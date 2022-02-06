@@ -902,6 +902,13 @@
     "@types/react" "*"
     csstype "^3.0.2"
 
+"@types/styled-system@^5.1.15":
+  version "5.1.15"
+  resolved "https://registry.npmmirror.com/@types/styled-system/-/styled-system-5.1.15.tgz#075f969cc028a895dba916c07708e2fe828d7077"
+  integrity sha512-1uls4wipZn8FtYFZ7upRVFDoEeOXTQTs2zuyOZPn02T6rjIxtvj2P2lG5qsxXHhKuKsu3thveCZrtaeLE/ibLg==
+  dependencies:
+    csstype "^3.0.2"
+
 "@types/through@*":
   version "0.0.30"
   resolved "https://registry.npmmirror.com/@types/through/download/@types/through-0.0.30.tgz#e0e42ce77e897bd6aead6f6ea62aeb135b8a3895"

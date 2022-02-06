@@ -1,66 +1,11 @@
 import React, { useState, FunctionComponent } from 'react';
-import classNames from 'classnames';
 import styled from 'styled-components';
 
-import * as c from '../util/class.ts';
-import Button from './Button.tsx';
+import * as c from '../util/class';
+import Button from './Button';
+import Dots from './Dots';
 
 const padding = '1rem';
-
-// Given `begin`, and `end`. Return [begin, begin+1, ..., end].
-function buildArray(begin: number, end: number): number[] {
-  let result: number[] = [];
-  for (let i: number = begin; i <= end; i++) {
-    result.push(i);
-  }
-  return result;
-}
-
-// Dot. Clickable. If the onClick function name is `a`, when we click it, it
-// will call `a(index)`.
-interface DotProps {
-  index: number;
-  current: number;
-  breakPoint: c.BreakPoint;
-  onClick?: (index: number) => void;
-}
-
-const StyledDot = styled.button`
-  width: 1.25rem;
-  height: 1.25rem;
-  ${(props: any) =>
-    c.brkPt(
-      props.breakPoint,
-      `
-    width: 1rem;
-    height: 1rem;
-  `,
-    )}
-  background-color: ${(props: any) =>
-    props.active ? c.color('gray', 100) : c.color('gray', 800)};
-  border-radius: ${c.size('big')};
-  opacity: ${(props: any) => (props.active ? '1' : '0.5')};
-  border: 1px solid
-    ${(props: any) =>
-      props.active ? c.color('gray', 800) : c.color('gray', 300)};
-`;
-
-const Dot: FunctionComponent<DotProps> = ({
-  index,
-  current,
-  onClick,
-  breakPoint,
-}: DotProps) => {
-  const onClickWarper =
-    typeof onClick === 'undefined' ? undefined : () => onClick(index);
-  return (
-    <StyledDot
-      onClick={onClickWarper}
-      active={index === current}
-      breakPoint={breakPoint}
-    />
-  );
-};
 
 // Carousel.
 interface contentMini {
@@ -71,7 +16,7 @@ interface contentMini {
 
 interface CarouselProps {
   contentMinis: contentMini[];
-  rowChangeBreakPoint: c.breakPoint;
+  rowChangeBreakPoint: c.BreakPoint;
   className: string;
 }
 
@@ -93,38 +38,6 @@ const StyledImg = styled.img`
   .dark & {
     filter: brightness(0.75);
   }
-`;
-
-const StyledDots = styled.div`
-  position: absolute;
-  transition: none;
-  left: 50%;
-  bottom: 0.75rem;
-  ${(props: any) =>
-    c.brkPt(
-      props.breakPoint,
-      `
-    bottom: 50%;
-    left: 0.75rem;
-  `,
-    )}
-  transform: translate(-50%, 0);
-  ${(props: any) =>
-    c.brkPt(
-      props.breakPoint,
-      `
-    transform: translate(0, 50%);
-  `,
-    )}
-  display: flex;
-  gap: 0.5rem;
-  ${(props: any) =>
-    c.brkPt(
-      props.breakPoint,
-      `
-    flex-direction: column;
-  `,
-    )}
 `;
 
 const StyledPreview = styled.div`
@@ -157,10 +70,6 @@ const StyledCarousel = styled.div`
   `,
     )}
 `;
-
-interface ReadMoreButton {
-  onClick?: () => void;
-}
 
 const StyledTitleAndSummary = styled.div`
   flex: 1;
@@ -207,16 +116,16 @@ export default function Carousel({
       {/* Picture and dots */}
       <StyledPreview breakPoint={rowChangeBreakPoint}>
         <StyledImg src={image_uri} breakPoint={rowChangeBreakPoint} />
-        <StyledDots breakPoint={rowChangeBreakPoint}>
-          {buildArray(0, length - 1).map((index) => (
-            <Dot
-              index={index}
-              current={current}
-              onClick={() => setCurrent(index)}
-              breakPoint={rowChangeBreakPoint}
-            />
-          ))}
-        </StyledDots>
+        <Dots
+          length={length}
+          current={current}
+          onClickFunction={setCurrent}
+          dotSize={{_: '1.25rem', [rowChangeBreakPoint]: '1rem'}}
+          position="absolute"
+          left={{_: '50%', [rowChangeBreakPoint]: '0.75rem'}}
+          bottom={{_: '0.75rem', [rowChangeBreakPoint]: '50%'}}
+          flexDirection={{_: 'row', [rowChangeBreakPoint]: 'column'}}
+        />
       </StyledPreview>
       {/* Title and summary */}
       <StyledTitleAndSummary>

@@ -85,8 +85,14 @@ merge(colors, {
   },
 });
 
+// Set the border's radius.
+const radii = {
+  inf: '999999px',
+};
+
 // The default theme.
 export default {
   colors,
   breakpoints,
+  radii,
 };
