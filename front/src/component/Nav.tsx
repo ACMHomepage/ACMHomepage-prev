@@ -1,27 +1,40 @@
 import React from 'react';
-import Toggle from './Toggle.jsx';
-import { Switch, Menu, Transition } from '@headlessui/react';
+import { Menu, Transition } from '@headlessui/react';
 import { Menu as MenuIcon } from 'lucide-react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggle as toggleDarkMode } from '../store/darkmodeSlice';
+import { Label } from 'theme-ui';
+import PureSwitch from './PureSwitch';
 
-function DarkToggle({ autofill, className }: any) {
+import { toggle as toggleDarkMode } from '../store/darkmodeSlice';
+import { utilMainPart } from '../config';
+import { mRV } from '../util/anotherTheme';
+
+interface DarkToggleProps {
+  className?: string;
+}
+
+function DarkToggle({ className }: DarkToggleProps) {
   const { isDark } = useSelector((state) => (state as any).darkmode);
   const dispatch = useDispatch();
 
   return (
-    <div className={classNames('flex space-x-1 items-center', className)}>
-      <Switch.Group>
-        <Switch.Label className={`${autofill ? 'flex-1' : ''}`}>
-          Dark Mode
-        </Switch.Label>
-        <Toggle
-          enabled={isDark}
-          setEnabled={() => dispatch(toggleDarkMode())}
-        />
-      </Switch.Group>
-    </div>
+    <Label
+      sx={{
+        display: 'flex',
+        gap: '0.5rem',
+        alignItems: 'center',
+        width: 'auto',
+        cursor: 'pointer',
+      }}
+      className={className}
+    >
+      <span sx={{ flex: 1 }}>Dark Mode</span>
+      <PureSwitch
+        checked={isDark}
+        onChange={() => dispatch(toggleDarkMode())}
+      />
+    </Label>
   );
 }
 
@@ -62,15 +75,29 @@ function MenuList(props: any) {
 
 export default function Nav() {
   return (
-    <React.Fragment>
-      <div className="fixed w-full bg-second z-50">
-        <nav className={`util-main-part flex items-center space-x-4 py-3 h-12`}>
-          <span className="font-bold flex-1">ACM Homepage</span>
-          <DarkToggle className="hidden md:block" />
-          <MenuList className="md:hidden" />
-        </nav>
-      </div>
-      <div className="h-12" />
-    </React.Fragment>
+    <div
+      sx={{
+        position: 'sticky',
+        top: 0,
+        width: '100%',
+        bg: 'secondaryBg',
+        zIndex: 50,
+      }}
+    >
+      <nav
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          '& > * + *': { marginLeft: '1rem' },
+          py: '0.75rem',
+          height: '3rem',
+          ...utilMainPart,
+        }}
+      >
+        <span sx={{ fontWeight: 'bold', flex: 1 }}>ACM Homepage</span>
+        <DarkToggle sx={{ display: mRV({ _: 'none', md: 'flex' }) }} />
+        <MenuList className="md:hidden" />
+      </nav>
+    </div>
   );
 }

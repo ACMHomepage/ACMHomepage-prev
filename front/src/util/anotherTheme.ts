@@ -3,7 +3,9 @@ import fill from 'lodash/fill';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 
-// Set the colors.
+/******************************************************************************
+ * Set the colors.
+ *****************************************************************************/
 const colors: ColorModesScale = {
   green: [
     '#FFFFFF', // 0
@@ -54,8 +56,9 @@ colors.secondaryBg = {
   lighter: get(colors, 'gray[0]') as CSSProperties['color'],
 };
 
-// Set the break points.
-
+/******************************************************************************
+ * Set the break points.
+ *****************************************************************************/
 const __breakpointNameWithoutInitArray = ['sm', 'md', 'lg', 'xl'] as const;
 if ('_' in __breakpointNameWithoutInitArray) {
   throw new Error(
@@ -133,13 +136,27 @@ export const makeResponsiveValue = <T>(
 
 export const mRV = makeResponsiveValue;
 
-// Set the size for radius.
+/******************************************************************************
+ * Set the size for radius.
+ *****************************************************************************/
 const radii = {
   inf: '999999px',
 };
 
+/******************************************************************************
+ * Set the weights for font.
+ *****************************************************************************/
+const fontWeights = {
+  body: 400,
+  bold: 700,
+};
+
+/******************************************************************************
+ * Default theme.
+ *****************************************************************************/
 export default {
   colors,
   breakpoints,
   radii,
+  fontWeights,
 } as Theme;
