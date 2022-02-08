@@ -1,4 +1,4 @@
-import type { Theme, ColorModesScale } from 'theme-ui';
+import type { Theme, ColorModesScale, CSSProperties } from 'theme-ui';
 import fill from 'lodash/fill';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
@@ -33,6 +33,26 @@ const colors: ColorModesScale = {
 
 colors.text = get(colors, 'green[8]');
 colors.background = get(colors, 'green[1]');
+colors.primary = {
+  __default: get(colors, 'green[6]') as CSSProperties['color'],
+  darker: get(colors, 'green[7]') as CSSProperties['color'],
+  lighter: get(colors, 'green[5]') as CSSProperties['color'],
+};
+colors.primaryBg = {
+  __default: get(colors, 'green[1]') as CSSProperties['color'],
+  darker: get(colors, 'green[2]') as CSSProperties['color'],
+  lighter: get(colors, 'green[0]') as CSSProperties['color'],
+};
+colors.secondary = {
+  __default: get(colors, 'gray[6]') as CSSProperties['color'],
+  darker: get(colors, 'gray[7]') as CSSProperties['color'],
+  lighter: get(colors, 'gray[5]') as CSSProperties['color'],
+};
+colors.secondaryBg = {
+  __default: get(colors, 'gray[1]') as CSSProperties['color'],
+  darker: get(colors, 'gray[2]') as CSSProperties['color'],
+  lighter: get(colors, 'gray[0]') as CSSProperties['color'],
+};
 
 // Set the break points.
 
