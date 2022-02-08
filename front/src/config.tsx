@@ -1,4 +1,5 @@
-import React from 'react';
+import type { ThemeUIStyleObject } from 'theme-ui';
+import { mRV } from './util/anotherTheme.ts';
 
 import { BreakPoint, BreakPointMap } from './util/class.ts';
 
@@ -49,4 +50,14 @@ export const breakPointMap: BreakPointMap = {
   lg: '1024px',
   xl: '1280px',
   '2xl': '1536px',
+};
+
+export const utilMainPart: ThemeUIStyleObject = {
+  mx: 'auto',
+  px: '1rem',
+  width: mRV({
+    _: '100%',
+    lg: `${(100 * 10) / 12}%`,
+    xl: `${(100 * 8) / 12}%`,
+  }),
 };

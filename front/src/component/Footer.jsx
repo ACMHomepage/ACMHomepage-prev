@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-import { footer } from '../config.tsx';
+import { footer, utilMainPart } from '../config.tsx';
 
 export default function App() {
   return (
     <React.Fragment>
-      <div className="flex-1" />
-      <div className="bg-second mt-16 pb-16 pt-4">
-        <div className="util-main-part">{footer}</div>
+      <div sx={{ flex: 1 }} />
+      <div sx={{ bg: 'secondaryBg', mt: '4rem', pb: '4rem', pt: '1rem' }}>
+        <div sx={{ ...utilMainPart }}>{footer}</div>
       </div>
     </React.Fragment>
   );
