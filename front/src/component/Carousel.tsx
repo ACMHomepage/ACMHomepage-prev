@@ -1,9 +1,12 @@
-import React, { useState, FunctionComponent } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import type { CSSProperties } from 'theme-ui';
 
 import * as c from '../util/class';
 import Button from './Button';
 import Dots from './Dots';
+import { mRV } from '../util/anotherTheme';
+import type { BreakpointNameWithoutInit } from '../util/anotherTheme';
 
 const padding = '1rem';
 
@@ -16,7 +19,7 @@ interface contentMini {
 
 interface CarouselProps {
   contentMinis: contentMini[];
-  rowChangeBreakPoint: c.BreakPoint;
+  rowChangeBreakPoint: BreakpointNameWithoutInit;
   className: string;
 }
 
@@ -120,11 +123,21 @@ export default function Carousel({
           length={length}
           current={current}
           onClickFunction={setCurrent}
-          dotSize={{_: '1.25rem', [rowChangeBreakPoint]: '1rem'}}
-          position="absolute"
-          left={{_: '50%', [rowChangeBreakPoint]: '0.75rem'}}
-          bottom={{_: '0.75rem', [rowChangeBreakPoint]: '50%'}}
-          flexDirection={{_: 'row', [rowChangeBreakPoint]: 'column'}}
+          dotSize={mRV({ _: '1.25rem', [rowChangeBreakPoint]: '1rem' })}
+          sx={{
+            position: 'absolute',
+            left: mRV({ _: '50%', [rowChangeBreakPoint]: '0.75rem' }),
+            bottom: mRV({ _: '0.75rem', [rowChangeBreakPoint]: '50%' }),
+            transform: mRV({
+              _: 'translateX(-50%)',
+              [rowChangeBreakPoint]: 'translateY(50%)',
+            }),
+            flexDirection: mRV<CSSProperties['flexDirection']>({
+              _: 'row',
+              [rowChangeBreakPoint]: 'column',
+            }),
+            transition: 'none',
+          }}
         />
       </StyledPreview>
       {/* Title and summary */}
