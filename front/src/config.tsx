@@ -1,5 +1,5 @@
 import type { ThemeUIStyleObject } from 'theme-ui';
-import { mRV } from './util/anotherTheme.ts';
+import { mRV } from './util/theme.ts';
 
 import { BreakPoint, BreakPointMap } from './util/class.ts';
 

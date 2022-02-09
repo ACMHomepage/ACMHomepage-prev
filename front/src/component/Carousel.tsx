@@ -3,8 +3,8 @@ import type { CSSProperties } from 'theme-ui';
 
 import Button from './Button';
 import Dots from './Dots';
-import { mRV } from '../util/anotherTheme';
-import type { BreakpointNameWithoutInit } from '../util/anotherTheme';
+import { mRV } from '../util/theme';
+import type { BreakpointNameWithoutInit } from '../util/theme';
 
 /*
  * Carousel's picture preview. Will show the content's picture and can change

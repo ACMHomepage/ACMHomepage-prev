@@ -8,7 +8,7 @@ import { useColorMode } from 'theme-ui';
 
 import { toggle as toggleDarkMode } from '../store/darkmodeSlice';
 import { utilMainPart } from '../config';
-import { mRV } from '../util/anotherTheme';
+import { mRV } from '../util/theme';
 import PureSwitch from './PureSwitch';
 
 interface DarkToggleProps {
