@@ -1,7 +1,7 @@
 import type { ThemeUIStyleObject } from 'theme-ui';
-import { mRV } from './util/theme.ts';
+import { mRV } from './util/theme';
 
-import { BreakPoint, BreakPointMap } from './util/class.ts';
+import { BreakPoint, BreakPointMap } from './util/class';
 
 export const title = (
   <span>

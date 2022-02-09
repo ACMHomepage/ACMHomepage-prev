@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { footer, utilMainPart } from '../config.tsx';
+import { footer, utilMainPart } from '../config';
 
 export default function App() {
   return (

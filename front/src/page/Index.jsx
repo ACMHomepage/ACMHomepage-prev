@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import News from '../component/News.jsx';
-import Button from '../component/Button.tsx';
-import { title } from '../config.tsx';
+import News from '../component/News';
+import Button from '../component/Button';
+import { title } from '../config';
 
 function Headline({ title }) {
   return (

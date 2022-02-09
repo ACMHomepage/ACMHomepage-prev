@@ -4,17 +4,17 @@ import { Provider, useSelector } from 'react-redux';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from 'theme-ui';
 
-import store from './store/store.ts';
-import { client } from './client.js';
+import store from './store/store';
+import { client } from './client';
 import './index.css';
 import theme from './util/theme';
 
-import Index from './page/Index.jsx';
-import Nav from './component/Nav.tsx';
-import Footer from './component/Footer.jsx';
+import Index from './page/Index';
+import Nav from './component/Nav';
+import Footer from './component/Footer';
 
 if (process.env.NODE_ENV === 'development') {
-  const { worker } = await import('./mock/browser.js');
+  const { worker } = await import('./mock/browser');
   worker.start();
   console.log('Add mock...');
 }

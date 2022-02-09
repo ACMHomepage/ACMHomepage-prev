@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
-import Carousel from './Carousel.tsx';
+import Carousel from './Carousel';
 
 const GET_NEWS = gql`
   query News {

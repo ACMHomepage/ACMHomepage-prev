@@ -1,4 +1,4 @@
-import { colors, breakPointMap } from '../config.tsx';
+import { colors, breakPointMap } from '../config';
 
 export type BreakPoint = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
