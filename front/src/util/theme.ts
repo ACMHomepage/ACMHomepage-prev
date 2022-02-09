@@ -51,17 +51,12 @@ colors.modes.dark.background = get(colors, 'green.9');
 colors.secondaryBackground = get(colors, 'green.2');
 colors.modes.dark.secondaryBackground = get(colors, 'green.7');
 
-colors.primary = get(colors, 'green.8');
-colors.modes.dark.primary = get(colors, 'green.2');
+// Fuck, now those are useless
+colors.primary = 'white';
+colors.modes.dark.primary = 'white';
 
-colors.primaryBg = get(colors, 'green.2');
-colors.modes.dark.primaryBg = get(colors, 'green.6');
-
-colors.secondary = get(colors, 'green.8')
-colors.modes.dark.secondary = get(colors, 'green.1')
-
-colors.secondaryBg = get(colors, 'green.1');
-colors.modes.dark.secondaryBg = get(colors, 'green.7');
+colors.secondary = 'white';
+colors.modes.dark.secondary = 'white';
 
 /******************************************************************************
  * Set the break points.

@@ -19,7 +19,6 @@ function DarkToggle({ className }: DarkToggleProps) {
   const { isDark } = useSelector((state) => (state as any).darkmode);
   const dispatch = useDispatch();
   const [colorMode, setColorMode] = useColorMode();
-  console.log(isDark, colorMode);
   if(isDark && colorMode !== 'dark') {
     setColorMode('dark');
   }
@@ -89,7 +88,7 @@ export default function Nav() {
         position: 'sticky',
         top: 0,
         width: '100%',
-        bg: 'secondaryBg',
+        bg: 'secondaryBackground',
         zIndex: 50,
       }}
     >
