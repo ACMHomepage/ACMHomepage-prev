@@ -14,7 +14,7 @@ function Headline({ title }) {
         {title}
       </h1>
       <div>
-        <Button width="12rem" btnTheme="primary" btnSize="lg" withBorder>
+        <Button withBorder theme="primaryFlip" size="lg" sx={{ width: '12rem' }}>
           More infomation
         </Button>
       </div>

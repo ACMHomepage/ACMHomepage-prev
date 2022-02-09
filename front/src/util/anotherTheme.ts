@@ -1,4 +1,4 @@
-import type { Theme, ColorModesScale, CSSProperties } from 'theme-ui';
+import type { Theme, ColorMode, ColorModesScale, CSSProperties } from 'theme-ui';
 import fill from 'lodash/fill';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
@@ -31,6 +31,9 @@ const colors: ColorModesScale = {
     '#080A0A', // 8
     '#000000', // 9
   ],
+  modes: {
+    dark: {},
+  },
 };
 
 colors.text = get(colors, 'green[8]');
@@ -40,20 +43,43 @@ colors.primary = {
   darker: get(colors, 'green[7]') as CSSProperties['color'],
   lighter: get(colors, 'green[5]') as CSSProperties['color'],
 };
+(colors.modes?.dark as ColorMode).primary = {
+  __default: get(colors, 'green[2]') as CSSProperties['color'],
+  darker: get(colors, 'green[3]') as CSSProperties['color'],
+  lighter: get(colors, 'green[1]') as CSSProperties['color'],
+};
+
 colors.primaryBg = {
+  __default: get(colors, 'green[2]') as CSSProperties['color'],
+  darker: get(colors, 'green[3]') as CSSProperties['color'],
+  lighter: get(colors, 'green[1]') as CSSProperties['color'],
+};
+(colors.modes?.dark as ColorMode).primaryBg = {
+  __default: get(colors, 'green[6]') as CSSProperties['color'],
+  darker: get(colors, 'green[7]') as CSSProperties['color'],
+  lighter: get(colors, 'green[5]') as CSSProperties['color'],
+};
+ 
+colors.secondary = {
+  __default: get(colors, 'green[8]') as CSSProperties['color'],
+  darker: get(colors, 'gray[9]') as CSSProperties['color'],
+  lighter: get(colors, 'gray[7]') as CSSProperties['color'],
+};
+(colors.modes?.dark as ColorMode).secondary = {
   __default: get(colors, 'green[1]') as CSSProperties['color'],
   darker: get(colors, 'green[2]') as CSSProperties['color'],
   lighter: get(colors, 'green[0]') as CSSProperties['color'],
 };
-colors.secondary = {
-  __default: get(colors, 'gray[6]') as CSSProperties['color'],
-  darker: get(colors, 'gray[7]') as CSSProperties['color'],
-  lighter: get(colors, 'gray[5]') as CSSProperties['color'],
-};
+
 colors.secondaryBg = {
-  __default: get(colors, 'gray[1]') as CSSProperties['color'],
-  darker: get(colors, 'gray[2]') as CSSProperties['color'],
-  lighter: get(colors, 'gray[0]') as CSSProperties['color'],
+  __default: get(colors, 'green[1]') as CSSProperties['color'],
+  darker: get(colors, 'green[2]') as CSSProperties['color'],
+  lighter: get(colors, 'green[0]') as CSSProperties['color'],
+};
+(colors.modes?.dark as ColorMode).secondaryBg = {
+  __default: get(colors, 'green[5]') as CSSProperties['color'],
+  darker: get(colors, 'gray[6]') as CSSProperties['color'],
+  lighter: get(colors, 'gray[4]') as CSSProperties['color'],
 };
 
 /******************************************************************************
@@ -155,6 +181,9 @@ const fontWeights = {
  * Default theme.
  *****************************************************************************/
 export default {
+  config: {
+    initialColorModeName: 'light',
+  },
   colors,
   breakpoints,
   radii,

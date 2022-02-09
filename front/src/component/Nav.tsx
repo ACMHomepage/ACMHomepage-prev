@@ -4,11 +4,12 @@ import { Menu as MenuIcon } from 'lucide-react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import { Label } from 'theme-ui';
-import PureSwitch from './PureSwitch';
+import { useColorMode } from 'theme-ui';
 
 import { toggle as toggleDarkMode } from '../store/darkmodeSlice';
 import { utilMainPart } from '../config';
 import { mRV } from '../util/anotherTheme';
+import PureSwitch from './PureSwitch';
 
 interface DarkToggleProps {
   className?: string;
@@ -17,6 +18,14 @@ interface DarkToggleProps {
 function DarkToggle({ className }: DarkToggleProps) {
   const { isDark } = useSelector((state) => (state as any).darkmode);
   const dispatch = useDispatch();
+  const [colorMode, setColorMode] = useColorMode();
+  console.log(isDark, colorMode);
+  if(isDark && colorMode !== 'dark') {
+    setColorMode('dark');
+  }
+  if(!isDark && colorMode === 'dark') {
+    setColorMode('light');
+  }
 
   return (
     <Label

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { CSSProperties } from 'theme-ui';
 
-import { Button } from './Button';
+import Button from './Button';
 import Dots from './Dots';
 import { mRV } from '../util/anotherTheme';
 import type { BreakpointNameWithoutInit } from '../util/anotherTheme';
