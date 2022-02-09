@@ -1,4 +1,4 @@
-import type { Theme, ColorMode, ColorModesScale, CSSProperties } from 'theme-ui';
+import type { Theme, ColorMode, ColorModesScale, ColorMode } from 'theme-ui';
 import fill from 'lodash/fill';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
@@ -6,81 +6,62 @@ import isUndefined from 'lodash/isUndefined';
 /******************************************************************************
  * Set the colors.
  *****************************************************************************/
-const colors: ColorModesScale = {
+interface Colors extends ColorModesScale {
+  readonly green: ColorMode[string];
+  readonly gray: ColorMode[string];
+  modes: { dark: ColorMode };
+};
+
+const colors: Colors = {
   green: [
-    '#FFFFFF', // 0
-    '#E6F5EB', // 1
-    '#B8E0C5', // 2
-    '#86BF99', // 3
-    '#629974', // 4
-    '#41664E', // 5
-    '#2D4033', // 6
-    '#191F1B', // 7
-    '#0A0A0A', // 8
-    '#000000', // 9
+    '#F5FBF7', // 0
+    '#E8F4EC', // 1
+    '#D2E9DB', // 2
+    '#B7D8C3', // 3
+    '#9EC5AC', // 4
+    '#78A288', // 5
+    '#5A8068', // 6
+    '#446953', // 7
+    '#32533F', // 8
+    "#244230", // 9
   ],
   gray: [
     '#F9FEFF', // 0
-    '#E9F3F5', // 1
-    '#D0DEE0', // 2
-    '#ACBCBF', // 3
-    '#869699', // 4
-    '#566366', // 5
-    '#343E40', // 6
-    '#181E1F', // 7
-    '#080A0A', // 8
-    '#000000', // 9
+    '#DDE2E3', // 1
+    '#C4CBCC', // 2
+    '#A9B1B3', // 3
+    '#909799', // 4
+    '#747B7D', // 5
+    '#5D6566', // 6
+    '#43494B', // 7
+    '#2D3233', // 8
+    '#2E3233', // 9
   ],
   modes: {
     dark: {},
   },
 };
 
-colors.text = get(colors, 'green[8]');
-colors.background = get(colors, 'green[1]');
-colors.primary = {
-  __default: get(colors, 'green[6]') as CSSProperties['color'],
-  darker: get(colors, 'green[7]') as CSSProperties['color'],
-  lighter: get(colors, 'green[5]') as CSSProperties['color'],
-};
-(colors.modes?.dark as ColorMode).primary = {
-  __default: get(colors, 'green[2]') as CSSProperties['color'],
-  darker: get(colors, 'green[3]') as CSSProperties['color'],
-  lighter: get(colors, 'green[1]') as CSSProperties['color'],
-};
+colors.text = get(colors, 'green.9');
+colors.modes.dark.text = get(colors, 'green.2');
 
-colors.primaryBg = {
-  __default: get(colors, 'green[2]') as CSSProperties['color'],
-  darker: get(colors, 'green[3]') as CSSProperties['color'],
-  lighter: get(colors, 'green[1]') as CSSProperties['color'],
-};
-(colors.modes?.dark as ColorMode).primaryBg = {
-  __default: get(colors, 'green[6]') as CSSProperties['color'],
-  darker: get(colors, 'green[7]') as CSSProperties['color'],
-  lighter: get(colors, 'green[5]') as CSSProperties['color'],
-};
- 
-colors.secondary = {
-  __default: get(colors, 'green[8]') as CSSProperties['color'],
-  darker: get(colors, 'gray[9]') as CSSProperties['color'],
-  lighter: get(colors, 'gray[7]') as CSSProperties['color'],
-};
-(colors.modes?.dark as ColorMode).secondary = {
-  __default: get(colors, 'green[1]') as CSSProperties['color'],
-  darker: get(colors, 'green[2]') as CSSProperties['color'],
-  lighter: get(colors, 'green[0]') as CSSProperties['color'],
-};
+colors.background = get(colors, 'green.0');
+colors.modes.dark.background = get(colors, 'green.9');
 
-colors.secondaryBg = {
-  __default: get(colors, 'green[1]') as CSSProperties['color'],
-  darker: get(colors, 'green[2]') as CSSProperties['color'],
-  lighter: get(colors, 'green[0]') as CSSProperties['color'],
-};
-(colors.modes?.dark as ColorMode).secondaryBg = {
-  __default: get(colors, 'green[5]') as CSSProperties['color'],
-  darker: get(colors, 'gray[6]') as CSSProperties['color'],
-  lighter: get(colors, 'gray[4]') as CSSProperties['color'],
-};
+colors.secondaryBackground = get(colors, 'green.2');
+colors.modes.dark.secondaryBackground = get(colors, 'green.7');
+
+colors.primary = get(colors, 'green.8');
+colors.modes.dark.primary = get(colors, 'green.2');
+
+colors.primaryBg = get(colors, 'green.2');
+colors.modes.dark.primaryBg = get(colors, 'green.6');
+
+colors.secondary = get(colors, 'green.8')
+colors.modes.dark.secondary = get(colors, 'green.1')
+
+colors.secondaryBg = get(colors, 'green.1');
+colors.modes.dark.secondaryBg = get(colors, 'green.7');
 
 /******************************************************************************
  * Set the break points.

@@ -103,7 +103,8 @@ const TitleAndReadMore = ({ title, summary }: TitleAndReadMoreProps) => {
       <div sx={{ flex: 1 }}>{summary}</div>
       <Button
         withBorder
-        theme="secondaryFlip"
+        color='text'
+        bg='secondaryBackground'
         sx={{
           width: '8rem',
           position: 'absolute',
@@ -143,7 +144,7 @@ export default (props: CarouselProps) => {
   return (
     <div
       sx={{
-        bg: 'secondaryBg',
+        bg: 'secondaryBackground',
         borderRadius: '0.25rem',
         display: 'flex',
         flexDirection: mRV<CSSProperties['flexDirection']>({

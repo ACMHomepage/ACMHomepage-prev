@@ -25,8 +25,13 @@ function AppWithTheme() {
   return (
     <ThemeProvider theme={theme}>
       <div
-        className={`bg-first min-h-screen dark:text-green-100 text-green-900
-            flex flex-col`}
+        sx={{
+          color: 'text',
+          bg: 'background',
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+        }}
       >
         <Nav />
         <Index />

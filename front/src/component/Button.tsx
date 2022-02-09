@@ -1,11 +1,14 @@
-import isUndefined from 'lodash/isUndefined';
-import type { ThemeUIStyleObject } from 'theme-ui';
+import type { ThemeUIStyleObject, ColorModesScale } from 'theme-ui';
+import { darken } from '@theme-ui/color';
 import type { ReactNode } from 'react';
+import { isNull, isUndefined } from 'lodash';
 
 interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
   withBorder?: boolean;
-  theme?: 'primaryFlip' | 'primary' | 'secondaryFlip' | 'secondary';
+  filp?: boolean;
+  color?: ColorModesScale[string];
+  bg?: ColorModesScale[string];
   className?: string;
   children?: ReactNode;
 }
@@ -14,12 +17,15 @@ interface ButtonProps {
  * Props:
  * - btnSize: 'sm' | 'md'(default) | 'lg'.
  * - withBorder: true | false(default).
- * - theme: 'primaryFlip' | 'primary' | 'secondaryFlip' | 'secondary'.|
- *   [undefined].
+ * - filp: true | false(default). If it is true, when hover, it will filp the
+ *   backgound and frontgound. Or it will let it darker.
+ * - color: <COLOR> | 'text'(default). The text and border color.
+ * - bg: <COLOR> | 'background'(default).The background color.
  * - className: [string] | [undefined].
  */
 export default (props: ButtonProps) => {
-  let { size, withBorder, theme, className, children } = props;
+  let { size, withBorder, filp, color, bg, className, children } = props;
+
   // Deal with size prop.
   if (isUndefined(size)) size = 'md';
   const btnSize: ThemeUIStyleObject = {
@@ -34,43 +40,28 @@ export default (props: ButtonProps) => {
     borderWidth: withBorder ? '1px' : '0px',
   };
 
-  // Deal with theme prop.
-  const btnTheme: ThemeUIStyleObject = theme
-    ? {
-        primaryFlip: {
-          color: 'primary',
-          bg: 'primaryBg',
-          borderColor: 'primary',
-          ':hover': { color: 'primaryBg', bg: 'primary' },
-        },
-        primary: {
-          color: 'primary',
-          bg: 'primaryBg',
-          borderColor: 'primary',
-          ':hover': { color: 'primary.darker', bg: 'primaryBg.darker' },
-        },
-        secondaryFlip: {
-          color: 'secondary',
-          bg: 'secondaryBg',
-          borderColor: 'secondary',
-          ':hover': { color: 'secondaryBg', bg: 'primary' },
-        },
-        secondary: {
-          color: 'secondary',
-          bg: 'secondaryBg',
-          borderColor: 'secondary',
-          ':hover': { color: 'secondary.darker', bg: 'primaryBg.darker' },
-        },
-      }[theme]
-    : {};
+  // Deal with color and bg prop.
+  if (isUndefined(color)) color = 'text';
+  if (isUndefined(bg)) bg = 'background';
+
+  // Deal with filp prop.
+  if (isUndefined(filp)) filp = false;
+  let hoverColor = filp ? bg : darken(color, 0.1);
+  let hoverBg = filp ? color : darken(bg, 0.1);
 
   return (
     <button
       sx={{
         borderRadius: '0.25rem',
+        color,
+        bg,
+        borderColor: color,
+        '&:hover': {
+          color: hoverColor,
+          bg: hoverBg,
+        },
         ...btnSize,
         ...border,
-        ...btnTheme,
       }}
       className={className}
     >
