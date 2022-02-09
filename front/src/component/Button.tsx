@@ -1,7 +1,8 @@
 import type { ThemeUIStyleObject, ColorModesScale } from 'theme-ui';
 import { darken } from '@theme-ui/color';
 import type { ReactNode } from 'react';
-import { isNull, isUndefined } from 'lodash';
+import isNull from 'lodash/isNull';
+import isUndefined from 'lodash/isUndefined';
 
 interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
