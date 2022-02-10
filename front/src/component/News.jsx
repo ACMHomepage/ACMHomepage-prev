@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
 import Carousel from './Carousel';
+import { mRV } from '../util/theme';
 
 const GET_NEWS = gql`
   query News {
@@ -24,8 +25,8 @@ function NewsBody() {
   return (
     <Carousel
       contentMinis={data.news}
-      className="h-96"
       rowChangeBreakPoint="md"
+      sx={{ height: '28rem' }}
     />
   );
 }
@@ -33,7 +34,13 @@ function NewsBody() {
 export default function News() {
   return (
     <React.Fragment>
-      <h2 className="font-semibold text-xl md:text-2xl lg:text-3xl mb-4">
+      <h2
+        sx={{
+          fontWeight: 'h2',
+          fontSize: mRV({ _: 'xl', md: '2xl', lg: '3xl' }),
+          mb: '1rem',
+        }}
+      >
         News of ACM
       </h2>
       <NewsBody />

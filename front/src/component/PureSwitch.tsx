@@ -75,14 +75,14 @@ export default React.forwardRef(
             borderRadius: '50%',
             height: size,
             width: size,
-            bg: 'white',
+            bg: 'background',
             boxShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
             position: 'relative',
             transform: 'translateX(0%)',
             transition: `transform 240ms cubic-bezier(0.165, 0.840, 0.440, 1.000)`,
           },
           'input:checked ~ &': {
-            bg: 'primary',
+            bg: 'text',
             '> div': {
               transform: 'translateX(100%)',
             },

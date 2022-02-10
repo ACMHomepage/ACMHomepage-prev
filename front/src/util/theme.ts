@@ -1,4 +1,4 @@
-import type { Theme, ColorMode, ColorModesScale, ColorMode } from 'theme-ui';
+import type { Theme, ColorModesScale, ColorMode } from 'theme-ui';
 import fill from 'lodash/fill';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
@@ -6,9 +6,11 @@ import isUndefined from 'lodash/isUndefined';
 /******************************************************************************
  * Set the colors.
  *****************************************************************************/
+type Color = ColorModesScale[string];
+
 interface Colors extends ColorModesScale {
-  readonly green: ColorMode[string];
-  readonly gray: ColorMode[string];
+  readonly green: Color;
+  readonly gray: Color;
   modes: { dark: ColorMode };
 }
 
@@ -57,6 +59,14 @@ colors.modes.dark.primary = 'white';
 
 colors.secondary = 'white';
 colors.modes.dark.secondary = 'white';
+
+export const setColor = (color: Color, bg: Color) => {
+  return {
+    color,
+    bg,
+    borderColor: color,
+  };
+};
 
 /******************************************************************************
  * Set the break points.
@@ -136,21 +146,50 @@ export const makeResponsiveValue = <T>(
   return result;
 };
 
+/** Make responsive value. (alias: mRV). */
 export const mRV = makeResponsiveValue;
 
 /******************************************************************************
  * Set the size for radius.
  *****************************************************************************/
 const radii = {
+  normal: '0.25rem',
   inf: '999999px',
 };
 
 /******************************************************************************
- * Set the weights for font.
+ * Set the weights, size for font.
  *****************************************************************************/
-const fontWeights = {
-  body: 400,
+const fontWeights: Theme['fontWeights'] = {
+  thin: 100,
+  extralight: 200,
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semibold: 600,
   bold: 700,
+  extrabold: 800,
+  black: 900,
+};
+
+fontWeights.h1 = fontWeights.extrabold;
+fontWeights.h2 = fontWeights.semibold;
+fontWeights.body = fontWeights.normal;
+
+const fontSizes = {
+  xs: '0.75rem',
+  sm: '0.875rem',
+  base: '1rem',
+  lg: '1.125rem',
+  xl: '1.25rem',
+  '2xl': '1.5rem',
+  '3xl': '1.875rem',
+  '4xl': '2.25rem',
+  '5xl': '3rem',
+  '6xl': '3.75rem',
+  '7xl': '4.5rem',
+  '8xl': '6rem',
+  '9xl': '8rem',
 };
 
 /******************************************************************************
@@ -164,4 +203,5 @@ export default {
   breakpoints,
   radii,
   fontWeights,
+  fontSizes,
 } as Theme;

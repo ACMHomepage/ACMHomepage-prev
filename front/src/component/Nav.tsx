@@ -8,7 +8,7 @@ import { useColorMode } from 'theme-ui';
 
 import { toggle as toggleDarkMode } from '../store/darkmodeSlice';
 import { utilMainPart } from '../config';
-import { mRV } from '../util/theme';
+import { mRV, setColor } from '../util/theme';
 import PureSwitch from './PureSwitch';
 
 interface DarkToggleProps {
@@ -54,10 +54,20 @@ function MenuList(props: any) {
       <Menu>
         <Menu.Button
           type="button"
-          className={`inline-flex items-center rounded border border-green-900
-              dark:border-white p-1 text-sm h-8 shadow-md bg-first`}
+          sx={{
+            display: 'inline-flex',
+            itemAlign: 'center',
+            borderRadius: '0.25rem',
+            gap: '0.25rem',
+            borderWidth: '1px',
+            borderColor: 'text',
+            background: 'background',
+            padding: '0.25rem',
+            height: '2rem',
+            fontSize: 'sm',
+          }}
         >
-          <span className="hidden sm:block">Menu</span>
+          <span sx={{ display: mRV({ _: 'none', sm: 'block' }) }}>Menu</span>
           <MenuIcon size={20} />
         </Menu.Button>
         <Transition
@@ -70,8 +80,16 @@ function MenuList(props: any) {
           leaveTo="transform opacity-0 scale-90"
         >
           <Menu.Items
-            className={`bg-first absolute right-0 w-60 top-10 rounded border
-                  border-green-900 shadow-md dark:border-white p-2`}
+            sx={{
+              position: 'absolute',
+              width: '14rem',
+              right: '0rem',
+              top: '3rem',
+              p: '0.5rem',
+              borderRadius: 'normal',
+              borderWidth: '1px',
+              ...setColor('text', 'background'),
+            }}
           >
             <Menu.Item>{({ active }) => <DarkToggle autofill />}</Menu.Item>
           </Menu.Items>

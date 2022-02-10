@@ -3,13 +3,26 @@ import React, { useState, useEffect } from 'react';
 import News from '../component/News';
 import Button from '../component/Button';
 import { title } from '../config';
+import { mRV } from '../util/theme';
+import { utilMainPart } from '../config';
 
 function Headline({ title }) {
   return (
-    <div className="py-24 sm:py-32 md:py-40 flex flex-col items-center gap-8">
+    <div
+      sx={{
+        py: mRV({ _: '6rem', sm: '8rem', md: '8rem' }),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '2rem',
+      }}
+    >
       <h1
-        className={`text-center text-4xl md:text-5xl lg:text-6xl
-          font-extrabold`}
+        sx={{
+          textAlign: 'center',
+          fontSize: mRV({ _: '4xl', md: '5xl', lg: '6xl' }),
+          fontWeight: 'h1',
+        }}
       >
         {title}
       </h1>
@@ -25,10 +38,10 @@ function Headline({ title }) {
 export default function Index() {
   return (
     <React.Fragment>
-      <div className="util-main-part">
+      <div sx={{ ...utilMainPart }}>
         <Headline title={title} />
       </div>
-      <div className="util-main-part">
+      <div sx={{ ...utilMainPart }}>
         <News />
       </div>
     </React.Fragment>
