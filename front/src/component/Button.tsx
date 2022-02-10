@@ -70,4 +70,3 @@ export default (props: ButtonProps) => {
     </button>
   );
 };
-

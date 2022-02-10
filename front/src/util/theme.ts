@@ -10,7 +10,7 @@ interface Colors extends ColorModesScale {
   readonly green: ColorMode[string];
   readonly gray: ColorMode[string];
   modes: { dark: ColorMode };
-};
+}
 
 const colors: Colors = {
   green: [
@@ -23,7 +23,7 @@ const colors: Colors = {
     '#5A8068', // 6
     '#446953', // 7
     '#32533F', // 8
-    "#244230", // 9
+    '#244230', // 9
   ],
   gray: [
     '#F9FEFF', // 0

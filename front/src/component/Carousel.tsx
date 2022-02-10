@@ -103,8 +103,8 @@ const TitleAndReadMore = ({ title, summary }: TitleAndReadMoreProps) => {
       <div sx={{ flex: 1 }}>{summary}</div>
       <Button
         withBorder
-        color='text'
-        bg='secondaryBackground'
+        color="text"
+        bg="secondaryBackground"
         sx={{
           width: '8rem',
           position: 'absolute',

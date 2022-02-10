@@ -19,10 +19,10 @@ function DarkToggle({ className }: DarkToggleProps) {
   const { isDark } = useSelector((state) => (state as any).darkmode);
   const dispatch = useDispatch();
   const [colorMode, setColorMode] = useColorMode();
-  if(isDark && colorMode !== 'dark') {
+  if (isDark && colorMode !== 'dark') {
     setColorMode('dark');
   }
-  if(!isDark && colorMode === 'dark') {
+  if (!isDark && colorMode === 'dark') {
     setColorMode('light');
   }
 
