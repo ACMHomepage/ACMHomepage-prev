@@ -1,8 +1,6 @@
 import type { ThemeUIStyleObject } from 'theme-ui';
 import { mRV } from './util/theme';
 
-import { BreakPoint, BreakPointMap } from './util/class';
-
 export const title = (
   <span>
     Soochow University
@@ -42,14 +40,6 @@ export const colors: Colors = {
     800: '#43494B',
     900: '#2E3233',
   },
-};
-
-export const breakPointMap: BreakPointMap = {
-  sm: '640px',
-  md: '780px',
-  lg: '1024px',
-  xl: '1280px',
-  '2xl': '1536px',
 };
 
 export const utilMainPart: ThemeUIStyleObject = {
