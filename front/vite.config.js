@@ -22,9 +22,6 @@ export default defineConfig({
     jsxFactory: 'jsx',
     jsxInject: `import { jsx } from 'theme-ui'`,
   },
-  optimizeDeps: {
-    exclude: ['react-dom', 'react']
-  },
   build: {
     rollupOptions: {
       plugins: rollupPlugins,
