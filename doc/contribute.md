@@ -24,23 +24,37 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
 To-do Tree
 -------------------------------------------------------------------------------
 - [ ] Use CSS-in-JS.
-  - [ ] Remove tailwindcss.
-  - [ ] I like styled-system. I can try it.
-- [ ] Change color.
-  - [ ] How about use color `primary` than just `green`?
+  - [ ] Radix-ui is a shit. Let's try build component by ourself.
+  - [x] I like styled-system. I can try it.
+  - [x] I hate styled-system. Let's try theme-ui.
+  - [x] How about radix-ui?
 - [ ] Remove typescript's warning and error.
 - [ ] Update test.
-  - [x] Two toggle to change dark mode. make sure they works well.
   - [ ] Add test for `News`.
   - [ ] Add test for `Carousel`.
   - [ ] And so on.
+  - [x] Two toggle to change dark mode. make sure they works well.
 - [ ] Add a user entrypoint.
   - [ ] Put a button.
   - [ ] Add a router.
-- [ ] Add news.
-- [ ] Make `Nav` sticky.
 - [ ] Use `deno` instead of `node.js`.
 - [ ] Remove `any` in `.ts` file.
 - [ ] Add cache for picute.
+- [ ] Make test runable.
+- [ ] Better color mode.
+- [ ] Fix bug:
+
+  Warning: Cannot update a component (`TopLevelColorModeProvider`) while
+  rendering a different component (`DarkToggle`). To locate the bad setState()
+  call inside `DarkToggle`, follow the stack trace as described in
+  https://reactjs.org/link/setstate-in-render
+
+  DarkToggle@http://127.0.0.1:3000/src/component/Nav.tsx:12:20
+
+  withEmotionCache2/<@http://127.0.0.1:3000/node_modules/.vite/theme-ui.js?
+  v=0b85f029:1314:45
+- [x] Change color.
+- [x] Add news.
+- [x] Remove `class.ts`.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
