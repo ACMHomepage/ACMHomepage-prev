@@ -1,4 +1,9 @@
-import type { Theme, ColorModesScale, ColorMode } from 'theme-ui';
+import type {
+  Theme,
+  ColorModesScale,
+  ColorMode,
+  ThemeUICSSObject,
+} from 'theme-ui';
 import fill from 'lodash/fill';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
@@ -7,6 +12,7 @@ import isUndefined from 'lodash/isUndefined';
  * Set the colors.
  *****************************************************************************/
 type Color = ColorModesScale[string];
+type ColorStyle = ThemeUICSSObject['color'];
 
 interface Colors extends ColorModesScale {
   readonly green: Color;
@@ -60,11 +66,25 @@ colors.modes.dark.primary = 'white';
 colors.secondary = 'white';
 colors.modes.dark.secondary = 'white';
 
-export const setColor = (color: Color, bg: Color) => {
+interface SetColorConfig {
+  setColorToBorderColor: boolean;
+}
+
+export const setColor = (
+  color: ColorStyle,
+  bg: ColorStyle,
+  config?: SetColorConfig,
+) => {
+  if (isUndefined(config)) {
+    config = {
+      setColorToBorderColor: true,
+    };
+  }
+
   return {
     color,
     bg,
-    borderColor: color,
+    borderColor: config.setColorToBorderColor ? color : undefined,
   };
 };
 
@@ -150,11 +170,28 @@ export const makeResponsiveValue = <T>(
 export const mRV = makeResponsiveValue;
 
 /******************************************************************************
- * Set the size for radius.
+ * Set the radius size for border.
  *****************************************************************************/
 const radii = {
   normal: '0.25rem',
   inf: '999999px',
+};
+
+interface SetBorderConfig {
+  width?: ThemeUICSSObject['borderWidth'];
+  radius?: ThemeUICSSObject['borderRadius'];
+}
+
+/**
+ * config:
+ * - width: `<WIDTH>` | `'1px'`(defalut).
+ * - radius: `<RADII>` | `'normal'`(defalut).
+ */
+export const setBorder = (config?: SetBorderConfig) => {
+  if (isUndefined(config)) config = {};
+  if (isUndefined(config.width)) config.width = '1px';
+  if (isUndefined(config.radius)) config.radius = 'normal';
+  return { borderWidth: config.width, borderRadius: config.radius };
 };
 
 /******************************************************************************

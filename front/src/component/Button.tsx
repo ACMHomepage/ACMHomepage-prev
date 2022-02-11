@@ -1,8 +1,9 @@
 import type { ThemeUIStyleObject, ColorModesScale } from 'theme-ui';
 import { darken } from '@theme-ui/color';
 import type { ReactNode } from 'react';
-import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
+
+import { setColor } from '../util/theme';
 
 interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
@@ -14,15 +15,15 @@ interface ButtonProps {
   children?: ReactNode;
 }
 
-/*
+/**
  * Props:
- * - btnSize: 'sm' | 'md'(default) | 'lg'.
- * - withBorder: true | false(default).
- * - filp: true | false(default). If it is true, when hover, it will filp the
- *   backgound and frontgound. Or it will let it darker.
- * - color: <COLOR> | 'text'(default). The text and border color.
- * - bg: <COLOR> | 'background'(default).The background color.
- * - className: [string] | [undefined].
+ * - size: `'sm'` | `'md'`(default) | `'lg'`.
+ * - withBorder: `true` | `false`(default).
+ * - filp: `true` | `false`(default). If it is `true`, when hover, it will filp
+ *   the backgound and frontgound. Or it will let it darker.
+ * - color: `<COLOR>` | `'text'`(default). The text and border color.
+ * - bg: `<COLOR>` | `'background'`(default).The background color.
+ * - className: `<string>` | `undefined`.
  */
 export default (props: ButtonProps) => {
   let { size, withBorder, filp, color, bg, className, children } = props;
@@ -53,13 +54,11 @@ export default (props: ButtonProps) => {
   return (
     <button
       sx={{
+        padding: '0.25rem',
         borderRadius: '0.25rem',
-        color,
-        bg,
-        borderColor: color,
+        ...setColor(color, bg),
         '&:hover': {
-          color: hoverColor,
-          bg: hoverBg,
+          ...setColor(hoverColor, hoverBg, { setColorToBorderColor: false }),
         },
         ...btnSize,
         ...border,
