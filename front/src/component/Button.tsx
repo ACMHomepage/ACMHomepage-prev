@@ -3,7 +3,7 @@ import { darken } from '@theme-ui/color';
 import type { ReactNode } from 'react';
 import isUndefined from 'lodash/isUndefined';
 
-import { setColor, setBorder } from '../util/theme';
+import { setColor, setBorder, setFlex } from '../util/theme';
 
 interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
@@ -53,10 +53,7 @@ export default (props: ButtonProps) => {
     <button
       sx={{
         padding: '0.25rem',
-        borderRadius: '0.25rem',
-        display: 'flex',
-        alignItems: 'center',
-        placeContent: 'center',
+        ...setFlex({ center: true }),
         ...setColor(color, bg),
         '&:hover': {
           ...setColor(hoverColor, hoverBg, { setColorToBorderColor: false }),

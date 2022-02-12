@@ -7,7 +7,7 @@ import { setColor, setBorder } from '../util/theme';
 
 interface DropdownProps {
   className?: string;
-};
+}
 
 /**
  * Props:
@@ -23,18 +23,21 @@ export default ({ className }: DropdownProps) => {
         </Button>
       </Menu.Button>
       <div sx={{ position: 'relative' }}>
-        <Menu.Items as="div" sx={{
-          position: 'absolute',
-          top: '0.25rem',
-          right: '0rem',
-          width: '16rem',
-          p: '0.5rem',
-          ...setColor('text', 'background'),
-          ...setBorder(),
-        }}>
+        <Menu.Items
+          as="div"
+          sx={{
+            position: 'absolute',
+            top: '0.25rem',
+            right: '0rem',
+            width: '16rem',
+            p: '0.5rem',
+            ...setColor('text', 'background'),
+            ...setBorder(),
+          }}
+        >
           <Menu.Item as={DarkToggle} />
         </Menu.Items>
       </div>
     </Menu>
-  )
+  );
 };

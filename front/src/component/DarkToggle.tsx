@@ -11,16 +11,15 @@ export type ColorMode = 'light' | 'dark';
  * @param setColorMode Color mode handle, use `useColorMode` hook to get.
  * @returns `() => void`, function.
  */
-export const click = (
-  colorMode: ColorMode,
-  setColorMode: (colorMode: ColorMode) => void,
-) => (_event: Event): void => {
-  if (colorMode === 'dark') {
-    setColorMode('light');
-  } else {
-    setColorMode('dark');
-  }
-};
+const click =
+  (colorMode: ColorMode, setColorMode: (colorMode: ColorMode) => void) =>
+  (_event: Event): void => {
+    if (colorMode === 'dark') {
+      setColorMode('light');
+    } else {
+      setColorMode('dark');
+    }
+  };
 
 interface DarkToggleProps {
   className?: string;
