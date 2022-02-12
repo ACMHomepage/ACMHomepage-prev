@@ -3,6 +3,7 @@ import type {
   ColorModesScale,
   ColorMode,
   ThemeUICSSObject,
+  ThemeUIStyleObject,
 } from 'theme-ui';
 import fill from 'lodash/fill';
 import get from 'lodash/get';
@@ -180,18 +181,21 @@ const radii = {
 interface SetBorderConfig {
   width?: ThemeUICSSObject['borderWidth'];
   radius?: ThemeUICSSObject['borderRadius'];
+  style?: ThemeUIStyleObject['borderStyle'];
 }
 
 /**
  * config:
  * - width: `<WIDTH>` | `'1px'`(defalut).
  * - radius: `<RADII>` | `'normal'`(defalut).
+ * - style: `<BORDER-STYLE>` | `'solid'`(default).
  */
 export const setBorder = (config?: SetBorderConfig) => {
   if (isUndefined(config)) config = {};
   if (isUndefined(config.width)) config.width = '1px';
   if (isUndefined(config.radius)) config.radius = 'normal';
-  return { borderWidth: config.width, borderRadius: config.radius };
+  if (isUndefined(config.style)) config.style = 'solid';
+  return { borderWidth: config.width, borderRadius: config.radius, borderStyle: config.style };
 };
 
 /******************************************************************************

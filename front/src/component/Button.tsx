@@ -3,7 +3,7 @@ import { darken } from '@theme-ui/color';
 import type { ReactNode } from 'react';
 import isUndefined from 'lodash/isUndefined';
 
-import { setColor } from '../util/theme';
+import { setColor, setBorder } from '../util/theme';
 
 interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
@@ -38,9 +38,7 @@ export default (props: ButtonProps) => {
 
   // Deal with withBorder prop.
   if (isUndefined(withBorder)) withBorder = false;
-  const border: ThemeUIStyleObject = {
-    borderWidth: withBorder ? '1px' : '0px',
-  };
+  const border = setBorder({ width: withBorder ? '1px' : '0px' });
 
   // Deal with color and bg prop.
   if (isUndefined(color)) color = 'text';
@@ -56,6 +54,9 @@ export default (props: ButtonProps) => {
       sx={{
         padding: '0.25rem',
         borderRadius: '0.25rem',
+        display: 'flex',
+        alignItems: 'center',
+        placeContent: 'center',
         ...setColor(color, bg),
         '&:hover': {
           ...setColor(hoverColor, hoverBg, { setColorToBorderColor: false }),
