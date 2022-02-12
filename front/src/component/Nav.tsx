@@ -1,7 +1,7 @@
 import { utilMainPart } from '../config';
 import { mRV } from '../util/theme';
-import Menu from './Menu';
 import DarkToggle from './DarkToggle';
+import Dropdown from './Dropdown';
 
 export default function Nav() {
   return (
@@ -26,7 +26,7 @@ export default function Nav() {
       >
         <span sx={{ fontWeight: 'bold', flex: 1 }}>ACM Homepage</span>
         <DarkToggle sx={{ display: mRV({ _: 'none', md: 'flex' }) }} />
-        <Menu contentAlign="end" sx={{ display: mRV({ _: 'block', md: 'none' }) }} />
+        <Dropdown sx={{ display: mRV({ _: 'block', md: 'none' }) }} />
       </nav>
     </div>
   );
