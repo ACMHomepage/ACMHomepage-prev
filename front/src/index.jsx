@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from 'theme-ui';
+import { Global } from '@emotion/react';
 
 import store from './store/store';
 import { client } from './client';
-import './index.css';
 import theme from './util/theme';
 
 import Index from './page/Index';
@@ -19,11 +19,20 @@ if (process.env.NODE_ENV === 'development') {
   console.log('Add mock...');
 }
 
-function AppWithTheme() {
-  const { isDark } = useSelector((state) => state.darkmode);
-
+const AppWithTheme = () => {
   return (
     <ThemeProvider theme={theme}>
+      <Global
+        styles={{
+          '*': {
+            transitionProperty: 'color, background-color, border-color, '
+              + 'text-decoration-color, fill, stroke, opacity, box-shadow, '
+              + 'transform, filter, backdrop-filter',
+            transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            transitionDuration: '300ms',
+          }
+        }}
+      />
       <div
         sx={{
           color: 'text',
