@@ -71,6 +71,15 @@ interface SetColorConfig {
   setColorToBorderColor: boolean;
 }
 
+/**
+ * setColor.
+ *
+ * @param color The text color and border color.
+ * @param bg The background's color.
+ * @param config Config:
+ * - `setColorToBorderColor`: `true`(defalut) | `false`. Set param `color` to
+ *   border's color or not.
+ */
 export const setColor = (
   color: ColorStyle,
   bg: ColorStyle,
@@ -181,7 +190,7 @@ const radii = {
 interface SetBorderConfig {
   width?: ThemeUICSSObject['borderWidth'];
   radius?: ThemeUICSSObject['borderRadius'];
-  style?: ThemeUIStyleObject['borderStyle'];
+  style?: ThemeUICSSObject['borderStyle'];
 }
 
 /**
@@ -195,7 +204,11 @@ export const setBorder = (config?: SetBorderConfig) => {
   if (isUndefined(config.width)) config.width = '1px';
   if (isUndefined(config.radius)) config.radius = 'normal';
   if (isUndefined(config.style)) config.style = 'solid';
-  return { borderWidth: config.width, borderRadius: config.radius, borderStyle: config.style };
+  return {
+    borderWidth: config.width,
+    borderRadius: config.radius,
+    borderStyle: config.style,
+  };
 };
 
 /******************************************************************************
@@ -231,6 +244,31 @@ const fontSizes = {
   '7xl': '4.5rem',
   '8xl': '6rem',
   '9xl': '8rem',
+};
+
+/******************************************************************************
+ * Set the flexbox.
+ *****************************************************************************/
+interface SetFlexConfig {
+  center?: boolean;
+  gap?: ThemeUICSSObject['gap'];
+}
+
+/**
+ * setFlex.
+ *
+ * @param config Config the flexbox's style.
+ * - `center`: `false`(default) | `true`. Set the content is put at the center
+ *   or not.
+ * - `gap`: `<LENGTH>` | `undefined`(default).
+ */
+export const setFlex = ({ center = false, gap }: SetFlexConfig) => {
+  return {
+    display: 'flex',
+    alignItems: center ? 'center' : undefined,
+    placeContent: center ? 'center' : undefined,
+    gap,
+  };
 };
 
 /******************************************************************************

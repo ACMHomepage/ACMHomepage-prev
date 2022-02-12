@@ -20,3 +20,6 @@ export const utilMainPart: ThemeUIStyleObject = {
     xl: `${(100 * 8) / 12}%`,
   }),
 };
+
+// After 500ms, we will try to preload some picute, etc. to get better feel.
+export const preloadTime = 500;
