@@ -12,6 +12,7 @@ import theme from './util/theme';
 
 import Index from './page/Index';
 import _404 from './page/404';
+import Info from './page/Info';
 import Nav from './component/Nav';
 import Footer from './component/Footer';
 
@@ -29,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
  */
 const Preflight = () => (
   <Global
-    styles={{
+    styles={theme => ({
       '*': {
         transitionProperty:
           'color, background-color, border-color, ' +
@@ -58,7 +59,11 @@ const Preflight = () => (
         borderWidth: 0,
         borderStyle: 'solid',
       },
-    }}
+      'a': {
+        textDecoration: 'none',
+        color: theme.colors.text,
+      },
+    })}
   />
 );
 
@@ -78,6 +83,7 @@ const AppWithTheme = () => {
         <Nav />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/info" element={<Info />} />
           <Route path="*" element={<_404 />} />
         </Routes>
         <Footer />

@@ -6,9 +6,10 @@ import { mRV, setFontSize } from '../util/theme';
 interface HeaderProps {
   children?: React.ReactNode;
   headnumber?: 1 | 2 | 3 | 4 | 5 | 6;
+  className?: string;
 }
 
-const Header = ({ children, headnumber }: HeaderProps) => {
+const Header = ({ children, headnumber, className }: HeaderProps) => {
   if (isUndefined(headnumber)) headnumber = 1;
   const HeaderName = `h${headnumber}` as keyof JSX.IntrinsicElements;
 
@@ -19,6 +20,7 @@ const Header = ({ children, headnumber }: HeaderProps) => {
         fontSize: setFontSize(`h${headnumber}`),
         fontWeight: `h${headnumber}`,
       }}
+      className={className}
     >
       {children}
     </HeaderName>

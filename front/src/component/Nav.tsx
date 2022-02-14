@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { utilMainPart } from '../config';
 import { mRV } from '../util/theme';
 import DarkToggle from './DarkToggle';
@@ -24,7 +26,7 @@ export default function Nav() {
           ...utilMainPart,
         }}
       >
-        <span sx={{ fontWeight: 'bold', flex: 1 }}>ACM Homepage</span>
+        <Link to="/" sx={{ fontWeight: 'bold', flex: 1 }}>ACM Homepage</Link>
         <DarkToggle sx={{ display: mRV({ _: 'none', md: 'flex' }) }} />
         <Dropdown sx={{ display: mRV({ _: 'block', md: 'none' }) }} />
       </nav>
