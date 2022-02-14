@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from 'theme-ui';
 import { Global } from '@emotion/react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import store from './store/store';
 import { client } from './client';
@@ -77,8 +77,8 @@ const AppWithTheme = () => {
       >
         <Nav />
         <Routes>
-          <Route path="/" element={<Index />}/>
-          <Route path="*" element={<_404 />}/>
+          <Route path="/" element={<Index />} />
+          <Route path="*" element={<_404 />} />
         </Routes>
         <Footer />
       </div>

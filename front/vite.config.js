@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import visualizer from 'rollup-plugin-visualizer';
-// import importToCDN, { autoComplete } from 'vite-plugin-cdn-import';
 
 const env = process.argv[process.argv.length - 1];
 

@@ -43,7 +43,7 @@ function NewsBody() {
           ...setColor('text', 'secondaryBackground'),
         }}
       >
-        <Loader size={20}/>
+        <Loader size={20} />
         Loading...
       </div>
     );
@@ -55,7 +55,7 @@ function NewsBody() {
         size="lg"
         sx={{ width: '100%', height: HEIGHT, gap: '0.5rem' }}
       >
-        <Loader size={20}/>
+        <Loader size={20} />
         Click to retry
       </Button>
     );
