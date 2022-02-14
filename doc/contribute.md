@@ -23,11 +23,6 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
 
 To-do Tree
 -------------------------------------------------------------------------------
-- [ ] Use CSS-in-JS.
-  - [ ] Radix-ui is a shit. Let's try build component by ourself.
-  - [x] I like styled-system. I can try it.
-  - [x] I hate styled-system. Let's try theme-ui.
-  - [x] How about radix-ui?
 - [ ] Remove typescript's warning and error.
 - [ ] Update test.
   - [ ] Add test for `News`.
@@ -53,8 +48,9 @@ To-do Tree
 
   withEmotionCache2/<@http://127.0.0.1:3000/node_modules/.vite/theme-ui.js?
   v=0b85f029:1314:45
-- [x] Change color.
-- [x] Add news.
-- [x] Remove `class.ts`.
+- [ ] How about add sx prop in theme-ui's Global?
+- [x] Use CSS-in-JS.
+- [x] Reduce ReactDOM's size.
+- [x] Build component.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
