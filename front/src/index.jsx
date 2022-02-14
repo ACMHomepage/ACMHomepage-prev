@@ -13,8 +13,11 @@ import theme from './util/theme';
 import Index from './page/Index';
 import _404 from './page/404';
 import Info from './page/Info';
+import NewsPage from './page/News';
+
 import Nav from './component/Nav';
 import Footer from './component/Footer';
+import ScrollToTop from './component/ScrollToTop.tsx';
 
 if (process.env.NODE_ENV === 'development') {
   const { worker } = await import('./mock/browser');
@@ -71,6 +74,7 @@ const AppWithTheme = () => {
   return (
     <ThemeProvider theme={theme}>
       <Preflight />
+      <ScrollToTop />
       <div
         sx={{
           color: 'text',
@@ -83,7 +87,11 @@ const AppWithTheme = () => {
         <Nav />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/info" element={<Info />} />
+          <Route path="info" element={<Info />} />
+          <Route path="news">
+            <Route index element={<_404 />}/>
+            <Route path=":newsId" element={<NewsPage />} />
+          </Route>
           <Route path="*" element={<_404 />} />
         </Routes>
         <Footer />

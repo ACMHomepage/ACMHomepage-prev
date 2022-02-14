@@ -10,6 +10,7 @@ import Button from './Button';
 const GET_NEWS = gql`
   query News {
     news {
+      id
       title
       image_uri
       summary

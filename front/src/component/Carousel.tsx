@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { CSSProperties } from 'theme-ui';
+import { useNavigate } from 'react-router-dom';
 
 import Button from './Button';
 import Dots from './Dots';
@@ -77,11 +78,14 @@ const CarouselPreview = (props: CarouselPreviewProps) => {
  * TitleAndReadMore, show the title and read more button.
  */
 interface TitleAndReadMoreProps {
+  id: number;
   title: string;
   summary: string;
 }
 
-const TitleAndReadMore = ({ title, summary }: TitleAndReadMoreProps) => {
+const TitleAndReadMore = ({ id, title, summary }: TitleAndReadMoreProps) => {
+  const navigate = useNavigate();
+
   return (
     <div
       sx={{
@@ -111,6 +115,7 @@ const TitleAndReadMore = ({ title, summary }: TitleAndReadMoreProps) => {
           right: padding,
           bottom: padding,
         }}
+        onClick={() => navigate(`/news/${id}`)}
       >
         Read More
       </Button>
@@ -124,6 +129,7 @@ const TitleAndReadMore = ({ title, summary }: TitleAndReadMoreProps) => {
 const padding = '1rem';
 
 interface contentMini {
+  id: number;
   title: string;
   summary: string;
   image_uri: string;
@@ -139,7 +145,7 @@ export default (props: CarouselProps) => {
   const { contentMinis, rowChangeBreakPoint: bp, className } = props;
   const length = contentMinis.length;
   const [current, setCurrent] = useState(0);
-  const { title, summary, image_uri } = contentMinis[current];
+  const { id, title, summary, image_uri } = contentMinis[current];
 
   return (
     <div
@@ -161,7 +167,7 @@ export default (props: CarouselProps) => {
         current={current}
         setCurrent={setCurrent}
       />
-      <TitleAndReadMore title={title} summary={summary} />
+      <TitleAndReadMore title={title} summary={summary} id={id} />
     </div>
   );
 };
