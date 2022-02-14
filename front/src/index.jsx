@@ -4,12 +4,14 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from 'theme-ui';
 import { Global } from '@emotion/react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import store from './store/store';
 import { client } from './client';
 import theme from './util/theme';
 
 import Index from './page/Index';
+import _404 from './page/404';
 import Nav from './component/Nav';
 import Footer from './component/Footer';
 
@@ -74,7 +76,10 @@ const AppWithTheme = () => {
         }}
       >
         <Nav />
-        <Index />
+        <Routes>
+          <Route path="/" element={<Index />}/>
+          <Route path="*" element={<_404 />}/>
+        </Routes>
         <Footer />
       </div>
     </ThemeProvider>
@@ -85,7 +90,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ApolloProvider client={client}>
-        <AppWithTheme />
+        <BrowserRouter>
+          <AppWithTheme />
+        </BrowserRouter>
       </ApolloProvider>
     </Provider>
   </React.StrictMode>,
