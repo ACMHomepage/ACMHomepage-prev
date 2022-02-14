@@ -227,10 +227,14 @@ const fontWeights: Theme['fontWeights'] = {
 };
 
 fontWeights.h1 = fontWeights.extrabold;
-fontWeights.h2 = fontWeights.semibold;
+fontWeights.h2 = fontWeights.bold;
+fontWeights.h3 = fontWeights.semibold;
+fontWeights.h4 = fontWeights.semibold;
+fontWeights.h5 = fontWeights.medium;
+fontWeights.h6 = fontWeights.medium;
 fontWeights.body = fontWeights.normal;
 
-const fontSizes = {
+const fontSizes: Theme['fontSizes'] = {
   xs: '0.75rem',
   sm: '0.875rem',
   base: '1rem',
@@ -245,6 +249,20 @@ const fontSizes = {
   '8xl': '6rem',
   '9xl': '8rem',
 };
+
+type FontSizeName = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+export const setFontSize = (name: FontSizeName): ThemeUICSSObject['fontSize'] => {
+  switch (name) {
+    case 'h1': return mRV({ _: '5xl', md: '6xl', lg: '7xl' });
+    case 'h2': return mRV({ _: '4xl', md: '5xl', lg: '6xl' });
+    case 'h3': return mRV({ _: '3xl', md: '4xl', lg: '5xl' });
+    case 'h4': return mRV({ _: '2xl', md: '3xl', lg: '4xl' });
+    case 'h5': return mRV({ _: 'xl', md: '2xl', lg: '3xl' });
+    case 'h6': return mRV({ _: 'lg', md: 'xl', lg: '2xl' });
+  }
+}
+
 
 /******************************************************************************
  * Set the flexbox.
