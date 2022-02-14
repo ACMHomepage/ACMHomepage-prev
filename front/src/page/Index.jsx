@@ -1,37 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
+import { title } from '../config';
+import { utilMainPart } from '../config';
 
 import News from '../component/News';
 import Button from '../component/Button';
-import { title } from '../config';
-import { mRV } from '../util/theme';
-import { utilMainPart } from '../config';
+import Header from '../component/Header';
 
 function Headline({ title }) {
   return (
-    <div
-      sx={{
-        py: mRV({ _: '6rem', sm: '8rem', md: '8rem' }),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '2rem',
-      }}
-    >
-      <h1
-        sx={{
-          textAlign: 'center',
-          fontSize: mRV({ _: '4xl', md: '5xl', lg: '6xl' }),
-          fontWeight: 'h1',
-        }}
-      >
-        {title}
-      </h1>
-      <div>
-        <Button withBorder filp size="lg" sx={{ width: '12rem' }}>
-          More infomation
-        </Button>
-      </div>
-    </div>
+    <Header.Space>
+      <Header>{title}</Header>
+      <Button withBorder filp size="lg" sx={{ px: '2rem' }}>
+        More infomation
+      </Button>
+    </Header.Space>
   );
 }
 
