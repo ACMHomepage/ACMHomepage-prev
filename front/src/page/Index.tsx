@@ -1,28 +1,24 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { title } from '../config';
-import { utilMainPart } from '../config';
+import { title, utilMainPart } from '../config';
 
 import News from '../component/News';
 import Button from '../component/Button';
 import Header from '../component/Header';
 
-function Headline({ title }) {
-  return (
-    <Header.Space>
-      <Header>{title}</Header>
-      <Button withBorder filp size="lg" sx={{ px: '2rem' }}>
-        More infomation
-      </Button>
-    </Header.Space>
-  );
-}
-
 export default function Index() {
+  const navigate = useNavigate();
+
   return (
     <React.Fragment>
       <div sx={{ ...utilMainPart }}>
-        <Headline title={title} />
+        <Header.Space>
+          <Header>{title}</Header>
+          <Button withBorder filp size="lg" sx={{ px: '2rem' }} onClick={() => navigate('info')}>
+            More infomation
+          </Button>
+        </Header.Space>
       </div>
       <div sx={{ ...utilMainPart }}>
         <News />
