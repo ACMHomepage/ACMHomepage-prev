@@ -1,6 +1,7 @@
 import type { ThemeUIStyleObject, ColorModesScale } from 'theme-ui';
 import { darken } from '@theme-ui/color';
 import type { ReactNode } from 'react';
+import React from 'react';
 import isUndefined from 'lodash/isUndefined';
 
 import { setColor, setBorder, setFlex } from '../util/theme';
@@ -13,6 +14,7 @@ interface ButtonProps {
   bg?: ColorModesScale[string];
   className?: string;
   children?: ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
@@ -23,10 +25,11 @@ interface ButtonProps {
  *   the backgound and frontgound. Or it will let it darker.
  * - color: `<COLOR>` | `'text'`(default). The text and border color.
  * - bg: `<COLOR>` | `'background'`(default).The background color.
- * - className: `<string>` | `undefined`.
+ * - className: `string` | `undefined`.
+ * - onClick: `React.MouseEventHandler<HTMLButtonElement>` | `undefined`.
  */
 export default (props: ButtonProps) => {
-  let { size, withBorder, filp, color, bg, className, children } = props;
+  let { size, withBorder, filp, color, bg, children, ...rest } = props;
 
   // Deal with size prop.
   if (isUndefined(size)) size = 'md';
@@ -61,7 +64,7 @@ export default (props: ButtonProps) => {
         ...btnSize,
         ...border,
       }}
-      className={className}
+      {...rest}
     >
       {children}
     </button>
