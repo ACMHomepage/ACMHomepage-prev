@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Label } from 'theme-ui';
 import type { CSSProperties as CSSProp } from 'theme-ui';
+import { setFlex } from '../util/theme';
 
 const GUTTER = 2;
 const SIZE = 18;
@@ -9,11 +10,32 @@ interface SwitchProps {
   gutter?: CSSProp['height'] & CSSProp['width'] & CSSProp['borderRadius'];
   size?: CSSProp['height'] & CSSProp['width'] & CSSProp['borderRadius'];
   className?: string;
-  label?: string;
+  label?: React.ReactNode;
+  inner?: boolean;
   variant?: string;
   [key: string]: any;
 }
 
+/**
+ * PureSwitch. Thanks for theme-ui's `@theme-ui/component`.
+ *
+ * It is a `div` element, which has two(or there) children: The first one is
+ * hidden really checkbox; The seconde one is the switch just for show. The
+ * seconde one, the switch for show, holds two `div` element: The outer one (aka
+ * `Outer`) and the inner one(aka `Inner`).
+ *
+ * @param props It holds:
+ * - `gutter`: `<SIZE>` | undefined. The gap betwen `Inner` and `Outer`. If it
+ *   is undefined, it will set to `2px`.
+ * - `size`: `<SIZE>` | undefined. The `Inner`'s size. If it is undefined, it
+ *   will set to `18px`.
+ * - `className`: `<string>`. To set the class.
+ * - `label`: `<React.ReactNode>` | undefined. Is the 3-rd children of this
+ *   component, or in the `Inner` (hold by `inner` attr).
+ * - `inner`: `true` | `false`(default). Set the position of the `label`.
+ * - `variant`: `<string>`. What the fuck is it?
+ * - others will pass to the hidden switch.
+ */
 export default React.forwardRef(
   (props: SwitchProps, ref: React.ForwardedRef<HTMLInputElement>) => {
     let {
@@ -21,6 +43,7 @@ export default React.forwardRef(
       size = SIZE,
       className,
       label,
+      inner = false,
       variant = 'switch',
       ...otherProps
     } = props;
@@ -89,11 +112,13 @@ export default React.forwardRef(
           },
         }}
       >
-        <Box />
+        <Box sx={{ ...setFlex({ center: true }) }}>
+          {label && inner ? <>{label}</> : null}
+        </Box>
       </Box>
     );
 
-    if (label) {
+    if (label && !inner) {
       return (
         <Label sx={{ cursor: 'pointer' }}>
           {Checkbox}
