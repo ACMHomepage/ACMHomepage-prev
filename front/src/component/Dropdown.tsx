@@ -3,6 +3,7 @@ import { Menu as MenuIcon, LogIn } from 'lucide-react';
 import { darken } from '@theme-ui/color';
 
 import Button from './Button';
+import LogButton from './LogButton';
 import DarkToggle from './DarkToggle';
 import { setColor, setBorder, mRV } from '../util/theme';
 
@@ -46,7 +47,7 @@ export default ({ className }: DropdownProps) => {
             }}
           />
           <Menu.Item
-            as={Button}
+            as={LogButton}
             sx={{
               gap: '0.25rem',
               width: '100%',
@@ -55,10 +56,7 @@ export default ({ className }: DropdownProps) => {
               py: '0.5rem',
               ...setBorder({ radius: '0px', width: '0px' }),
             }}
-          >
-            <LogIn size={16} />
-            Log in / Log on
-          </Menu.Item>
+          />
         </Menu.Items>
       </div>
     </Menu>

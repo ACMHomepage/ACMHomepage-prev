@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-import { LogIn } from 'lucide-react';
 
 import { utilMainPart } from '../config';
 import { mRV } from '../util/theme';
 
 import DarkToggle from './DarkToggle';
 import Dropdown from './Dropdown';
-import Button from './Button';
+import LogButton from './LogButton';
 
 export default function Nav() {
   return (
@@ -36,14 +35,11 @@ export default function Nav() {
           showText={false}
           sx={{ display: mRV({ _: 'none', md: 'flex' }) }}
         />
-        <Button
-          withBorder
+        <LogButton
           bg="secondaryBackground"
-          sx={{ gap: '0.25rem', display: mRV({ _: 'none', md: 'flex' }) }}
-        >
-          <LogIn size={16} />
-          Log in / Log on
-        </Button>
+          withBorder
+          sx={{ display: mRV({ _: 'none', md: 'flex' }) }}
+        />
         <Dropdown sx={{ display: mRV({ _: 'block', md: 'none' }) }} />
       </nav>
     </div>
