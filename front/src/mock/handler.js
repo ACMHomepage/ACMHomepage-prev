@@ -31,19 +31,19 @@ const data = {
       image_uri: faker.image.abstract(undefined, undefined, true),
       content: faker.lorem.paragraphs(100, '\n\n'), // markdown
       summary: 'Hello',
-    }
-  ]
-}
+    },
+  ],
+};
 
 export const handlers = [
   graphql.query('News', (req, res, ctx) => {
     let { newsId } = req.variables;
     let news;
-    if(isUndefined(newsId)) {
+    if (isUndefined(newsId)) {
       news = data.news;
     } else {
-      news = filter(data.news, new_ => (parseInt(newsId) === new_.id));
+      news = filter(data.news, (new_) => parseInt(newsId) === new_.id);
     }
-    return res( ctx.data({ news }) );
+    return res(ctx.data({ news }));
   }),
 ];

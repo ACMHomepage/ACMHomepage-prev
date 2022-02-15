@@ -40,7 +40,6 @@ interface DotsProps {
 
 const Dots = (props: DotsProps) => {
   const { length, current, dotSize, onClickFunction, className } = props;
-  console.log(props);
 
   return (
     <div

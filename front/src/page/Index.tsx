@@ -15,7 +15,13 @@ export default function Index() {
       <div sx={{ ...utilMainPart }}>
         <Header.Space>
           <Header>{title}</Header>
-          <Button withBorder filp size="lg" sx={{ px: '2rem' }} onClick={() => navigate('info')}>
+          <Button
+            withBorder
+            filp
+            size="lg"
+            sx={{ px: '2rem' }}
+            onClick={() => navigate('info')}
+          >
             More infomation
           </Button>
         </Header.Space>

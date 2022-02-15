@@ -19,7 +19,7 @@ if (env === 'analyze') {
 export default defineConfig({
   esbuild: {
     jsxFactory: 'jsx',
-    jsxInject: `import { jsx } from 'theme-ui'`,
+    jsxInject: `import { jsx } from 'theme-ui';`,
   },
   build: {
     rollupOptions: {
