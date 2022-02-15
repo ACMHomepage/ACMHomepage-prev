@@ -14,6 +14,7 @@ import Index from './page/Index';
 import _404 from './page/404';
 import Info from './page/Info';
 import NewsPage from './page/News';
+import Log from './page/Log';
 
 import Nav from './component/Nav';
 import Footer from './component/Footer';
@@ -93,6 +94,7 @@ const AppWithTheme = () => {
             <Route index element={<_404 />} />
             <Route path=":newsId" element={<NewsPage />} />
           </Route>
+          <Route path="log" element={<Log />} />
           <Route path="*" element={<_404 />} />
         </Routes>
         <Footer />
