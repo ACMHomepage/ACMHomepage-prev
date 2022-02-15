@@ -1,9 +1,10 @@
 import { Menu } from '@headlessui/react';
-import { Menu as MenuIcon } from 'lucide-react';
+import { Menu as MenuIcon, LogIn } from 'lucide-react';
+import { darken } from '@theme-ui/color';
 
 import Button from './Button';
 import DarkToggle from './DarkToggle';
-import { setColor, setBorder } from '../util/theme';
+import { setColor, setBorder, mRV } from '../util/theme';
 
 interface DropdownProps {
   className?: string;
@@ -30,12 +31,34 @@ export default ({ className }: DropdownProps) => {
             top: '0.25rem',
             right: '0rem',
             width: '16rem',
-            p: '0.5rem',
+            py: '0.5rem',
             ...setColor('text', 'background'),
             ...setBorder(),
           }}
         >
-          <Menu.Item as={DarkToggle} />
+          <Menu.Item
+            as={DarkToggle}
+            sx={{
+              ':hover': { bg: darken('background', 0.1) },
+              px: '0.5rem',
+              py: '0.5rem',
+              ...setBorder({ radius: '0px', width: '0px' }),
+            }}
+          />
+          <Menu.Item
+            as={Button}
+            sx={{
+              gap: '0.25rem',
+              width: '100%',
+              placeContent: 'start',
+              px: '0.5rem',
+              py: '0.5rem',
+              ...setBorder({ radius: '0px', width: '0px' }),
+            }}
+          >
+            <LogIn size={16} />
+            Log in / Log on
+          </Menu.Item>
         </Menu.Items>
       </div>
     </Menu>
