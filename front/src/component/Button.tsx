@@ -5,9 +5,11 @@ import React from 'react';
 import isUndefined from 'lodash/isUndefined';
 
 import { setColor, setBorder, setFlex } from '../util/theme';
+import type { ClickableSize } from '../config';
+import { clickableSize } from '../config';
 
 interface ButtonProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: ClickableSize;
   withBorder?: boolean;
   filp?: boolean;
   color?: ColorModesScale[string];
@@ -19,7 +21,7 @@ interface ButtonProps {
 
 /**
  * Props:
- * - size: `'sm'` | `'md'`(default) | `'lg'`.
+ * - size: @type {ClickableSize}.
  * - withBorder: `true` | `false`(default).
  * - filp: `true` | `false`(default). If it is `true`, when hover, it will filp
  *   the backgound and frontgound. Or it will let it darker.
@@ -32,13 +34,7 @@ export default (props: ButtonProps) => {
   let { size, withBorder, filp, color, bg, children, ...rest } = props;
 
   // Deal with size prop.
-  if (isUndefined(size)) size = 'md';
-  const btnSize: ThemeUIStyleObject = {
-    sm: { height: '1.5rem', fontSize: '0.75rem' },
-    md: { height: '2rem', fontSize: '0.875rem' },
-    lg: { height: '2.5rem', fontSize: '1rem' },
-  }[size];
-
+  const btnSize: ThemeUIStyleObject = clickableSize(size);
   // Deal with withBorder prop.
   if (isUndefined(withBorder)) withBorder = false;
   const border = setBorder({ width: withBorder ? '1px' : '0px' });
