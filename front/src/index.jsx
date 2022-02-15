@@ -33,8 +33,9 @@ if (process.env.NODE_ENV === 'development') {
  */
 const Preflight = () => (
   <Global
-    styles={theme => ({
+    styles={(theme) => ({
       '*': {
+        fontFamily: 'inherit',
         transitionProperty:
           'color, background-color, border-color, ' +
           'text-decoration-color, fill, stroke, opacity, box-shadow, ' +
@@ -62,7 +63,7 @@ const Preflight = () => (
         borderWidth: 0,
         borderStyle: 'solid',
       },
-      'a': {
+      a: {
         textDecoration: 'none',
         color: theme.colors.text,
       },
@@ -89,7 +90,7 @@ const AppWithTheme = () => {
           <Route path="/" element={<Index />} />
           <Route path="info" element={<Info />} />
           <Route path="news">
-            <Route index element={<_404 />}/>
+            <Route index element={<_404 />} />
             <Route path=":newsId" element={<NewsPage />} />
           </Route>
           <Route path="*" element={<_404 />} />

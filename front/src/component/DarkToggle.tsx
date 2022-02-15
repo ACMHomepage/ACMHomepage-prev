@@ -1,7 +1,9 @@
-import { Label } from 'theme-ui';
-import { useColorMode } from 'theme-ui';
+import { Label, useColorMode } from 'theme-ui';
+import { Moon, Sun } from 'lucide-react';
 
 import PureSwitch from './PureSwitch';
+import type { ClickableSize } from '../config';
+import { clickableSize } from '../config';
 
 export type ColorMode = 'light' | 'dark';
 
@@ -11,7 +13,7 @@ export type ColorMode = 'light' | 'dark';
  * @param setColorMode Color mode handle, use `useColorMode` hook to get.
  * @returns `() => void`, function.
  */
-const click =
+const onClickToChangeColor =
   (colorMode: ColorMode, setColorMode: (colorMode: ColorMode) => void) =>
   (_event: Event): void => {
     if (colorMode === 'dark') {
@@ -23,12 +25,20 @@ const click =
 
 interface DarkToggleProps {
   className?: string;
+  size?: ClickableSize;
+  showText?: boolean;
 }
 
 /**
- * Return a dark mode toggle.
+ * Return a dark mode toggle component.
+ * @param props It holds:
+ * - className: `<string>` | `undefined`. Set its class.
+ * - size: `<ClickableSize>`.
+ * - showText: `true`(default) | `false`. Set if show the text `Dark Mode` or
+ *   not.
  */
-export default ({ className }: DarkToggleProps) => {
+export default (props: DarkToggleProps) => {
+  let { className, size, showText = true } = props;
   const [colorMode, setColorMode] = useColorMode();
 
   return (
@@ -39,13 +49,21 @@ export default ({ className }: DarkToggleProps) => {
         alignItems: 'center',
         width: 'auto',
         cursor: 'pointer',
+        ...clickableSize(size),
       }}
       className={className}
     >
-      <span sx={{ flex: 1 }}>Dark Mode</span>
+      {showText ? (
+        <span sx={{ flex: 1, display: 'flex', gap: '0.25rem' }}>
+          <Moon size={16} />
+          Dark Mode
+        </span>
+      ) : null}
       <PureSwitch
+        inner
+        label={colorMode === 'dark' ? <Moon size={14} /> : <Sun size={14} />}
         checked={colorMode === 'dark'}
-        onChange={click(colorMode as ColorMode, setColorMode)}
+        onChange={onClickToChangeColor(colorMode as ColorMode, setColorMode)}
       />
     </Label>
   );
