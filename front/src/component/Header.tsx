@@ -29,11 +29,16 @@ const Header = ({ children, headnumber, className }: HeaderProps) => {
 
 interface HeaderSpaceProps {
   children?: React.ReactNode;
+  className?: string;
 }
 
 // TODO: Fix it. Use arrow funtion. Now we cannot, because it has bug in
 // Firefox. See https://github.com/emotion-js/emotion/issues/2638.
-Header.Space = function HeaderSpace({ children }: HeaderSpaceProps) {
+/**
+ * Header.Space. Set the space of the header.
+ */
+Header.Space = function HeaderSpace(props: HeaderSpaceProps) {
+  const { children, className } = props;
   return (
     <div
       sx={{
@@ -43,6 +48,7 @@ Header.Space = function HeaderSpace({ children }: HeaderSpaceProps) {
         alignItems: 'center',
         gap: '2rem',
       }}
+      className={className}
     >
       {children}
     </div>
