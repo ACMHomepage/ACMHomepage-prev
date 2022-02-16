@@ -2,7 +2,6 @@ import type { ThemeUIStyleObject, ColorModesScale } from 'theme-ui';
 import { darken } from '@theme-ui/color';
 import type { ReactNode } from 'react';
 import React from 'react';
-import isUndefined from 'lodash/isUndefined';
 
 import { setColor, setBorder, setFlex } from '../util/theme';
 import type { ClickableSize } from '../config';
@@ -31,20 +30,23 @@ interface ButtonProps {
  * - onClick: `React.MouseEventHandler<HTMLButtonElement>` | `undefined`.
  */
 export default (props: ButtonProps) => {
-  let { size, withBorder, filp, color, bg, children, ...rest } = props;
+  let {
+    size,
+    withBorder = false,
+    filp = false,
+    color = 'text',
+    bg = 'background',
+    children,
+    ...rest
+  } = props;
 
   // Deal with size prop.
-  const btnSize: ThemeUIStyleObject = clickableSize(size);
-  // Deal with withBorder prop.
-  if (isUndefined(withBorder)) withBorder = false;
-  const border = setBorder({ width: withBorder ? '1px' : '0px' });
+  const btnSize = clickableSize(size);
 
-  // Deal with color and bg prop.
-  if (isUndefined(color)) color = 'text';
-  if (isUndefined(bg)) bg = 'background';
+  // Deal with withBorder prop.
+  const border = setBorder({ width: withBorder ? '1px' : '0px', color });
 
   // Deal with filp prop.
-  if (isUndefined(filp)) filp = false;
   let hoverColor = filp ? bg : darken(color, 0.1);
   let hoverBg = filp ? color : darken(bg, 0.1);
 
@@ -55,7 +57,7 @@ export default (props: ButtonProps) => {
         ...setFlex({ center: true }),
         ...setColor(color, bg),
         '&:hover': {
-          ...setColor(hoverColor, hoverBg, { setColorToBorderColor: false }),
+          ...setColor(hoverColor, hoverBg),
         },
         ...btnSize,
         ...border,

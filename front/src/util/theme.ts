@@ -67,10 +67,6 @@ colors.modes.dark.primary = 'white';
 colors.secondary = 'white';
 colors.modes.dark.secondary = 'white';
 
-interface SetColorConfig {
-  setColorToBorderColor: boolean;
-}
-
 /**
  * setColor.
  *
@@ -80,21 +76,10 @@ interface SetColorConfig {
  * - `setColorToBorderColor`: `true`(defalut) | `false`. Set param `color` to
  *   border's color or not.
  */
-export const setColor = (
-  color: ColorStyle,
-  bg: ColorStyle,
-  config?: SetColorConfig,
-) => {
-  if (isUndefined(config)) {
-    config = {
-      setColorToBorderColor: true,
-    };
-  }
-
+export const setColor = (color: ColorStyle, bg: ColorStyle) => {
   return {
     color,
     bg,
-    borderColor: config.setColorToBorderColor ? color : undefined,
   };
 };
 
@@ -191,6 +176,7 @@ interface SetBorderConfig {
   width?: ThemeUICSSObject['borderWidth'];
   radius?: ThemeUICSSObject['borderRadius'];
   style?: ThemeUICSSObject['borderStyle'];
+  color?: ThemeUICSSObject['borderColor'];
 }
 
 /**
@@ -198,6 +184,7 @@ interface SetBorderConfig {
  * - width: `<WIDTH>` | `'1px'`(defalut).
  * - radius: `<RADII>` | `'normal'`(defalut).
  * - style: `<BORDER-STYLE>` | `'solid'`(default).
+ * - color: `<COLOR>` | undefined.
  */
 export const setBorder = (config?: SetBorderConfig) => {
   if (isUndefined(config)) config = {};
@@ -208,6 +195,7 @@ export const setBorder = (config?: SetBorderConfig) => {
     borderWidth: config.width,
     borderRadius: config.radius,
     borderStyle: config.style,
+    borderColor: config.color,
   };
 };
 
@@ -277,6 +265,7 @@ export const setFontSize = (
 interface SetFlexConfig {
   center?: boolean;
   gap?: ThemeUICSSObject['gap'];
+  direction?: ThemeUICSSObject['flexDirection'];
 }
 
 /**
@@ -286,13 +275,17 @@ interface SetFlexConfig {
  * - `center`: `false`(default) | `true`. Set the content is put at the center
  *   or not.
  * - `gap`: `<LENGTH>` | `undefined`(default).
+ * - `direction`: `'row'` | `'column'` | `undefined`(default).
  */
-export const setFlex = ({ center = false, gap }: SetFlexConfig) => {
+export const setFlex = (props: SetFlexConfig) => {
+  const { center = false, gap, direction } = props;
+
   return {
     display: 'flex',
     alignItems: center ? 'center' : undefined,
     placeContent: center ? 'center' : undefined,
     gap,
+    flexDirection: direction,
   };
 };
 
