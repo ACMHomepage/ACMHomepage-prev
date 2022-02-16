@@ -3,6 +3,9 @@ build
 dist
 stats.html
 
+# `yarn test`'s aim folder
+__snapshots__
+
 # yarn's packages
 node_modules
 

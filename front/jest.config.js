@@ -1,9 +1,11 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  clearMocks: true,
-  coverageProvider: 'v8',
+  preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  transformIgnorePatterns: [
+    '/node_modules/(?!@mdx-js)',
+  ],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest',
+    '^.+\\.[tj]s$': 'ts-jest'
   },
 };
