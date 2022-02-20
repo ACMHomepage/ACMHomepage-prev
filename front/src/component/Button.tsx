@@ -1,5 +1,4 @@
 import type { ThemeUIStyleObject, ColorModesScale } from 'theme-ui';
-import { darken } from '@theme-ui/color';
 import type { ReactNode } from 'react';
 import React from 'react';
 
@@ -47,8 +46,8 @@ export default (props: ButtonProps) => {
   const border = setBorder({ width: withBorder ? '1px' : '0px', color });
 
   // Deal with filp prop.
-  let hoverColor = filp ? bg : darken(color, 0.1);
-  let hoverBg = filp ? color : darken(bg, 0.1);
+  let hoverColor = filp ? bg : bg;
+  let hoverBg = filp ? color : color;
 
   return (
     <button

@@ -294,7 +294,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.16.7", "@babel/runtime@^7.7.6":
+"@babel/runtime@^7.7.6":
   version "7.17.2"
   resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.17.2.tgz#66f68591605e59da47523c631416b18508779941"
   integrity sha512-hzeyJyMA1YGdJTuWU0e/j4wKXrU4OMFvY2MSlaI9B7VQb0r5cxTE3EAIS2Q7Tn2RIcDkRvTA/v2JsAEhxe99uw==
@@ -1106,14 +1106,6 @@
     "@theme-ui/core" "0.13.1"
     "@theme-ui/css" "0.13.1"
     deepmerge "^4.2.2"
-
-"@theme-ui/color@^0.13.1":
-  version "0.13.1"
-  resolved "https://registry.npmmirror.com/@theme-ui/color/-/color-0.13.1.tgz#4b545f58303e8673d10dbb016c2b4d963692a4bd"
-  integrity sha512-G5/FK836daz0fZLwPOIH60TtwZ3hKh3GVFAtO41Pvgq2a5JXxOl323SNf3kEMwXvxarznap95gUxl4jxuzdOcA==
-  dependencies:
-    "@theme-ui/css" "0.13.1"
-    polished "^4.0.5"
 
 "@theme-ui/components@0.13.1":
   version "0.13.1"
@@ -3542,13 +3534,6 @@ pkg-dir@^4.2.0:
   integrity sha1-8JkTPfft5CLoHR2ESCcO6z5CYfM=
   dependencies:
     find-up "^4.0.0"
-
-polished@^4.0.5:
-  version "4.1.4"
-  resolved "https://registry.npmmirror.com/polished/-/polished-4.1.4.tgz#640293ba834109614961a700fdacbb6599fb12d0"
-  integrity sha512-Nq5Mbza+Auo7N3sQb1QMFaQiDO+4UexWuSGR7Cjb4Sw11SZIJcrrFtiZ+L0jT9MBsUsxDboHVASbCLbE1rnECg==
-  dependencies:
-    "@babel/runtime" "^7.16.7"
 
 postcss-value-parser@^4.0.2, postcss-value-parser@^4.2.0:
   version "4.2.0"

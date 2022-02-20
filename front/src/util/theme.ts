@@ -3,69 +3,127 @@ import type {
   ColorModesScale,
   ColorMode,
   ThemeUICSSObject,
-  ThemeUIStyleObject,
 } from 'theme-ui';
-import fill from 'lodash/fill';
-import get from 'lodash/get';
-import isUndefined from 'lodash/isUndefined';
+import { fill, isUndefined } from 'lodash';
 
 /******************************************************************************
  * Set the colors.
  *****************************************************************************/
-type Color = ColorModesScale[string];
 type ColorStyle = ThemeUICSSObject['color'];
 
 interface Colors extends ColorModesScale {
-  readonly green: Color;
-  readonly gray: Color;
   modes: { dark: ColorMode };
 }
 
+/**
+ * Make sure the `value` is in the range of [-256, 255]. If the `value` < 0, the
+ * value will set to `(256 + value)` to make sure `value` >= 0.
+ *
+ * @param value The value to check.
+ */
+const checkValue = (value: number): number => {
+  if (value < -256 || value >= 256) {
+    throw new Error('the value is out of range.');
+  }
+  return ((value % 256) + 256) % 256;
+};
+
+type colorHSLFunction = (value: number) => number;
+
+/**
+ * `color` - Build the color function to get the HSL color string.
+ * @param H - a function to build the hue of HSL. Make sure its return value
+ *     range is [0, 255].
+ * @param S - a function to build the saturation of HSL. Make sure its return
+ *     value range is [0, 100].
+ * @param L - a function to build the brightness of HSL. Make sure its return
+ *     value range is [0, 100].
+ * @returns a function to given the value of range [-256, 255], and alpha
+ * (defalut to 1), and build the HSL color.
+ */
+const color =
+  (H: colorHSLFunction, S: colorHSLFunction, L: colorHSLFunction) =>
+  (value: number, alpha?: number): string => {
+    value = checkValue(value);
+    return `hsla(${H(value)},${S(value)}%,${L(value)}%,${alpha ?? 1})`;
+  };
+
+/**
+ * Return the green HSL string by the `value` (>= -256 & < 256). If the `value`
+ * < 0, the value will set to `(256 + value)`.
+ *
+ * If the value is not in the range, it will raise an Error!
+ *
+ * @param value - The value to build the green HSL color string.
+ * @param alpha - Default to set to 1.
+ */
+const green = color(
+  (_v) => 145,
+  (v) => 15 + Math.sin((v / 256) * Math.PI) * 20,
+  (v) => 97 - (v / 256) * 78,
+);
+
+/**
+ * Return the blue HSL string by the `value` (>= -256 & < 256). If the `value`
+ * < 0, the value will set to `(256 + value)`.
+ *
+ * If the value is not in the range, it will raise an Error!
+ *
+ * @param value The value to build the green HSL color string.
+ * @param alpha - Default to set to 1.
+ */
+const blue = color(
+  (_v) => 200,
+  (v) => 25 + (v / 256) * 20 + Math.sin((v / 256) * Math.PI) * 20,
+  (v) => 90 - (v / 256) * 68,
+);
+
 const colors: Colors = {
-  green: [
-    '#F5FBF7', // 0
-    '#E8F4EC', // 1
-    '#D2E9DB', // 2
-    '#B7D8C3', // 3
-    '#9EC5AC', // 4
-    '#78A288', // 5
-    '#5A8068', // 6
-    '#446953', // 7
-    '#32533F', // 8
-    '#244230', // 9
-  ],
-  gray: [
-    '#F9FEFF', // 0
-    '#DDE2E3', // 1
-    '#C4CBCC', // 2
-    '#A9B1B3', // 3
-    '#909799', // 4
-    '#747B7D', // 5
-    '#5D6566', // 6
-    '#43494B', // 7
-    '#2D3233', // 8
-    '#2E3233', // 9
-  ],
   modes: {
     dark: {},
   },
 };
 
-colors.text = get(colors, 'green.9');
-colors.modes.dark.text = get(colors, 'green.2');
+type SetThemeColorArgColors = { _: string; dark: string };
 
-colors.background = get(colors, 'green.0');
-colors.modes.dark.background = get(colors, 'green.9');
+/**
+ * setThemeColor set the theme color.
+ *
+ * @param name - The name to use.
+ * @param argColors - A object. It have two key now: `_` and `dark`, the first
+ *     one is default color, and the `dark` is for dark mode.
+ */
+const setThemeColor = (name: string, argColors: SetThemeColorArgColors) => {
+  for (let key in argColors) {
+    if (key === '_') {
+      colors[name] = argColors._;
+    } else if (key === 'dark') {
+      colors.modes.dark[name] = argColors.dark;
+    }
+  }
+};
 
-colors.secondaryBackground = get(colors, 'green.2');
-colors.modes.dark.secondaryBackground = get(colors, 'green.7');
+for (let i = 0; i < 10; i++) {
+  // set `text-${range}`.
+  setThemeColor(`fg-${i}`, {
+    _: green(255 - 10 * i),
+    dark: green(50 + 10 * i),
+  });
 
-// Fuck, now those are useless
-colors.primary = 'white';
-colors.modes.dark.primary = 'white';
+  // set `bg-${range}`.
+  setThemeColor(`bg-${i}`, { _: green(10 * i), dark: green(255 - 10 * i) });
+}
 
-colors.secondary = 'white';
-colors.modes.dark.secondary = 'white';
+setThemeColor('link', { _: blue(255 - 50), dark: blue(80) });
+setThemeColor('outline', { _: green(205, 0.25), dark: green(50, 0.25) });
+setThemeColor('border', { _: green(10), dark: green(245) });
+
+setThemeColor('secondaryBackground', { _: green(20), dark: green(235) });
+setThemeColor('text', { _: green(245), dark: green(10) });
+setThemeColor('background', { _: green(0), dark: green(255) });
+
+setThemeColor('primary', { _: 'white', dark: 'white' });
+setThemeColor('secondary', { _: 'white', dark: 'white' });
 
 /**
  * setColor.
@@ -168,7 +226,7 @@ export const mRV = makeResponsiveValue;
  * Set the radius size for border.
  *****************************************************************************/
 const radii = {
-  normal: '0.25rem',
+  normal: '0.5rem',
   inf: '999999px',
 };
 
@@ -221,6 +279,7 @@ fontWeights.h4 = fontWeights.semibold;
 fontWeights.h5 = fontWeights.medium;
 fontWeights.h6 = fontWeights.medium;
 fontWeights.body = fontWeights.normal;
+fontWeights.link = fontWeights.semibold;
 
 const fontSizes: Theme['fontSizes'] = {
   xs: '0.75rem',
@@ -277,8 +336,8 @@ interface SetFlexConfig {
  * - `gap`: `<LENGTH>` | `undefined`(default).
  * - `direction`: `'row'` | `'column'` | `undefined`(default).
  */
-export const setFlex = (props: SetFlexConfig) => {
-  const { center = false, gap, direction } = props;
+export const setFlex = (props?: SetFlexConfig) => {
+  const { center = false, gap, direction } = props ?? {};
 
   return {
     display: 'flex',
@@ -286,6 +345,33 @@ export const setFlex = (props: SetFlexConfig) => {
     placeContent: center ? 'center' : undefined,
     gap,
     flexDirection: direction,
+  };
+};
+
+/******************************************************************************
+ * Set the outline.
+ *****************************************************************************/
+interface OutlineConfig {
+  color?: ThemeUICSSObject['outlineColor'];
+  width?: ThemeUICSSObject['outlineWidth'];
+  style?: ThemeUICSSObject['outlineStyle'];
+}
+
+/**
+ * set the outline of it.
+ *
+ * @param props - It holds:
+ * - color: `<COLOR>` | `'outline'`(default).
+ * - width: `<WIDTH>` | `'0.25rem'`(default).
+ * - style: `<STYLE>` | `'solid'`(default).
+ */
+export const setOutline = (props?: OutlineConfig) => {
+  const { color = 'outline', width = '0.25rem', style = 'solid' } = props ?? {};
+
+  return {
+    outlineColor: color,
+    outlineWidth: width,
+    outlineStyle: style,
   };
 };
 

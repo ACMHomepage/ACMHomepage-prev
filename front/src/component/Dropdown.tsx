@@ -1,6 +1,5 @@
 import { Menu } from '@headlessui/react';
 import { Menu as MenuIcon, LogIn } from 'lucide-react';
-import { darken } from '@theme-ui/color';
 
 import Button from './Button';
 import LogButton from './LogButton';
@@ -40,7 +39,7 @@ export default ({ className }: DropdownProps) => {
           <Menu.Item
             as={DarkToggle}
             sx={{
-              ':hover': { bg: darken('background', 0.1) },
+              ':hover': { bg: 'bg-4' },
               px: '0.5rem',
               py: '0.5rem',
               ...setBorder({ radius: '0px', width: '0px' }),
