@@ -18,7 +18,13 @@ export default ({ className }: DropdownProps) => {
   return (
     <Menu as="div" className={className}>
       <Menu.Button as="div">
-        <Button withBorder>
+        <Button
+          sx={{
+            height: '2rem',
+            ...setBorder({ width: '2px', color: 'bg-6' }),
+            ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
+          }}
+        >
           <MenuIcon size={20} />
           Menu
         </Button>
@@ -32,16 +38,16 @@ export default ({ className }: DropdownProps) => {
             right: '0rem',
             width: '16rem',
             py: '0.5rem',
-            ...setColor('text', 'background'),
-            ...setBorder(),
+            ...setColor({ bg: 'bg-2' }),
+            ...setBorder({ color: 'bg-6', width: '2px' }),
           }}
         >
           <Menu.Item
             as={DarkToggle}
             sx={{
-              ':hover': { bg: 'bg-4' },
               px: '0.5rem',
               py: '0.5rem',
+              ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
               ...setBorder({ radius: '0px', width: '0px' }),
             }}
           />
@@ -53,7 +59,7 @@ export default ({ className }: DropdownProps) => {
               placeContent: 'start',
               px: '0.5rem',
               py: '0.5rem',
-              ...setBorder({ radius: '0px', width: '0px' }),
+              ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
             }}
           />
         </Menu.Items>

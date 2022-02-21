@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { utilMainPart } from '../config';
-import { mRV } from '../util/theme';
+import { mRV, setColor, setBorder } from '../util/theme';
 
 import DarkToggle from './DarkToggle';
 import Dropdown from './Dropdown';
@@ -36,9 +36,12 @@ export default function Nav() {
           sx={{ display: mRV({ _: 'none', md: 'flex' }) }}
         />
         <LogButton
-          bg="secondaryBackground"
-          withBorder
-          sx={{ display: mRV({ _: 'none', md: 'flex' }) }}
+          sx={{
+            display: mRV({ _: 'none', md: 'flex' }),
+            height: '2rem',
+            ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
+            ...setBorder({ color: 'bg-6', width: '2px' })
+          }}
         />
         <Dropdown sx={{ display: mRV({ _: 'block', md: 'none' }) }} />
       </nav>

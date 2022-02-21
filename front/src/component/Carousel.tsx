@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from './Button';
 import Dots from './Dots';
-import { mRV } from '../util/theme';
+import { mRV, setColor, setBorder } from '../util/theme';
 import type { BreakpointNameWithoutInit } from '../util/theme';
 
 /*
@@ -106,14 +106,14 @@ const TitleAndReadMore = ({ id, title, summary }: TitleAndReadMoreProps) => {
       </h2>
       <div sx={{ flex: 1 }}>{summary}</div>
       <Button
-        withBorder
-        color="text"
-        bg="secondaryBackground"
         sx={{
           width: '8rem',
+          height: '2rem',
           position: 'absolute',
           right: padding,
           bottom: padding,
+          ...setColor({ bg: 'bg-2', color: 'fg-0', hover: { bg: 'bg-4' } }),
+          ...setBorder({ width: '2px', color: 'bg-6' }),
         }}
         onClick={() => navigate(`/news/${id}`)}
       >

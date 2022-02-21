@@ -3,14 +3,35 @@ import type {
   ColorModesScale,
   ColorMode,
   ThemeUICSSObject,
+  ThemeUIStyleObject,
 } from 'theme-ui';
 import { fill, isUndefined } from 'lodash';
 
 /******************************************************************************
+ * Basic part
+ *****************************************************************************/
+
+interface BuildSetFunctionHover<T> {
+  hover?: T;
+}
+
+const buildSetFunction =
+  <T>(fun: (config: T) => ThemeUIStyleObject) =>
+  (config?: T & BuildSetFunctionHover<T>) => {
+    const { hover, ...pureConfig } = config ?? {};
+    return {
+      ...fun(pureConfig as T),
+      ...(hover
+        ? {
+            ':hover': fun(hover),
+          }
+        : null),
+    };
+  };
+
+/******************************************************************************
  * Set the colors.
  *****************************************************************************/
-type ColorStyle = ThemeUICSSObject['color'];
-
 interface Colors extends ColorModesScale {
   modes: { dark: ColorMode };
 }
@@ -125,21 +146,25 @@ setThemeColor('background', { _: green(0), dark: green(255) });
 setThemeColor('primary', { _: 'white', dark: 'white' });
 setThemeColor('secondary', { _: 'white', dark: 'white' });
 
+interface SetColorConfig {
+  color?: string;
+  bg?: string;
+}
+
 /**
  * setColor.
  *
- * @param color The text color and border color.
- * @param bg The background's color.
- * @param config Config:
- * - `setColorToBorderColor`: `true`(defalut) | `false`. Set param `color` to
- *   border's color or not.
+ * @param config - It holds:
+ * - `color`: The text color.
+ * - `bg`: The background's color.
+ * - others: see `buildSetFunction`.
+ *
+ * @see buildSetFunction
  */
-export const setColor = (color: ColorStyle, bg: ColorStyle) => {
-  return {
-    color,
-    bg,
-  };
-};
+export const setColor = buildSetFunction<SetColorConfig>((config) => {
+  const { color = 'fg-0', bg = 'bg-0' } = config;
+  return { color, bg };
+});
 
 /******************************************************************************
  * Set the break points.

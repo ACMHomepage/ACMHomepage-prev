@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../component/Header';
-import Button from '../component/Button';
+import Button, { buttonFlipStyle } from '../component/Button';
+import { setBorder } from '../util/theme';
 
 export default () => {
   const navigate = useNavigate();
@@ -15,10 +16,13 @@ export default () => {
         Please check your URL is right.
       </Header>
       <Button
-        filp
-        withBorder
-        size="lg"
-        sx={{ px: '2rem' }}
+        sx={{
+          px: '2rem',
+          fontSize: 'xl',
+          height: '3rem',
+          ...buttonFlipStyle(),
+          ...setBorder({ width: '2px', color: 'fg-0' }),
+        }}
         onClick={() => navigate('/')}
       >
         Return to homepage

@@ -41,7 +41,7 @@ function NewsBody() {
           width: '100%',
           height: HEIGHT,
           ...setFlex({ center: true, gap: '0.5rem' }),
-          ...setColor('text', 'secondaryBackground'),
+          ...setColor({ bg: 'bg-2' }),
         }}
       >
         <Loader size={20} />
@@ -52,9 +52,12 @@ function NewsBody() {
     return (
       <Button
         onClick={() => refetch()}
-        bg="secondaryBackground"
-        size="lg"
-        sx={{ width: '100%', height: HEIGHT, gap: '0.5rem' }}
+        sx={{
+          width: '100%',
+          height: HEIGHT,
+          gap: '0.5rem',
+          ...setColor({ bg: 'bg-2' }),
+        }}
       >
         <Loader size={20} />
         Click to retry

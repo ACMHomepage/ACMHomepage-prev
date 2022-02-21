@@ -2,9 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { title, utilMainPart } from '../config';
+import { setBorder } from '../util/theme';
 
 import News from '../component/News';
-import Button from '../component/Button';
+import Button, { buttonFlipStyle } from '../component/Button';
 import Header from '../component/Header';
 
 export default function Index() {
@@ -16,11 +17,14 @@ export default function Index() {
         <Header.Space>
           <Header>{title}</Header>
           <Button
-            withBorder
-            filp
-            size="lg"
-            sx={{ px: '2rem' }}
             onClick={() => navigate('info')}
+            sx={{
+              px: '2rem',
+              fontSize: 'xl',
+              height: '3rem',
+              ...setBorder({ width: '2px', color: 'fg-0' }),
+              ...buttonFlipStyle(),
+            }}
           >
             More infomation
           </Button>
