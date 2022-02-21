@@ -1,9 +1,7 @@
-import { Label, useColorMode } from 'theme-ui';
+import { useColorMode } from 'theme-ui';
 import { Moon, Sun } from 'lucide-react';
 
 import PureSwitch from './PureSwitch';
-import type { ClickableSize } from '../config';
-import { clickableSize } from '../config';
 
 export type ColorMode = 'light' | 'dark';
 
@@ -25,7 +23,6 @@ const onClickToChangeColor =
 
 interface DarkToggleProps {
   className?: string;
-  size?: ClickableSize;
   showText?: boolean;
 }
 
@@ -33,23 +30,22 @@ interface DarkToggleProps {
  * Return a dark mode toggle component.
  * @param props It holds:
  * - className: `<string>` | `undefined`. Set its class.
- * - size: `<ClickableSize>`.
  * - showText: `true`(default) | `false`. Set if show the text `Dark Mode` or
  *   not.
  */
 export default (props: DarkToggleProps) => {
-  let { className, size, showText = true } = props;
+  let { className, showText = true } = props;
   const [colorMode, setColorMode] = useColorMode();
 
   return (
-    <Label
+    <label
+      tabIndex={0}
       sx={{
         display: 'flex',
         gap: '0.5rem',
         alignItems: 'center',
         width: 'auto',
         cursor: 'pointer',
-        ...clickableSize(size),
       }}
       className={className}
     >
@@ -65,6 +61,6 @@ export default (props: DarkToggleProps) => {
         checked={colorMode === 'dark'}
         onChange={onClickToChangeColor(colorMode as ColorMode, setColorMode)}
       />
-    </Label>
+    </label>
   );
 };

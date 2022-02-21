@@ -57,23 +57,6 @@ export const utilMainPart: ThemeUIStyleObject = {
   }),
 };
 
-export type ClickableSize = 'sm' | 'md' | 'lg' | undefined;
-
-/**
- * clickableSize. A function to return a clickable's style object by the size.
- * @param clickableSize `'sm'` | `'md'`(default) | `'lg'`
- */
-export const clickableSize = (
-  clickableSize: ClickableSize,
-): ThemeUIStyleObject => {
-  if (isUndefined(clickableSize)) clickableSize = 'md';
-  return {
-    sm: { height: '1.5rem', fontSize: '0.75rem' },
-    md: { height: '2rem', fontSize: '0.875rem' },
-    lg: { height: '2.5rem', fontSize: '1rem' },
-  }[clickableSize];
-};
-
 /******************************************************************************
  * Others
  *****************************************************************************/
