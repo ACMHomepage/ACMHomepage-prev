@@ -7,7 +7,7 @@ test('make sure Button looks same as before', () => {
   const { container } = render(
     <ThemeProvider theme={theme}>
       <Button>Hello</Button>
-    </ThemeProvider>
+    </ThemeProvider>,
   );
   expect(container).toMatchSnapshot();
-})
+});

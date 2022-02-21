@@ -2,10 +2,8 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  transformIgnorePatterns: [
-    '/node_modules/(?!@mdx-js)',
-  ],
+  transformIgnorePatterns: ['/node_modules/(?!@mdx-js)'],
   transform: {
-    '^.+\\.[tj]s$': 'ts-jest'
+    '^.+\\.[tj]s$': 'ts-jest',
   },
 };

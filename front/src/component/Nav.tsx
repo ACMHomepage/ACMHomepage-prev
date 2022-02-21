@@ -40,7 +40,7 @@ export default function Nav() {
             display: mRV({ _: 'none', md: 'flex' }),
             height: '2rem',
             ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
-            ...setBorder({ color: 'bg-6', width: '2px' })
+            ...setBorder({ color: 'bg-6', width: '2px' }),
           }}
         />
         <Dropdown sx={{ display: mRV({ _: 'block', md: 'none' }) }} />
