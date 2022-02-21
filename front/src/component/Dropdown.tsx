@@ -1,10 +1,12 @@
 import { Menu as MenuIcon } from 'lucide-react';
 import { useState, useRef } from 'react';
+import type { ThemeUIStyleObject } from 'theme-ui';
+import { merge } from 'lodash';
 
 import Button from './Button';
 import LogButton from './LogButton';
 import DarkToggle from './DarkToggle';
-import { setColor, setBorder, mRV, setOutline } from '../util/theme';
+import { setColor, setBorder, setOutline, setFont } from '../util/theme';
 import useOutsideListener from '../util/outsideListener';
 
 interface MenuProps {
@@ -55,24 +57,32 @@ Menu.Items = function MenuItems(props: MenuItemsProps) {
 };
 
 interface DropdownProps {
+  buttonSx?: ThemeUIStyleObject;
   className?: string;
 }
 
 /**
  * @param props - It holds:
- * - className: `<STRING>` | undefined.
+ * - `buttonSx`: `<ThemeUIStyleObject>` | undefined.
+ * - `className`: `<string>` | `undefined`.
  */
-export default ({ className }: DropdownProps) => {
+export default ({ buttonSx, className }: DropdownProps) => {
   const [open, setOpen] = useState(true);
 
   return (
-    <Menu sx={{ position: 'relative' }} open={open} setOpen={setOpen}>
+    <Menu
+      sx={{ position: 'relative' }} open={open} setOpen={setOpen}
+      className={className}
+    >
       <Button
-        sx={{
-          height: '2rem',
-          ...setBorder({ width: '2px', color: 'bg-4' }),
-          ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
-        }}
+        sx={merge(
+          {
+            height: '2rem',
+            ...setBorder({ width: '2px', color: 'bg-4' }),
+            ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
+          },
+          buttonSx,
+        )}
         onClick={Menu.toggleOpen(open, setOpen)}
       >
         <MenuIcon size={20} />
@@ -109,6 +119,7 @@ export default ({ className }: DropdownProps) => {
                 p: '0.5rem',
                 ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
                 ...setBorder({ radius: '0px', width: '0px' }),
+                ...setFont({ size: 'base', color: 'fg-0' }),
               }}
             />
           </div>

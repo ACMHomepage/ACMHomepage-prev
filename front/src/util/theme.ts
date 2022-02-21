@@ -343,6 +343,31 @@ export const setFontSize = (
   }
 };
 
+interface SetFont {
+  size?: ThemeUICSSObject['fontSize'];
+  color?: ThemeUICSSObject['color'];
+  family?: ThemeUICSSObject['fontFamily'];
+  weight?: ThemeUICSSObject['fontWeight'];
+}
+
+/**
+ * setFont.
+ *
+ * @param config - It holds:
+ * - `size`: The font size.
+ * - `color`: The font color.
+ * - `family`: The font family.
+ * - `weight`: The fonr weight.
+ * - others: see `buildSetFunction`.
+ *
+ * @see buildSetFunction
+ */
+export const setFont = buildSetFunction<SetFont>((config) => {
+  const { size, color, family, weight } = config;
+
+  return { fontSize: size, color, fontFamily: family, fontWeight: weight };
+});
+
 /******************************************************************************
  * Set the flexbox.
  *****************************************************************************/
