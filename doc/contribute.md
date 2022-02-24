@@ -30,27 +30,30 @@ To-do Tree
   - [ ] And so on.
   - [x] Two toggle to change dark mode. make sure they works well.
 - [ ] Add a user entrypoint.
-  - [ ] Put a button.
-  - [ ] Add a router.
+  - [ ] Add sign up / sign in.
+  - [x] Put a button.
+  - [x] Add a router.
+  - [x] Add the mock for jwt.
 - [ ] Use `deno` instead of `node.js`.
 - [ ] Remove `any` in `.ts` file.
 - [ ] Add cache for picute.
 - [ ] Make test runable.
 - [ ] Better color mode.
-- [ ] Fix bug:
-
-  Warning: Cannot update a component (`TopLevelColorModeProvider`) while
-  rendering a different component (`DarkToggle`). To locate the bad setState()
-  call inside `DarkToggle`, follow the stack trace as described in
-  https://reactjs.org/link/setstate-in-render
-
-  DarkToggle@http://127.0.0.1:3000/src/component/Nav.tsx:12:20
-
-  withEmotionCache2/<@http://127.0.0.1:3000/node_modules/.vite/theme-ui.js?
-  v=0b85f029:1314:45
 - [ ] How about add sx prop in theme-ui's Global?
-- [x] Use CSS-in-JS.
+- [ ] Emmm... So how about let every page know the before scroll position.
+- [ ] Let the `ACM Homepage` in `Nav` be a button.
+- [ ] Remove warning of msw when it ask for picture.
+- [ ] Now we have `News` component and `News` page. Try to remove one or
+  something else.
+- [ ] How can I use typedoc?
+- [ ] Make the Nav has bigger place to touch.
+- [ ] Deal with JWT + cookie + CORS.
+- [ ] Work with HttpOnly cookie.
+- [ ] Add e2e test.
+- [ ] Update component PureSwitch with sx prop.
+- [ ] Add favicon.ico.
 - [x] Reduce ReactDOM's size.
 - [x] Build component.
+- [x] Add news' detail page.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
