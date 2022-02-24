@@ -1,6 +1,5 @@
 import React from 'react';
 import type { ThemeUIStyleObject } from 'theme-ui';
-import { isUndefined } from 'lodash';
 
 import Header from './component/Header';
 

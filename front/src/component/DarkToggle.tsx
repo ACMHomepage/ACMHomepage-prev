@@ -50,7 +50,14 @@ export default (props: DarkToggleProps) => {
       className={className}
     >
       {showText ? (
-        <span sx={{ flex: 1, display: 'flex', gap: '0.25rem', alignItems: 'center' }}>
+        <span
+          sx={{
+            flex: 1,
+            display: 'flex',
+            gap: '0.25rem',
+            alignItems: 'center',
+          }}
+        >
           <Moon size={16} />
           Dark Mode
         </span>

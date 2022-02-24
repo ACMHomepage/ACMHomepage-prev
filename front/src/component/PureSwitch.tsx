@@ -53,6 +53,7 @@ export default React.forwardRef(
     // Hidden checkbox, the really element.
     const Checkbox = (
       <Box
+        tabIndex={-1}
         ref={ref}
         as="input"
         // @ts-ignore
@@ -84,7 +85,7 @@ export default React.forwardRef(
         __css={{
           position: 'relative',
           flexShrink: 0,
-          bg: 'gray',
+          bg: 'fg-0',
           borderRadius: size,
           height: `calc(${size} + ${gutter} * 2)`,
           width: `calc(${size} * 2 + ${gutter} * 2)`,
@@ -98,14 +99,13 @@ export default React.forwardRef(
             borderRadius: '50%',
             height: size,
             width: size,
-            bg: 'background',
+            bg: 'bg-0',
             boxShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
             position: 'relative',
             transform: 'translateX(0%)',
             transition: `transform 240ms cubic-bezier(0.165, 0.840, 0.440, 1.000)`,
           },
           'input:checked ~ &': {
-            bg: 'text',
             '> div': {
               transform: 'translateX(100%)',
             },
