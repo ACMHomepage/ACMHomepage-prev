@@ -23,17 +23,18 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
 
 To-do Tree
 -------------------------------------------------------------------------------
+- [ ] Add a user entrypoint.
+  - [ ] Add sign up / sign in.
+  - [ ] Add sign out button in Nav and Dropdown.
+  - [x] Put a button.
+  - [x] Add a router.
+  - [x] Add the mock for jwt.
 - [ ] Remove typescript's warning and error.
 - [ ] Update test.
   - [ ] Add test for `News`.
   - [ ] Add test for `Carousel`.
   - [ ] And so on.
   - [x] Two toggle to change dark mode. make sure they works well.
-- [ ] Add a user entrypoint.
-  - [ ] Add sign up / sign in.
-  - [x] Put a button.
-  - [x] Add a router.
-  - [x] Add the mock for jwt.
 - [ ] Use `deno` instead of `node.js`.
 - [ ] Remove `any` in `.ts` file.
 - [ ] Add cache for picute.

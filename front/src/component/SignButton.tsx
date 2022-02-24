@@ -1,9 +1,15 @@
-import { LogIn } from 'lucide-react';
+import { LogIn, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from './Button';
 
+export enum SignButtonPropType {
+  SignOut,
+  SignInOrUp,
+}
+
 interface SignButtonProps {
+  type: SignButtonPropType;
   className?: string;
 }
 
@@ -13,18 +19,32 @@ interface SignButtonProps {
  * @param {SignButtonProps} props Holdes:
  * - className. `<string>`. To set its class.
  */
+
 export default (props: SignButtonProps) => {
-  const { className } = props;
+  const { type, className } = props;
   const navigate = useNavigate();
 
-  return (
-    <Button
-      sx={{ gap: '0.25rem' }}
-      className={className}
-      onClick={() => navigate('/sign')}
-    >
-      <LogIn size={16} />
-      Sign in / Sign up
-    </Button>
-  );
+  if (type === SignButtonPropType.SignInOrUp) {
+    return (
+      <Button
+        sx={{ gap: '0.25rem' }}
+        className={className}
+        onClick={() => navigate('/sign')}
+      >
+        <LogIn size={16} />
+        Sign in / Sign up
+      </Button>
+    );
+  } else {
+    // TODO: Let it can sign out.
+    return (
+      <Button
+        sx={{ gap: '0.25rem' }}
+        className={className}
+      >
+        <LogOut size={16} />
+        Sign out
+      </Button>
+    );
+  }
 };

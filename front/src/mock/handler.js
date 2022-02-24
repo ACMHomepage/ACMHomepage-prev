@@ -1,4 +1,4 @@
 import News from './handler/News';
-import Sign from './handler/Sign';
+import Auth from './handler/Auth';
 
-export const handlers = [News, Sign];
+export const handlers = [...News, ...Auth];

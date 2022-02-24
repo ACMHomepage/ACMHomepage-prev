@@ -35,10 +35,12 @@ const data = {
   ],
 };
 
-export default graphql.query('News', (req, res, ctx) => {
+const News = graphql.query('News', (req, res, ctx) => {
   const { newsId } = req.variables;
   const news = isUndefined(newsId)
     ? data.news
     : filter(data.news, (new_) => parseInt(newsId) === new_.id);
   return res(ctx.data({ news }));
 });
+
+export default [News];
