@@ -3,17 +3,17 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from './Button';
 
-interface LogButtonProps {
+interface SignButtonProps {
   className?: string;
 }
 
 /**
- * LogButton. A button to go to log page.
+ * SignButton. A button to go to log page.
  *
- * @param {LogButtonProps} props Holdes:
+ * @param {SignButtonProps} props Holdes:
  * - className. `<string>`. To set its class.
  */
-export default (props: LogButtonProps) => {
+export default (props: SignButtonProps) => {
   const { className } = props;
   const navigate = useNavigate();
 
@@ -21,10 +21,10 @@ export default (props: LogButtonProps) => {
     <Button
       sx={{ gap: '0.25rem' }}
       className={className}
-      onClick={() => navigate('/log')}
+      onClick={() => navigate('/sign')}
     >
       <LogIn size={16} />
-      Log in / Log on
+      Sign in / Sign up
     </Button>
   );
 };

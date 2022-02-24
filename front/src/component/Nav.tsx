@@ -5,7 +5,7 @@ import { mRV, setColor, setBorder } from '../util/theme';
 
 import DarkToggle from './DarkToggle';
 import Dropdown from './Dropdown';
-import LogButton from './LogButton';
+import SignButton from './SignButton';
 
 export default function Nav() {
   return (
@@ -35,7 +35,7 @@ export default function Nav() {
           showText={false}
           sx={{ display: mRV({ _: 'none', md: 'flex' }) }}
         />
-        <LogButton
+        <SignButton
           sx={{
             display: mRV({ _: 'none', md: 'flex' }),
             height: '2rem',

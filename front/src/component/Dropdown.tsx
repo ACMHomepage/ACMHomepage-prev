@@ -4,7 +4,7 @@ import type { ThemeUIStyleObject } from 'theme-ui';
 import { merge } from 'lodash';
 
 import Button from './Button';
-import LogButton from './LogButton';
+import SignButton from './SignButton';
 import DarkToggle from './DarkToggle';
 import { setColor, setBorder, setOutline, setFont } from '../util/theme';
 import useOutsideListener from '../util/outsideListener';
@@ -71,7 +71,9 @@ export default ({ buttonSx, className }: DropdownProps) => {
 
   return (
     <Menu
-      sx={{ position: 'relative' }} open={open} setOpen={setOpen}
+      sx={{ position: 'relative' }}
+      open={open}
+      setOpen={setOpen}
       className={className}
     >
       <Button
@@ -111,7 +113,7 @@ export default ({ buttonSx, className }: DropdownProps) => {
                 ':focus': { ...setOutline() },
               }}
             />
-            <LogButton
+            <SignButton
               sx={{
                 gap: '0.25rem',
                 width: '100%',

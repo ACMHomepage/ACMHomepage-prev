@@ -13,7 +13,7 @@ const data = {
   ],
 };
 
-export default graphql.query('LogIn', (req, res, ctx) => {
+export default graphql.query('SignIn', (req, res, ctx) => {
   const { email, password } = req.variables;
 
   // get the user by email

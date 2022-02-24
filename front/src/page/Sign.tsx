@@ -87,7 +87,7 @@ const Input = (props: InputProps) => {
 };
 
 const GET_JWT = gql`
-  query LogIn($email: String!, $password: String!) {
+  query SignIn($email: String!, $password: String!) {
     # Input email, password, and no output.
     users(email: $email, password: $password) {
       _
@@ -96,7 +96,7 @@ const GET_JWT = gql`
 `;
 
 /**
- * Page `Log`. Handle the log in / log on.
+ * Page `Sign`. Handle the sign in / sign on.
  */
 export default () => {
   const [email, setEmail] = useState('');
@@ -112,6 +112,8 @@ export default () => {
 
   // TODO: Remember to make sure that the cookie is http only.
   // No error. The cookie will be set by response's header's `Set-Cookie`.
+  // TODO: Remember, we cannot deal with the cookie with HttpOnly. Fuck, just
+  // deal with it soon.
   useEffect(() => {
     if (Cookie.get('jwt')) {
       // Just go back.
@@ -171,7 +173,7 @@ export default () => {
           }}
           onClick={() => get_jwt({ variables: { email, password } })}
         >
-          Log in
+          Sign in
         </Button>
       </div>
     </Header.Space>
