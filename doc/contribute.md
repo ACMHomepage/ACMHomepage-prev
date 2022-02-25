@@ -24,11 +24,11 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
 To-do Tree
 -------------------------------------------------------------------------------
 - [ ] Add a user entrypoint.
-  - [ ] Add sign up / sign in.
-  - [ ] Add sign out button in Nav and Dropdown.
-  - [x] Put a button.
-  - [x] Add a router.
-  - [x] Add the mock for jwt.
+  - [ ] Add sign up page.
+  - [ ] Add error message if sign in fail.
+  - [x] Add sign out.
+  - [x] Add sign out button in Nav and Dropdown.
+  - [x] ...
 - [ ] Remove typescript's warning and error.
 - [ ] Update test.
   - [ ] Add test for `News`.
@@ -53,8 +53,9 @@ To-do Tree
 - [ ] Add e2e test.
 - [ ] Update component PureSwitch with sx prop.
 - [ ] Add favicon.ico.
+- [ ] Use HTTPS instead of HTTP.
 - [x] Reduce ReactDOM's size.
 - [x] Build component.
-- [x] Add news' detail page.
+- [x] ...
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716

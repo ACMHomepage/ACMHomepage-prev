@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Lock, User, Eye } from 'lucide-react';
 import type { ThemeUICSSObject, ThemeUIStyleObject } from 'theme-ui';
-import { useLazyQuery, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
-import Cookie from 'js-cookie';
+
+import { useSelector } from '../hooks';
 
 import { utilMainPart } from '../config';
 import { setBorder, setColor, setFlex } from '../util/theme';
+import { useSignIn, selectState, AuthStateEnum } from '../store/authSlice';
 
 import Header from '../component/Header';
 import Button from '../component/Button';
@@ -86,36 +87,19 @@ const Input = (props: InputProps) => {
   );
 };
 
-const GET_JWT = gql`
-  query SignIn($email: String!, $password: String!) {
-    # Input email, password, and no output.
-    users(email: $email, password: $password) {
-      _
-    }
-  }
-`;
-
 /**
  * Page `Sign`. Handle the sign in / sign on.
  */
 export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // TODO: deal with loading state and error state.
-  const [
-    get_jwt,
-    {
-      /* Nothing. We just need cookie */
-    },
-  ] = useLazyQuery(GET_JWT);
+  const signIn = useSignIn();
+  const authState = useSelector(selectState);
+
   const navigator = useNavigate();
 
-  // TODO: Remember to make sure that the cookie is http only.
-  // No error. The cookie will be set by response's header's `Set-Cookie`.
-  // TODO: Remember, we cannot deal with the cookie with HttpOnly. Fuck, just
-  // deal with it soon.
   useEffect(() => {
-    if (Cookie.get('jwt')) {
+    if (authState === AuthStateEnum.LoggedWithInfo) {
       // Just go back.
       navigator(-1);
     }
@@ -171,7 +155,7 @@ export default () => {
               ...setBorder({ width: '2px', color: 'bg-5' }),
             },
           }}
-          onClick={() => get_jwt({ variables: { email, password } })}
+          onClick={() => signIn(email, password)}
         >
           Sign in
         </Button>

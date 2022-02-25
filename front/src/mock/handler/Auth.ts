@@ -33,7 +33,7 @@ const signIn = graphql.query('SignIn', (req, res, ctx) => {
   const result = res(
     ctx.cookie('jwt', `${email}`),
     ctx.data({
-      users: [],
+      user,
     }),
   );
   return result;

@@ -1,15 +1,13 @@
 import { LogIn, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+import { useSelector, useDispatch } from '../hooks';
+
+import { selectState, AuthStateEnum, signOut } from '../store/authSlice';
+
 import Button from './Button';
 
-export enum SignButtonPropType {
-  SignOut,
-  SignInOrUp,
-}
-
 interface SignButtonProps {
-  type: SignButtonPropType;
   className?: string;
 }
 
@@ -21,10 +19,12 @@ interface SignButtonProps {
  */
 
 export default (props: SignButtonProps) => {
-  const { type, className } = props;
+  const { className } = props;
   const navigate = useNavigate();
+  const authState = useSelector(selectState);
+  const dispatch = useDispatch();
 
-  if (type === SignButtonPropType.SignInOrUp) {
+  if (authState !== AuthStateEnum.LoggedWithInfo) {
     return (
       <Button
         sx={{ gap: '0.25rem' }}
@@ -41,6 +41,7 @@ export default (props: SignButtonProps) => {
       <Button
         sx={{ gap: '0.25rem' }}
         className={className}
+        onClick={() => dispatch(signOut())}
       >
         <LogOut size={16} />
         Sign out

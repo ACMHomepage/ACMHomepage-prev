@@ -1,27 +1,16 @@
 import { Link } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
 
 import { utilMainPart } from '../config';
 import { mRV, setColor, setBorder } from '../util/theme';
 
 import DarkToggle from './DarkToggle';
 import Dropdown from './Dropdown';
-import SignButton, { SignButtonPropType } from './SignButton';
-
-const GET_USER = gql`
-  query CurrentUser {
-    currentUser {
-      name
-    }
-  }
-`;
+import SignButton from './SignButton';
 
 /**
  * Nav. A helper bar over **all** pages.
  */
 export default () => {
-  const { loading, error, data } = useQuery(GET_USER);
-
   return (
     <div
       sx={{
@@ -50,9 +39,6 @@ export default () => {
           sx={{ display: mRV({ _: 'none', md: 'flex' }) }}
         />
         <SignButton
-          type={
-            data ? SignButtonPropType.SignOut : SignButtonPropType.SignInOrUp
-          }
           sx={{
             display: mRV({ _: 'none', md: 'flex' }),
             height: '2rem',
