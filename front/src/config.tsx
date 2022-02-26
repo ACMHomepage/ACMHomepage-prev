@@ -3,7 +3,7 @@ import type { ThemeUIStyleObject } from 'theme-ui';
 
 import Header from './component/Header';
 
-import { mRV } from './util/theme';
+import { mRV, setBorder } from './util/theme';
 
 /******************************************************************************
  * Set the page's content.
@@ -54,6 +54,15 @@ export const utilMainPart: ThemeUIStyleObject = {
     lg: `${(100 * 10) / 12}%`,
     xl: `${(100 * 8) / 12}%`,
   }),
+};
+
+export const boxSx = {
+  bg: 'bg-0',
+  width: '36rem',
+  maxWidth: '100%',
+  p: '1rem',
+  color: 'fg-0',
+  ...setBorder({ width: '2px', color: 'bg-6' }),
 };
 
 /******************************************************************************

@@ -10,12 +10,15 @@ import store from './store/store';
 import { client } from './client';
 import theme from './util/theme';
 
+// Import pages.
 import Index from './page/Index';
 import _404 from './page/404';
 import Info from './page/Info';
 import NewsPage from './page/News';
-import Sign from './page/Sign';
+import SignIn, { URL as signInUrl } from './page/SignIn';
+import Resgister, { URL as resgisterUrl } from './page/Register';
 
+// Import components.
 import Nav from './component/Nav';
 import Footer from './component/Footer';
 import ScrollToTop from './component/ScrollToTop.tsx';
@@ -99,7 +102,8 @@ const AppWithTheme = () => {
             <Route index element={<_404 />} />
             <Route path=":newsId" element={<NewsPage />} />
           </Route>
-          <Route path="sign" element={<Sign />} />
+          <Route path={signInUrl} element={<SignIn />} />
+          <Route path={resgisterUrl} element={<Resgister />} />
           <Route path="*" element={<_404 />} />
         </Routes>
         <Footer />

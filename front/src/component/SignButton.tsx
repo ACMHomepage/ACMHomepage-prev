@@ -2,8 +2,8 @@ import { LogIn, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from '../hooks';
-
 import { selectState, AuthStateEnum, signOut } from '../store/authSlice';
+import { URL as signInUrl } from '../page/SignIn';
 
 import Button from './Button';
 
@@ -29,7 +29,7 @@ export default (props: SignButtonProps) => {
       <Button
         sx={{ gap: '0.25rem' }}
         className={className}
-        onClick={() => navigate('/sign')}
+        onClick={() => navigate(signInUrl)}
       >
         <LogIn size={16} />
         Sign in / Sign up
