@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Lock, User, Eye } from 'lucide-react';
+import { Lock, User, Mail, Eye } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { useSelector } from '../hooks';
 
 import { utilMainPart, boxSx } from '../config';
 import { setBorder, setColor, setFlex } from '../util/theme';
-import { useSignIn, selectState, AuthStateEnum } from '../store/authSlice';
+import { selectState, AuthStateEnum, useSignUp } from '../store/authSlice';
 
 // Import components.
 import Header from '../component/Header';
@@ -21,10 +21,13 @@ export const URL = '/register';
  * Page `Sign`. Handle the sign in / sign on.
  */
 export default () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const authState = useSelector(selectState);
   const navigator = useNavigate();
+
+  const signUp = useSignUp();
 
   useEffect(() => {
     if (authState === AuthStateEnum.LoggedWithInfo) {
@@ -33,6 +36,9 @@ export default () => {
     }
   });
 
+  // TODO: Return error if the name, email or password is empty.
+  // TODO: We do not handler if email is already in database.
+  // TODO: We do not show the helpful message in different state.
   return (
     <Header.Space sx={{ ...utilMainPart }}>
       <div sx={{ ...boxSx, ...setFlex({ direction: 'column', gap: '1rem' }) }}>
@@ -49,6 +55,11 @@ export default () => {
         <Input
           placeholder="User name"
           startIcon={User}
+          value={[name, (event) => setName(event.target.value)]}
+        />
+        <Input
+          placeholder="Email"
+          startIcon={Mail}
           value={[email, (event) => setEmail(event.target.value)]}
         />
         <Input
@@ -68,6 +79,7 @@ export default () => {
               ...setBorder({ width: '2px', color: 'bg-5' }),
             },
           }}
+          onClick={() => signUp(name, email, password)}
         >
           Resgister
         </Button>

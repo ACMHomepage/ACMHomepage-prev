@@ -1,12 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useLazyQuery, gql } from '@apollo/client';
+import { useLazyQuery, useMutation, gql } from '@apollo/client';
 
 import type { RootState } from './store';
 import { useDispatch } from '../hooks';
 
+/******************************************************************************
+ * Constant values.
+ *****************************************************************************/
 const SLICE_NAME = 'auth';
 const IS_LOGGED_ITEM_KEY = `store-${SLICE_NAME}-isLogged`;
 
+/******************************************************************************
+ * State types
+ *****************************************************************************/
 export enum AuthStateEnum {
   LoggedWithInfo,
   LoggedWithoutInfo,
@@ -39,6 +45,9 @@ type AuthState =
   | LoggedAndLoadingInfo
   | Unlogged;
 
+/******************************************************************************
+ * Main part
+ *****************************************************************************/
 const initialState = ((): AuthState => {
   // localStorage will store if client store the HttpOnly cookie `JWT` to get
   // the authentication. If it is is true, we will try to connect to server to
@@ -83,14 +92,16 @@ export const authSlice = createSlice({
   },
 });
 
-const SIGN_IN_QUERY = gql`
+/******************************************************************************
+ * Sign in part
+ *****************************************************************************/
+const SIGN_IN = gql`
   query SignIn($email: String!, $password: String!) {
     # *************************************************************************
-    # WARING: Remember to change interface SIGN_IN_QUERY_Return if you change
-    # the code below.
+    # WARING: Remember to change its interface if you change the code below.
     # *************************************************************************
 
-    # Input email, password, and no output.
+    # Input email, password, and output user's data.
     user(email: $email, password: $password) {
       name
       email
@@ -99,33 +110,114 @@ const SIGN_IN_QUERY = gql`
   }
 `;
 
-interface SIGN_IN_QUERY_Return {
+interface SignInData {
   name: string;
   email: string;
   isAdmin: boolean;
 }
 
+interface SignInVars {
+  email: string;
+  password: string;
+}
+
+/**
+ * Hook useSignIn to sign in.
+ *
+ * Usage:
+ * ```typescript
+ * const signIn = useSignIn();
+ * // selectState is from the same file.
+ * const authState = useSelector(selectState);
+ *
+ * return (
+ *   <button onClick={signIn(email, password)}>
+ *     {
+ *       // Remember it do not hold all state!
+ *       authState.state === AuthStateEnum.LoggedWithInfo
+ *         ? 'Logged'
+ *         : 'Unlogged'
+ *     }
+ *   </button>
+ * )
+ * ```
+ */
 export const useSignIn = () => {
-  const [signIn, { data, error, loading }] = useLazyQuery(SIGN_IN_QUERY);
+  const [signIn, { data, error, loading }] = useLazyQuery<
+    SignInData,
+    SignInVars
+  >(SIGN_IN);
   const dispatch = useDispatch();
 
   if (data) {
-    dispatch(signInWithInfo(data as SIGN_IN_QUERY_Return));
+    dispatch(signInWithInfo(data));
   } else if (loading) {
     dispatch(signInAndLoading());
   } else if (error) {
     // do nothing... now
-    // TODO: Add error message for user.
+    // TODO: Add error message for user. And UnloggedWithError state.
   }
 
   return (email: string, password: string) =>
     signIn({ variables: { email, password } });
 };
 
+/******************************************************************************
+ * Sign up part
+ *****************************************************************************/
+
+// be mocked in file `front/src/mock/handler/Auth.ts`.
+const SIGN_UP = gql`
+  mutation SignUp($name: String!, $email: String!, $password: String!) {
+    # *************************************************************************
+    # WARING: Remember to change its interface if you change the code below.
+    # *************************************************************************
+
+    # Input name, email, password, and output its data.
+    user(name: $name, email: $email, password: $password) {
+      name
+      email
+      isAdmin
+    }
+  }
+`;
+
+export interface SignUpData {
+  user: {
+    name: string;
+    email: string;
+    isAdmin: boolean;
+  };
+}
+
+export interface SignUpVars {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export const useSignUp = () => {
+  // TODO: deal with loading, error, and data.
+  const [signUp, { loading, error, data }] = useMutation<
+    SignUpData,
+    SignUpVars
+  >(SIGN_UP);
+  const dispatch = useDispatch();
+
+  if (data) {
+    dispatch(signInWithInfo(data.user));
+  }
+
+  return (name: string, email: string, password: string) =>
+    signUp({ variables: { name, email, password } });
+};
+
+/******************************************************************************
+ * Export others
+ *****************************************************************************/
 export const { signOut, signInWithInfo, signInWithoutInfo, signInAndLoading } =
   authSlice.actions;
 
 export const selectState = (state: RootState) => state.auth.state;
 
 export default authSlice.reducer;
-

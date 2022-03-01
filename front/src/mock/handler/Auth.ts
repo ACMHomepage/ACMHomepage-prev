@@ -1,7 +1,10 @@
 import { graphql } from 'msw';
 import { filter, isUndefined } from 'lodash';
 
+import type { SignUpData, SignUpVars } from '../../store/authSlice';
+
 const data = {
+  _id: 1,
   users: [
     {
       id: 1,
@@ -13,6 +16,9 @@ const data = {
   ],
 };
 
+/**
+ * See file `front/src/store/authSlice.ts`.
+ */
 const signIn = graphql.query('SignIn', (req, res, ctx) => {
   const { email, password } = req.variables;
 
@@ -37,6 +43,33 @@ const signIn = graphql.query('SignIn', (req, res, ctx) => {
     }),
   );
   return result;
+});
+
+/**
+ * See file `front/src/store/authSlice.ts`.
+ */
+const signUp = graphql.mutation<SignUpData, SignUpVars>('SignUp', (req, res, ctx) => {
+  const { name, email, password } = req.variables;
+
+  // Add new user.
+  data._id ++;
+  data.users.push({
+    id: data._id,
+    name,
+    email,
+    password,
+    isAdmin: false,
+  })
+
+  return res(
+    ctx.data({
+      user: {
+        name,
+        email,
+        isAdmin: false,
+      }
+    }),
+  );
 });
 
 const currentUser = graphql.query('CurrentUser', (req, res, ctx) => {
@@ -65,4 +98,4 @@ const currentUser = graphql.query('CurrentUser', (req, res, ctx) => {
   return result;
 });
 
-export default [signIn, currentUser];
+export default [signIn, currentUser, signUp];
