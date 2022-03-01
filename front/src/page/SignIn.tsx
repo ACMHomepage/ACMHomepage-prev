@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Lock, User, Eye } from 'lucide-react';
+import { Lock, Mail, Eye } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { useSelector } from '../hooks';
@@ -45,8 +45,8 @@ export default () => {
           ACM Homepage
         </div>
         <Input
-          placeholder="User name"
-          startIcon={User}
+          placeholder="Email"
+          startIcon={Mail}
           value={[email, (event) => setEmail(event.target.value)]}
         />
         <Input
