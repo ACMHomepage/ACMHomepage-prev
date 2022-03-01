@@ -3,11 +3,13 @@ import { useState, useRef } from 'react';
 import type { ThemeUIStyleObject } from 'theme-ui';
 import { merge } from 'lodash';
 
+import { setColor, setBorder, setOutline, setFont } from '../util/theme';
+import useOutsideListener from '../util/outsideListener';
+
 import Button from './Button';
 import SignButton from './SignButton';
 import DarkToggle from './DarkToggle';
-import { setColor, setBorder, setOutline, setFont } from '../util/theme';
-import useOutsideListener from '../util/outsideListener';
+import { PostNews } from './Nav';
 
 interface MenuProps {
   className?: string;
@@ -108,6 +110,7 @@ export default ({ buttonSx, className }: DropdownProps) => {
               sx={{
                 ':hover': { bg: 'bg-4' },
                 p: '0.5rem',
+                height: '2.5rem',
                 ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
                 ...setBorder({ radius: '0px', width: '0px' }),
                 ':focus': { ...setOutline() },
@@ -117,10 +120,20 @@ export default ({ buttonSx, className }: DropdownProps) => {
               sx={{
                 gap: '0.25rem',
                 width: '100%',
+                height: '2.5rem',
                 placeContent: 'start',
                 p: '0.5rem',
                 ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
                 ...setBorder({ radius: '0px', width: '0px' }),
+                ...setFont({ size: 'base', color: 'fg-0' }),
+              }}
+            />
+            <PostNews
+              sx={{
+                p: '0.5rem',
+                width: '100%',
+                height: '2.5rem',
+                placeContent: 'start',
                 ...setFont({ size: 'base', color: 'fg-0' }),
               }}
             />
