@@ -48,29 +48,32 @@ const signIn = graphql.query('SignIn', (req, res, ctx) => {
 /**
  * See file `front/src/store/authSlice.ts`.
  */
-const signUp = graphql.mutation<SignUpData, SignUpVars>('SignUp', (req, res, ctx) => {
-  const { name, email, password } = req.variables;
+const signUp = graphql.mutation<SignUpData, SignUpVars>(
+  'SignUp',
+  (req, res, ctx) => {
+    const { name, email, password } = req.variables;
 
-  // Add new user.
-  data._id ++;
-  data.users.push({
-    id: data._id,
-    name,
-    email,
-    password,
-    isAdmin: false,
-  })
+    // Add new user.
+    data._id++;
+    data.users.push({
+      id: data._id,
+      name,
+      email,
+      password,
+      isAdmin: false,
+    });
 
-  return res(
-    ctx.data({
-      user: {
-        name,
-        email,
-        isAdmin: false,
-      }
-    }),
-  );
-});
+    return res(
+      ctx.data({
+        user: {
+          name,
+          email,
+          isAdmin: false,
+        },
+      }),
+    );
+  },
+);
 
 const currentUser = graphql.query('CurrentUser', (req, res, ctx) => {
   // In mock data, the jwt will just be the email.
