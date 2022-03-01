@@ -17,6 +17,7 @@ import Info from './page/Info';
 import NewsPage from './page/News';
 import SignIn, { URL as signInUrl } from './page/SignIn';
 import Resgister, { URL as resgisterUrl } from './page/Register';
+import PostNews, { URL as postNewsUrl } from './page/PostNews';
 
 // Import components.
 import Nav from './component/Nav';
@@ -104,6 +105,7 @@ const AppWithTheme = () => {
           </Route>
           <Route path={signInUrl} element={<SignIn />} />
           <Route path={resgisterUrl} element={<Resgister />} />
+          <Route path={postNewsUrl} element={<PostNews />} />
           <Route path="*" element={<_404 />} />
         </Routes>
         <Footer />
