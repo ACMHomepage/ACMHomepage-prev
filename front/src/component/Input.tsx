@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import type { ThemeUICSSObject, ThemeUIStyleObject } from 'theme-ui';
 import { setBorder, setColor } from '../util/theme';
 
@@ -8,6 +10,8 @@ interface InputProps {
   endIcon?: React.FC<{ className: string }>;
   placeholder?: string;
   value?: [string, React.ChangeEventHandler<HTMLInputElement>];
+  type?: 'file' | 'textarea';
+  className?: string;
 }
 
 /**
@@ -22,7 +26,7 @@ interface InputProps {
  * - `value`: A tuple, the first one is input's value. And the second one is a
  *   function, which will be called when input is on change.
  */
-export default (props: InputProps) => {
+export default forwardRef((props: InputProps, ref) => {
   const {
     label,
     startIcon: StartIcon,
@@ -30,6 +34,8 @@ export default (props: InputProps) => {
     labelsx,
     placeholder,
     value,
+    type,
+    className,
   } = props;
 
   const iconSize = '2.2rem';
@@ -44,6 +50,9 @@ export default (props: InputProps) => {
     width: iconSize,
   };
 
+  // TODO: This is ugly, try to build a new component Textarea.
+  const InputElement = type === 'textarea' ? 'textarea' : 'input';
+
   return (
     <label>
       {label ? (
@@ -54,8 +63,10 @@ export default (props: InputProps) => {
           /* @ts-ignore The theme-ui sx prop will turn into className */
           <StartIcon sx={{ top: 0, left: iconPadding, ...iconSx }} />
         ) : null}
-        <input
+        <InputElement
+          ref={ref}
           placeholder={placeholder}
+          type={type}
           {...(value ? { value: value[0], onChange: value[1] } : {})}
           sx={{
             fontSize: 'lg',
@@ -64,6 +75,7 @@ export default (props: InputProps) => {
             padding,
             pl: StartIcon ? height : padding,
             pr: EndIcon ? height : padding,
+            resize: 'vertical',
             outline: 'none',
             ...setColor(),
             ...setBorder({ width: '2px', color: 'bg-3' }),
@@ -78,6 +90,7 @@ export default (props: InputProps) => {
               ...setBorder({ width: '2px', color: 'fg-6' }),
             },
           }}
+          className={className}
         />
         {EndIcon ? (
           /* @ts-ignore The theme-ui sx prop will turn into className */
@@ -86,4 +99,4 @@ export default (props: InputProps) => {
       </div>
     </label>
   );
-};
+});
