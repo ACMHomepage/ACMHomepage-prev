@@ -6,7 +6,7 @@ import { useSelector } from '../hooks';
 
 import { utilMainPart, boxSx } from '../config';
 import { setBorder, setColor, setFlex } from '../util/theme';
-import { selectState, AuthStateEnum, useSignUp } from '../store/authSlice';
+import { selectAuthState, AuthStateEnum, useSignUp } from '../store/authSlice';
 
 // Import components.
 import Header from '../component/Header';
@@ -24,7 +24,7 @@ export default () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const authState = useSelector(selectState);
+  const authState = useSelector(selectAuthState);
   const navigator = useNavigate();
 
   const signUp = useSignUp();

@@ -95,6 +95,7 @@ export const authSlice = createSlice({
 /******************************************************************************
  * Sign in part
  *****************************************************************************/
+
 const SIGN_IN = gql`
   query SignIn($email: String!, $password: String!) {
     # *************************************************************************
@@ -111,9 +112,11 @@ const SIGN_IN = gql`
 `;
 
 interface SignInData {
-  name: string;
-  email: string;
-  isAdmin: boolean;
+  user: {
+    name: string;
+    email: string;
+    isAdmin: boolean;
+  };
 }
 
 interface SignInVars {
@@ -127,14 +130,14 @@ interface SignInVars {
  * Usage:
  * ```typescript
  * const signIn = useSignIn();
- * // selectState is from the same file.
- * const authState = useSelector(selectState);
+ * // selectAuthState is from the same file.
+ * const authState = useSelector(selectAuthState);
  *
  * return (
  *   <button onClick={signIn(email, password)}>
  *     {
  *       // Remember it do not hold all state!
- *       authState.state === AuthStateEnum.LoggedWithInfo
+ *       authState === AuthStateEnum.LoggedWithInfo
  *         ? 'Logged'
  *         : 'Unlogged'
  *     }
@@ -150,7 +153,7 @@ export const useSignIn = () => {
   const dispatch = useDispatch();
 
   if (data) {
-    dispatch(signInWithInfo(data));
+    dispatch(signInWithInfo(data.user));
   } else if (loading) {
     dispatch(signInAndLoading());
   } else if (error) {
@@ -218,6 +221,14 @@ export const useSignUp = () => {
 export const { signOut, signInWithInfo, signInWithoutInfo, signInAndLoading } =
   authSlice.actions;
 
-export const selectState = (state: RootState) => state.auth.state;
+/**
+ * Get the auth's data.
+ */
+export const selectAuth = (state: RootState) => state.auth;
+
+/**
+ * Get the auth's state data.
+ */
+export const selectAuthState = (state: RootState) => state.auth.state;
 
 export default authSlice.reducer;

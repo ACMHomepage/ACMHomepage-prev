@@ -2,7 +2,7 @@ import { LogIn, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from '../hooks';
-import { selectState, AuthStateEnum, signOut } from '../store/authSlice';
+import { selectAuthState, AuthStateEnum, signOut } from '../store/authSlice';
 import { URL as signInUrl } from '../page/SignIn';
 
 import Button from './Button';
@@ -21,7 +21,7 @@ interface SignButtonProps {
 export default (props: SignButtonProps) => {
   const { className } = props;
   const navigate = useNavigate();
-  const authState = useSelector(selectState);
+  const authState = useSelector(selectAuthState);
   const dispatch = useDispatch();
 
   if (authState !== AuthStateEnum.LoggedWithInfo) {

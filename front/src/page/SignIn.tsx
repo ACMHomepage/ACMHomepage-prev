@@ -3,10 +3,9 @@ import { Lock, Mail, Eye } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { useSelector } from '../hooks';
-
 import { utilMainPart, boxSx } from '../config';
 import { setBorder, setColor, setFlex } from '../util/theme';
-import { useSignIn, selectState, AuthStateEnum } from '../store/authSlice';
+import { useSignIn, selectAuthState, AuthStateEnum } from '../store/authSlice';
 
 import Header from '../component/Header';
 import Button from '../component/Button';
@@ -21,7 +20,7 @@ export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const signIn = useSignIn();
-  const authState = useSelector(selectState);
+  const authState = useSelector(selectAuthState);
   const navigator = useNavigate();
 
   useEffect(() => {
