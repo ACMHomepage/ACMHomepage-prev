@@ -2,7 +2,10 @@ import { graphql } from 'msw';
 import { filter, isUndefined } from 'lodash';
 import { faker } from '@faker-js/faker';
 
+import type { CreateNewsData, CreateNewsVars } from '../../store/newsSlice';
+
 const data = {
+  _id: 4,
   news: [
     {
       id: 1,
@@ -43,4 +46,29 @@ const News = graphql.query('News', (req, res, ctx) => {
   return res(ctx.data({ news }));
 });
 
-export default [News];
+const CreateNews = graphql.mutation<CreateNewsData, CreateNewsVars>(
+  'CreateNews',
+  (req, res, ctx) => {
+    const { title, image_uri, content } = req.variables;
+    console.log(req.variables);
+
+    data._id++;
+    data.news.push({
+      id: data._id,
+      title,
+      image_uri,
+      content,
+      summary: 'TODO',
+    });
+
+    return res(
+      ctx.data({
+        news: {
+          id: data._id,
+        },
+      }),
+    );
+  },
+);
+
+export default [News, CreateNews];
