@@ -48,4 +48,4 @@ GPL.
 
 [faker-js]: https://fakerjs.dev
 
-[mysql]: https://www.ntu.edu.sg/chinese/main
+[mysql]: https://www.mysql.com/
