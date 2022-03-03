@@ -1,0 +1,3 @@
+FROM mariadb:10
+
+ENV MARIADB_ROOT_PASSWORD=******
