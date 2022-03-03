@@ -56,8 +56,10 @@ To-do Tree
 - [ ] Use HTTPS instead of HTTP.
 - [ ] Add more `setXxxxxx` function to build style.
 - [ ] Let page export its url to use.
+- [ ] Deal with: [PeterlitsZo/ACMHomepage/using-execute-and-pool][]
 - [x] Reduce ReactDOM's size.
 - [x] Build component.
 - [x] ...
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
+[PeterlitsZo/ACMHomepage/using-execute-and-pool]: https://github.com/PeterlitsZo/ACMHomepage/pull/1#discussion_r818478152
