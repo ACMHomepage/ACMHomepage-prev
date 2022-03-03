@@ -18,13 +18,13 @@ export const Query = new GraphQLObjectType({
                 // 之所以能够指定查询id=1的数据，就是因为在args内添加了id
                 // 这在resolve内被用来填充SQL语句
                 args: {
-                    id: {type: GraphQLInt}
+                    id: {type: GraphQLInt},
                 },
                 // resolve函数用来决议当前的查询的SQL语义
                 // 也就是说，当前这个Query要对应成哪个SQL代码
                 async resolve(parentVal, args) {
-                    const res = await query(`SELECT * FROM PERSON WHERE ID = ${args.id}`)
-                    console.log(res)
+                    const sql = `SELECT * FROM PERSON WHERE ID = ?`
+                    const res = await query(sql, [args.id])
                     return res[0] // res 是一个数组，取出第一个元素作为查询结果
                 }
             }
@@ -41,7 +41,8 @@ export const Mutation = new GraphQLObjectType({
                 name: {type: GraphQLString}
             },
             async resolve(parentVal, args) {
-                const res = await query(`INSERT INTO PERSON (ID, NAME) VALUES ( ${args.id}, "${args.name}" )`)
+                const sql = `INSERT INTO PERSON (ID, NAME) VALUES ( ?, ? )`
+                await query(sql, [args.id, args.name]);
                 return {id: args.id, name: args.name}
             }
         }
