@@ -4,7 +4,7 @@ import { personQuerySchema } from "./graphql/query/schema.js";
 
 const personQuery = express();
 personQuery.use(
-  "/person",
+  "/graphql",
   graphqlHTTP({
     schema: personQuerySchema,
     graphiql: true,
