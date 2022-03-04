@@ -9,7 +9,7 @@
     "prettier": "^2.2.1"
   },
   "scripts": {
-    "format": "prettier -w \"?(@(db|graphql)/**/)*.{js,jsx,ts,tsx,json}\""
+    "format": "prettier -w \"?({graphql,db}/**/)*.{js,jsx,ts,tsx,json}\""
   },
   "type": "module"
 }

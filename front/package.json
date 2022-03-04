@@ -6,8 +6,8 @@
   "scripts": {
     "start": "vite dev",
     "build": "NODE_ENV=production vite build --mode analyze",
-    "format": "prettier -w \"?(@(mock|src)/**/)*.{js,jsx,ts,tsx,json}\"",
-    "lint": "prettier -c \"?(@(mock|src)/**/)*.{js,jsx,ts,tsx,json}\"",
+    "format": "prettier -w \"?({mock,src}/**/)*.{js,jsx,ts,tsx,json}\"",
+    "lint": "prettier -c \"?({mock,src}/**/)*.{js,jsx,ts,tsx,json}\"",
     "test": "jest --coverage"
   },
   "dependencies": {
