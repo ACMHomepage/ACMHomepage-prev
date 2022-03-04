@@ -5,5 +5,11 @@
     "graphql": "^15.8.0",
     "mysql2": "^2.3.3"
   },
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  },
+  "scripts": {
+    "format": "prettier -w \"?(@(db|graphql)/**/)*.{js,jsx,ts,tsx,json}\""
+  },
   "type": "module"
 }
