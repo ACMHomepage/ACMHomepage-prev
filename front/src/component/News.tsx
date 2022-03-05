@@ -1,38 +1,34 @@
 import React, { useEffect } from 'react';
-import { useQuery, gql } from '@apollo/client';
 import { Loader } from 'lucide-react';
 
-import Carousel from './Carousel';
 import { mRV, setFlex, setColor } from '../util/theme';
 import { preloadTime } from '../config';
+import { useGetNewsList } from '../store/newsSlice';
+
+import Carousel from './Carousel';
 import Button from './Button';
 
-const GET_NEWS = gql`
-  query News {
-    news {
-      id
-      title
-      image_uri
-      summary
-    }
-  }
-`;
-
 function NewsBody() {
-  const { loading, error, data, refetch } = useQuery(GET_NEWS);
+  // Get the news list when this component is mounted.
+  const [getNewsList, { loading, error, data, refetch }] = useGetNewsList();
+
+  useEffect(() => {
+    getNewsList();
+  }, []);
+
   const HEIGHT = '28rem';
 
   // Preload those picute.
   useEffect(() => {
-    if (loading) return;
-    if (error) return;
+    if (!data) return;
+
     setTimeout(() => {
-      for (let i = 0; i < data.news.length; i++) {
+      for (let i = 0; i < data.getNews.length; i++) {
         let preloadPic = new Image();
-        preloadPic.src = data.news[i].image_uri;
+        preloadPic.src = data.getNews[i].image_url;
       }
     }, preloadTime);
-  }, [loading, error, data]);
+  }, [data]);
 
   if (loading) {
     return (
@@ -48,7 +44,8 @@ function NewsBody() {
         Loading...
       </div>
     );
-  } else if (error) {
+  }
+  if (error) {
     return (
       <Button
         onClick={() => refetch()}
@@ -63,15 +60,18 @@ function NewsBody() {
         Click to retry
       </Button>
     );
-  } else {
+  }
+  if (data) {
     return (
       <Carousel
-        contentMinis={data.news}
+        contentMinis={data.getNews}
         rowChangeBreakPoint="md"
         sx={{ height: HEIGHT }}
       />
     );
   }
+
+  return null;
 }
 
 export default function News() {

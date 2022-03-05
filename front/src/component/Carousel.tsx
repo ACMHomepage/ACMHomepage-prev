@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from './Button';
 import Dots from './Dots';
+
 import { mRV, setColor, setBorder } from '../util/theme';
 import type { BreakpointNameWithoutInit } from '../util/theme';
 
@@ -13,14 +14,14 @@ import type { BreakpointNameWithoutInit } from '../util/theme';
  */
 interface CarouselPreviewProps {
   rowChangeBreakPoint: BreakpointNameWithoutInit;
-  image_uri: string;
+  image_url: string;
   current: number;
   length: number;
   setCurrent: (current: number) => void;
 }
 
 const CarouselPreview = (props: CarouselPreviewProps) => {
-  const { rowChangeBreakPoint, image_uri, length, current, setCurrent } = props;
+  const { rowChangeBreakPoint, image_url, length, current, setCurrent } = props;
   return (
     <div
       sx={{
@@ -30,7 +31,7 @@ const CarouselPreview = (props: CarouselPreviewProps) => {
       }}
     >
       <img
-        src={image_uri}
+        src={image_url}
         sx={{
           width: '100%',
           height: '100%',
@@ -132,20 +133,20 @@ interface contentMini {
   id: number;
   title: string;
   summary: string;
-  image_uri: string;
+  image_url: string;
 }
 
 interface CarouselProps {
   contentMinis: contentMini[];
   rowChangeBreakPoint: BreakpointNameWithoutInit;
-  className: string;
+  className?: string;
 }
 
 export default (props: CarouselProps) => {
   const { contentMinis, rowChangeBreakPoint: bp, className } = props;
   const length = contentMinis.length;
   const [current, setCurrent] = useState(0);
-  const { id, title, summary, image_uri } = contentMinis[current];
+  const { id, title, summary, image_url } = contentMinis[current];
 
   return (
     <div
@@ -162,7 +163,7 @@ export default (props: CarouselProps) => {
     >
       <CarouselPreview
         rowChangeBreakPoint={bp}
-        image_uri={image_uri}
+        image_url={image_url}
         length={length}
         current={current}
         setCurrent={setCurrent}
