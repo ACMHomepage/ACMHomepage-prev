@@ -24,6 +24,17 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
   * `<subject>`, Make sure the first character is UPPERCASE and has a space
     before is. End by a period.
 
+PR Check List
+-------------------------------------------------------------------------------
+
+- [ ] Format your code, by `yarn format`. Good format is helpful for everyone.
+- [ ] (NOT NOW) Make sure tests are passed.
+- [ ] If you need update document, then update. The documents are here:
+  - `README.md` in the root folder of project, about what the project is and
+    why the project exists.
+  - `README.md` in the `back` or `front` folder.
+  - In `doc` folder, there are the other documents.
+
 To-do Tree
 -------------------------------------------------------------------------------
 - [ ] Add a user entrypoint.
@@ -60,3 +71,4 @@ To-do Tree
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
 [PeterlitsZo/ACMHomepage/using-execute-and-pool]: https://github.com/PeterlitsZo/ACMHomepage/pull/1#discussion_r818478152
+
