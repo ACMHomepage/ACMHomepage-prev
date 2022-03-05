@@ -1,14 +1,17 @@
-import { GraphQLSchema as GraphQLSchemaCreator, GraphQLObjectType } from "graphql";
-import { createNews, getNews } from './type/news.js';
+import {
+  GraphQLSchema as GraphQLSchemaCreator,
+  GraphQLObjectType,
+} from "graphql";
+import { createNews, getNews } from "./type/news.js";
 
 export const QueryType = new GraphQLObjectType({
-  name: 'query',
+  name: "query",
   fields: {
-    getNews
-  }
+    getNews,
+  },
 });
 
-export const MutationType  = new GraphQLObjectType({
+export const MutationType = new GraphQLObjectType({
   name: "createNews",
   fields: {
     createNews,

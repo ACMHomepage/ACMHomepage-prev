@@ -5,7 +5,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
-  GraphQLNonNull
+  GraphQLNonNull,
 } from "graphql";
 
 /******************************************************************************
@@ -21,7 +21,7 @@ const getNewsById = async (id) => {
 
   const [rows, _fields] = result;
   return rows;
-}
+};
 
 /******************************************************************************
  * Main part
