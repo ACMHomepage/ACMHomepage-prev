@@ -9,6 +9,7 @@
     "prettier": "^2.2.1"
   },
   "scripts": {
+    "dev": "NODE_ENV=development node main.js",
     "format": "prettier -w \"?({graphql,db}/**/)*.{js,jsx,ts,tsx,json}\""
   },
   "type": "module"
