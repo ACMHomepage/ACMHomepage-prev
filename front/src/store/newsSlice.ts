@@ -5,6 +5,7 @@ import { useLazyQuery, useMutation, gql } from '@apollo/client';
  *****************************************************************************/
 
 const CREATE_NEWS = gql`
+  # The image should be a base64 data string.
   mutation CreateNews($title: String!, $image_url: String!, $content: String!) {
     createNews(title: $title, image_url: $image_url, content: $content) {
       id
