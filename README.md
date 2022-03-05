@@ -7,13 +7,14 @@ ACM-homepage is a full-stacked project for Soochow University's ACM/ICPC team.
 
 It uses [react][react], [node.js][nodejs], [yarn][yarn], [vite][vite],
 [theme ui][theme-ui] to build nice frontend. And also [msw][],
-[faker.js][faker-js] (I support Marak and what Marak do, and that's why the
-project is under GPL license. Fuck you Github. Fuck you big componies) to mock
+[faker.js][faker-js] (We support Marak and what Marak do, and that's why the
+project is under GPL license. We also believe the opensource spirit is eternal and free
+software shall never be chained by the giants.) to mock
 and test.
 
 ### Backend
 
-We utilized [mysql][] and [node.js][nodejs] to build the backend. As of now,
+We utilize [MySQL][mysql] and [node.js][nodejs] to build the backend. As of now,
 the backend is separate from the frontend. We will implement front-end and
 back-end communication in subsequent versions.
 
