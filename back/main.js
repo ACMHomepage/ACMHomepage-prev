@@ -1,6 +1,6 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import { GraphQLSchema } from "./graphql/query/schema.js";
+import { GraphQLSchema } from "./graphql/schema.js";
 
 /**
  * GRAPHIQL means if open graphiql (graph-i-ql but not graph-ql). It is helpful
