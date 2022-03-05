@@ -20,10 +20,10 @@ async function getNewsById(id) {
   return rows;
 }
 
-export const GetNewsType = new GraphQLObjectType({
-  name: "getNews",
+export const QueryType = new GraphQLObjectType({
+  name: 'query',
   fields: {
-    news: {
+    getNews: {
       type: new GraphQLList(NewsType),
       args: {
         id: {
@@ -35,10 +35,10 @@ export const GetNewsType = new GraphQLObjectType({
         return getNewsById(args.id);
       },
     },
-  },
+  }
 });
 
-export const CreateNewsType = new GraphQLObjectType({
+export const MutationType  = new GraphQLObjectType({
   name: "createNews",
   fields: {
     createNews: {

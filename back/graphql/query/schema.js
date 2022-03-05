@@ -1,7 +1,7 @@
-import { GraphQLSchema } from "graphql";
-import { GetNewsType, CreateNewsType } from "./query.js";
+import { GraphQLSchema as GraphQLSchemaCreator } from "graphql";
+import { QueryType, MutationType } from "./query.js";
 
-export const personQuerySchema = new GraphQLSchema({
-  query: GetNewsType,
-  mutation: CreateNewsType,
+export const GraphQLSchema = new GraphQLSchemaCreator({
+  query: QueryType,
+  mutation: MutationType,
 });
