@@ -1,7 +1,7 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 
 const link = new HttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:4000/graphql',
   credentials: 'same-origin',
 
   // Use explicit `window.fetch` so tha outgoing requests
