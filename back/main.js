@@ -1,12 +1,15 @@
-import express from "express"
-import {graphqlHTTP} from "express-graphql"
-import {personQuerySchema} from "./graphql/query/schema.js";
+import express from "express";
+import { graphqlHTTP } from "express-graphql";
+import { personQuerySchema } from "./graphql/query/schema.js";
 
 const personQuery = express();
-personQuery.use('/person', graphqlHTTP({
+personQuery.use(
+  "/graphql",
+  graphqlHTTP({
     schema: personQuerySchema,
-    graphiql: true
-}))
+    graphiql: true,
+  })
+);
 personQuery.listen(4000, () => {
-    console.log("Listening...")
-})
+  console.log("Listening...");
+});
