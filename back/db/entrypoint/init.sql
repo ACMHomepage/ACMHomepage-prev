@@ -11,3 +11,10 @@ CREATE TABLE IF NOT EXISTS news (
     created_date DATE NOT NULL,
     modified_date DATE NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    uid         INT     AUTO_INCREMENT  PRIMARY KEY,
+    email       TEXT    NOT NULL        UNIQUE,
+    password    TEXT    NOT NULL,
+    nickname    TEXT    NOT NULL
+);
