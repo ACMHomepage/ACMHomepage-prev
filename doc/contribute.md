@@ -55,7 +55,6 @@ To-do Tree
 - [ ] Let page export its url to use.
 - [ ] Deal with: [PeterlitsZo/ACMHomepage/using-execute-and-pool][]
 - [ ] Let backend use yarn than npm.
-- [ ] How about add `scope` part in commit title?
 - [ ] Well, the `Dockerfile` and `connection.js` use the same password but in
   different files. Move the password into the `makefile`.
 
