@@ -8,7 +8,7 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
 
 * 80 character each line.
 * Use Markdown syntax.
-* Head: `<type>: <subject>`.
+* Head: `<type>[scope]: <subject>`.
   * `<type>`:
     * `feat`: Add a new feature.
     * `fix`: Fix a bug.
@@ -18,6 +18,9 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
       clear than before.
     * `test`: About test.
     * `chore`: Updating grunt tasks etc; no production code change.
+  * `[scope]`: Optional. Enclosed in parentheses.
+    * `back`: For backend. In folder `/back`.
+    * `front`: For frontend. In folder `/front`.
   * `<subject>`, Make sure the first character is UPPERCASE and has a space
     before is. End by a period.
 
