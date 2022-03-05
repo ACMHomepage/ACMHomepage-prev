@@ -16,8 +16,8 @@ async function getNewsById(id) {
     result = await conn.execute("SELECT * FROM news WHERE id = ?", [id]);
   }
 
-  const [row, _fields] = result;
-  return row;
+  const [rows, _fields] = result;
+  return rows;
 }
 
 export const GetNewsType = new GraphQLObjectType({
