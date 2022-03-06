@@ -26,14 +26,7 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
 
 PR Check List
 -------------------------------------------------------------------------------
-
-- [ ] Format your code, by `yarn format`. Good format is helpful for everyone.
-- [ ] (NOT NOW) Make sure tests are passed.
-- [ ] If you need update document, then update. The documents are here:
-  - `README.md` in the root folder of project, about what the project is and
-    why the project exists.
-  - `README.md` in the `back` or `front` folder.
-  - In `doc` folder, there are the other documents.
+[Click](./pull_request_template.md) to know more.
 
 To-do Tree
 -------------------------------------------------------------------------------

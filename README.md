@@ -21,7 +21,7 @@ back-end communication in subsequent versions.
 Contribute
 -------------------------------------------------------------------------------
 
-[Click](./doc/contribute.md) to see how to contribute.
+[Click](./docs/contribute.md) to see how to contribute.
 
 
 License
