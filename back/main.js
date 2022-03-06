@@ -7,7 +7,7 @@ import cors from "cors";
  * GRAPHIQL means if open graphiql (graph-i-ql but not graph-ql). It is helpful
  * for debug.
  */
-const GRAPHIQL = process.env.NODE_ENV === "development" ? true : false;
+const GRAPHIQL = process.env.NODE_ENV === "development";
 
 const GraphQLServer = express();
 

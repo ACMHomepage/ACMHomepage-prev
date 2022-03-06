@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS news (
 );
 
 CREATE TABLE IF NOT EXISTS users (
-    uid         INT     AUTO_INCREMENT  PRIMARY KEY,
-    email       TEXT    NOT NULL        UNIQUE,
-    password    TEXT    NOT NULL,
-    nickname    TEXT    NOT NULL
+    uid         INT             AUTO_INCREMENT  PRIMARY KEY,
+    email       VARCHAR(64)     NOT NULL        UNIQUE,
+    password    TEXT            NOT NULL,
+    nickname    TEXT            NOT NULL
 );
