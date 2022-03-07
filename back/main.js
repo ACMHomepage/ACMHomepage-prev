@@ -19,10 +19,14 @@ if (process.env.NODE_ENV === "development") {
 
 GraphQLServer.use(
   "/graphql",
-  graphqlHTTP({
-    schema: GraphQLSchema,
-    graphiql: GRAPHIQL,
-  })
+  // Let the req and res be in these `resolve` functions' context.
+  (req, res) => {
+    return graphqlHTTP({
+      schema: GraphQLSchema,
+      graphiql: GRAPHIQL,
+      context: { req, res },
+    })(req, res);
+  }
 );
 
 GraphQLServer.listen(4000, () => {

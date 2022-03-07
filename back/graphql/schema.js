@@ -3,7 +3,7 @@ import {
   GraphQLObjectType,
 } from "graphql";
 import { createNews, getNews } from "./type/news.js";
-import { createUser, getUser } from "./type/user.js";
+import { register, signIn, getUser } from "./type/user.js";
 
 export const QueryType = new GraphQLObjectType({
   name: "query",
@@ -17,7 +17,8 @@ export const MutationType = new GraphQLObjectType({
   name: "createNews",
   fields: {
     createNews,
-    createUser,
+    register,
+    signIn,
   },
 });
 
