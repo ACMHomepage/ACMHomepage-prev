@@ -22,7 +22,7 @@ export enum AuthStateEnum {
 
 interface LoggedWithInfo {
   state: AuthStateEnum.LoggedWithInfo;
-  name: string;
+  nickname: string;
   email: string;
   isAdmin: boolean;
 }
@@ -103,8 +103,8 @@ const SIGN_IN = gql`
     # *************************************************************************
 
     # Input email, password, and output user's data.
-    user(email: $email, password: $password) {
-      name
+    signIn(email: $email, password: $password) {
+      nickname
       email
       isAdmin
     }
@@ -112,8 +112,8 @@ const SIGN_IN = gql`
 `;
 
 interface SignInData {
-  user: {
-    name: string;
+  signIn: {
+    nickname: string;
     email: string;
     isAdmin: boolean;
   };
@@ -153,7 +153,7 @@ export const useSignIn = () => {
   const dispatch = useDispatch();
 
   if (data) {
-    dispatch(signInWithInfo(data.user));
+    dispatch(signInWithInfo(data.signIn));
   } else if (loading) {
     dispatch(signInAndLoading());
   } else if (error) {
@@ -170,49 +170,49 @@ export const useSignIn = () => {
  *****************************************************************************/
 
 // be mocked in file `front/src/mock/handler/Auth.ts`.
-const SIGN_UP = gql`
-  mutation SignUp($name: String!, $email: String!, $password: String!) {
+const REGISTER = gql`
+  mutation Register($nickname: String!, $email: String!, $password: String!) {
     # *************************************************************************
     # WARING: Remember to change its interface if you change the code below.
     # *************************************************************************
 
-    # Input name, email, password, and output its data.
-    user(name: $name, email: $email, password: $password) {
-      name
+    # Input nickname, email, password, and output its data.
+    register(nickname: $nickname, email: $email, password: $password) {
+      nickname
       email
       isAdmin
     }
   }
 `;
 
-export interface SignUpData {
-  user: {
-    name: string;
+export interface RegisterData {
+  register: {
+    nickname: string;
     email: string;
     isAdmin: boolean;
   };
 }
 
-export interface SignUpVars {
-  name: string;
+export interface RegisterVars {
+  nickname: string;
   email: string;
   password: string;
 }
 
-export const useSignUp = () => {
+export const useRegister = () => {
   // TODO: deal with loading, error, and data.
-  const [signUp, { loading, error, data }] = useMutation<
-    SignUpData,
-    SignUpVars
-  >(SIGN_UP);
+  const [register, { loading, error, data }] = useMutation<
+    RegisterData,
+    RegisterVars
+  >(REGISTER);
   const dispatch = useDispatch();
 
   if (data) {
-    dispatch(signInWithInfo(data.user));
+    dispatch(signInWithInfo(data.register));
   }
 
-  return (name: string, email: string, password: string) =>
-    signUp({ variables: { name, email, password } });
+  return (nickname: string, email: string, password: string) =>
+    register({ variables: { nickname, email, password } });
 };
 
 /******************************************************************************

@@ -1,14 +1,14 @@
 import { graphql } from 'msw';
 import { filter, isUndefined } from 'lodash';
 
-import type { SignUpData, SignUpVars } from '../../store/authSlice';
+import type { RegisterData, RegisterVars } from '../../store/authSlice';
 
 const data = {
   _id: 1,
   users: [
     {
       id: 1,
-      name: 'Peter',
+      nickname: 'Peter',
       email: 'peterlitszo@gmail.com',
       password: 'admin123',
       isAdmin: true,
@@ -39,25 +39,22 @@ const signIn = graphql.query('SignIn', (req, res, ctx) => {
   const result = res(
     ctx.cookie('jwt', `${email}`),
     ctx.data({
-      user,
+      signIn: user,
     }),
   );
   return result;
 });
 
-/**
- * See file `front/src/store/authSlice.ts`.
- */
-const signUp = graphql.mutation<SignUpData, SignUpVars>(
-  'SignUp',
+const register = graphql.mutation<RegisterData, RegisterVars>(
+  'Register',
   (req, res, ctx) => {
-    const { name, email, password } = req.variables;
+    const { nickname, email, password } = req.variables;
 
     // Add new user.
     data._id++;
     data.users.push({
       id: data._id,
-      name,
+      nickname,
       email,
       password,
       isAdmin: false,
@@ -65,8 +62,8 @@ const signUp = graphql.mutation<SignUpData, SignUpVars>(
 
     return res(
       ctx.data({
-        user: {
-          name,
+        register: {
+          nickname,
           email,
           isAdmin: false,
         },
@@ -91,14 +88,14 @@ const currentUser = graphql.query('CurrentUser', (req, res, ctx) => {
     return res(ctx.errors([{ message: 'I am teapot.' }]));
   }
 
-  const { id, name, email, isAdmin } = users[0];
+  const { id, nickname, email, isAdmin } = users[0];
 
   const result = res(
     ctx.data({
-      currentUser: { id, name, email, isAdmin },
+      currentUser: { id, nickname, email, isAdmin },
     }),
   );
   return result;
 });
 
-export default [signIn, currentUser, signUp];
+export default [signIn, currentUser, register];

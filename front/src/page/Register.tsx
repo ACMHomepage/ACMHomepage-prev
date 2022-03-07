@@ -6,7 +6,7 @@ import { useSelector } from '../hooks';
 
 import { utilMainPart, boxSx } from '../config';
 import { setBorder, setColor, setFlex } from '../util/theme';
-import { selectAuthState, AuthStateEnum, useSignUp } from '../store/authSlice';
+import { selectAuthState, AuthStateEnum, useRegister } from '../store/authSlice';
 
 // Import components.
 import Header from '../component/Header';
@@ -21,13 +21,13 @@ export const URL = '/register';
  * Page `Sign`. Handle the sign in / sign on.
  */
 export default () => {
-  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const authState = useSelector(selectAuthState);
   const navigator = useNavigate();
 
-  const signUp = useSignUp();
+  const register = useRegister();
 
   useEffect(() => {
     if (authState === AuthStateEnum.LoggedWithInfo) {
@@ -36,7 +36,7 @@ export default () => {
     }
   });
 
-  // TODO: Return error if the name, email or password is empty.
+  // TODO: Return error if the nickname, email or password is empty.
   // TODO: We do not handler if email is already in database.
   // TODO: We do not show the helpful message in different state.
   return (
@@ -53,9 +53,9 @@ export default () => {
           ACM Homepage
         </div>
         <Input
-          placeholder="User name"
+          placeholder="Nickname"
           startIcon={User}
-          value={[name, (event) => setName(event.target.value)]}
+          value={[nickname, (event) => setNickname(event.target.value)]}
         />
         <Input
           placeholder="Email"
@@ -79,7 +79,7 @@ export default () => {
               ...setBorder({ width: '2px', color: 'bg-5' }),
             },
           }}
-          onClick={() => signUp(name, email, password)}
+          onClick={() => register(nickname, email, password)}
         >
           Resgister
         </Button>
