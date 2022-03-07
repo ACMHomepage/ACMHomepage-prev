@@ -20,5 +20,6 @@ CREATE TABLE IF NOT EXISTS user (
   id       INT          AUTO_INCREMENT,
   email    VARCHAR(256) NOT NULL UNIQUE,
   password TEXT         NOT NULL,
-  nickname TEXT         NOT NULL
+  nickname TEXT         NOT NULL,
+  isAdmin  BOOL         NOT NULL
 );
