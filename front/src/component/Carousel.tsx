@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import Dots from './Dots';
 
-import { mRV, setColor, setBorder } from '../util/theme';
+import { mRV, setColor, setBorder, setFlex } from '../util/theme';
 import type { BreakpointNameWithoutInit } from '../util/theme';
 
 /*
@@ -145,6 +145,21 @@ interface CarouselProps {
 export default (props: CarouselProps) => {
   const { contentMinis, rowChangeBreakPoint: bp, className } = props;
   const length = contentMinis.length;
+  if (length === 0) {
+    return (
+      <div
+        sx={{
+          bg: 'secondaryBackground',
+          borderRadius: '0.25rem',
+          ...setFlex({ center: true })
+        }}
+        className={className}
+      >
+        No news. Please post news.
+      </div>
+    );
+  }
+
   const [current, setCurrent] = useState(0);
   const { id, title, summary, image_url } = contentMinis[current];
 
