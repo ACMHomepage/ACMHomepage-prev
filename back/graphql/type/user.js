@@ -30,6 +30,17 @@ export const getUserById = async (id) => {
   return rows;
 };
 
+const getUserNumber = async () => {
+  const SQL_USER_NUMBER = `
+    SELECT COUNT(*) AS userNumber
+    FROM user
+  `;
+  const [rows, _fields] = await conn.execute(SQL_USER_NUMBER);
+  // It must be only one line.
+  const row = rows[0];
+  return row.user_number;
+}
+
 /******************************************************************************
  * Main part
  *****************************************************************************/
@@ -91,16 +102,18 @@ export const register = {
     },
   },
   async resolve(_parentVal, args) {
-    const sql = `
+    const SQL_ADD_USER = `
       INSERT INTO user (email, password, nickname, isAdmin)
       VALUES (?, ?, ?, ?)
     `;
     // TODO: Use bcrypt rather than plain text.
-    const [rows, _fields] = await conn.execute(sql, [
+    const userNumber = getUserNumber();
+    const [rows, _fields] = await conn.execute(SQL_ADD_USER, [
       args.email,
       args.password,
       args.nickname,
-      false, // TODO: Make sure the first one is admin.
+      // If this user is the first one, then he is the asmin.
+      userNumber === 0,
     ]);
     const res = (await getUserById(rows.insertId))[0];
     return res;
