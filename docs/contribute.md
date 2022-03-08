@@ -22,7 +22,7 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
     * `back`: For backend. In folder `/back`.
     * `front`: For frontend. In folder `/front`.
   * `<subject>`, Make sure the first character is UPPERCASE and has a space
-    before is. End by a period.
+    before is. End by a **period(.)**.
 
 PR Check List
 -------------------------------------------------------------------------------
