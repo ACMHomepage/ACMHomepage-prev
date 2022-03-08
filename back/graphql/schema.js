@@ -14,7 +14,7 @@ export const QueryType = new GraphQLObjectType({
 });
 
 export const MutationType = new GraphQLObjectType({
-  name: "createNews",
+  name: "mutation",
   fields: {
     createNews,
     register,
