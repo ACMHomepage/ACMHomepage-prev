@@ -54,9 +54,8 @@ export const useCreateNews = () => {
  *****************************************************************************/
 
 const GET_NEWS = gql`
-  query GetNews {
-    getNews {
-      id
+  query GetNews($id: Int) {
+    getNews(id: $id) {
       title
       content
       image_url

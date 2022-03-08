@@ -97,7 +97,7 @@ export const authSlice = createSlice({
  *****************************************************************************/
 
 const SIGN_IN = gql`
-  query SignIn($email: String!, $password: String!) {
+  mutation SignIn($email: String!, $password: String!) {
     # *************************************************************************
     # WARING: Remember to change its interface if you change the code below.
     # *************************************************************************
@@ -146,7 +146,7 @@ interface SignInVars {
  * ```
  */
 export const useSignIn = () => {
-  const [signIn, { data, error, loading }] = useLazyQuery<
+  const [signIn, { data, error, loading }] = useMutation<
     SignInData,
     SignInVars
   >(SIGN_IN);
