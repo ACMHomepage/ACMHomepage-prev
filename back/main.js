@@ -11,6 +11,8 @@ const GRAPHIQL = process.env.NODE_ENV === "development";
 
 const GraphQLServer = express();
 
+GraphQLServer.use(express.json({ limit: '20mb' }));
+
 // If the env is development, then open the CORS to support front-end's GraphQL
 // Query and Mutation from another port.
 if (process.env.NODE_ENV === "development") {
