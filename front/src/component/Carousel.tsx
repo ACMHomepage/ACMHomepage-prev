@@ -151,7 +151,7 @@ export default (props: CarouselProps) => {
         sx={{
           bg: 'secondaryBackground',
           borderRadius: '0.25rem',
-          ...setFlex({ center: true })
+          ...setFlex({ center: true }),
         }}
         className={className}
       >

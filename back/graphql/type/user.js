@@ -1,4 +1,4 @@
-import { conn } from "../../db/connection.js";
+import { conn } from '../../db/connection.js';
 import {
   GraphQLID,
   GraphQLInt,
@@ -6,7 +6,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLBoolean,
-} from "graphql";
+} from 'graphql';
 
 /******************************************************************************
  * Util function.
@@ -19,11 +19,12 @@ export const getUserById = async (id) => {
       FROM user
     `);
   } else {
-    result = await conn.execute(`
-      SELECT id, email, nickname, isAdmin
+    result = await conn.execute(
+     `SELECT id, email, nickname, isAdmin
       FROM user
-      WHERE id = ?
-    `, [id]);
+      WHERE id = ?`,
+      [id],
+    );
   }
 
   const [rows, _fields] = result;
@@ -39,30 +40,30 @@ const getUserNumber = async () => {
   // It must be only one line.
   const row = rows[0];
   return row.user_number;
-}
+};
 
 /******************************************************************************
  * Main part
  *****************************************************************************/
 export const UserType = new GraphQLObjectType({
-  name: "user",
+  name: 'user',
   fields: {
     id: {
       type: GraphQLID,
-      description: "The user ID.",
+      description: 'The user ID.',
     },
     email: {
       type: GraphQLString,
-      description: "The user email.",
+      description: 'The user email.',
     },
     nickname: {
       type: GraphQLString,
-      description: "The user nickname",
+      description: 'The user nickname',
     },
     isAdmin: {
       type: GraphQLBoolean,
-      description: "Check if the user is admin",
-    }
+      description: 'Check if the user is admin',
+    },
   },
 });
 
@@ -74,7 +75,7 @@ export const getUser = {
   args: {
     id: {
       type: GraphQLInt,
-      description: "The ID of the user",
+      description: 'The ID of the user',
     },
   },
   async resolve(_parentVal, args) {
@@ -90,15 +91,15 @@ export const register = {
   args: {
     email: {
       type: GraphQLString,
-      description: "The user email to create",
+      description: 'The user email to create',
     },
     password: {
       type: GraphQLString,
-      description: "The user password",
+      description: 'The user password',
     },
     nickname: {
       type: GraphQLString,
-      description: "The user nickname",
+      description: 'The user nickname',
     },
   },
   async resolve(_parentVal, args) {
@@ -125,11 +126,11 @@ export const signIn = {
   args: {
     email: {
       type: GraphQLString,
-      description: "The user email to create",
+      description: 'The user email to create',
     },
     password: {
       type: GraphQLString,
-      description: "The user password",
+      description: 'The user password',
     },
   },
   async resolve(_parentVal, args, context) {
@@ -139,13 +140,11 @@ export const signIn = {
       WHERE email = ?
     `;
     // TODO: Use bcrypt rather than plain text.
-    const [rows, _fields] = await conn.execute(sql, [
-      args.email,
-    ]);
+    const [rows, _fields] = await conn.execute(sql, [args.email]);
     if (rows.length <= 0) {
       throw new Error('The email is not existed.');
     }
-    const {id, password} = rows[0];
+    const { id, password } = rows[0];
     if (password !== args.password) {
       throw new Error('The password is not right.');
     }
@@ -153,4 +152,4 @@ export const signIn = {
     context.res.cookie('jwt', `${res.email}`);
     return res;
   },
-}
+};

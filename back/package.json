@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development node main.js",
-    "format": "prettier -w \"?({graphql,db}/**/)*.{js,jsx,ts,tsx,json}\""
+    "format": "prettier --config ../.prettierrc -w \"?({graphql,db}/**/)*.{js,jsx,ts,tsx,json}\""
   },
   "type": "module"
 }

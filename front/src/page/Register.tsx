@@ -6,7 +6,11 @@ import { useSelector } from '../hooks';
 
 import { utilMainPart, boxSx } from '../config';
 import { setBorder, setColor, setFlex } from '../util/theme';
-import { selectAuthState, AuthStateEnum, useRegister } from '../store/authSlice';
+import {
+  selectAuthState,
+  AuthStateEnum,
+  useRegister,
+} from '../store/authSlice';
 
 // Import components.
 import Header from '../component/Header';

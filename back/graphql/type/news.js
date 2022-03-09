@@ -1,4 +1,4 @@
-import { conn } from "../../db/connection.js";
+import { conn } from '../../db/connection.js';
 import {
   GraphQLInt,
   GraphQLList,
@@ -6,7 +6,7 @@ import {
   GraphQLString,
   GraphQLID,
   GraphQLNonNull,
-} from "graphql";
+} from 'graphql';
 
 /******************************************************************************
  * Util function.
@@ -14,9 +14,9 @@ import {
 const getNewsById = async (id) => {
   let result;
   if (id === undefined) {
-    result = await conn.execute("SELECT * FROM news");
+    result = await conn.execute('SELECT * FROM news');
   } else {
-    result = await conn.execute("SELECT * FROM news WHERE id = ?", [id]);
+    result = await conn.execute('SELECT * FROM news WHERE id = ?', [id]);
   }
 
   const [rows, _fields] = result;
@@ -34,7 +34,7 @@ const getNewsById = async (id) => {
 const SUMMARY_LENGTH = 200;
 
 const NewsType = new GraphQLObjectType({
-  name: "news",
+  name: 'news',
   fields: {
     id: { type: GraphQLID },
     title: { type: GraphQLString },
@@ -60,7 +60,7 @@ export const getNews = {
   args: {
     id: {
       type: GraphQLInt,
-      description: "The ID of the news.",
+      description: 'The ID of the news.',
     },
   },
   async resolve(_parentVal, args) {
@@ -76,7 +76,7 @@ export const createNews = {
   args: {
     title: {
       type: new GraphQLNonNull(GraphQLString),
-      description: "The title of the news to create.",
+      description: 'The title of the news to create.',
     },
     image_url: {
       type: new GraphQLNonNull(GraphQLString),
@@ -84,7 +84,7 @@ export const createNews = {
     },
     content: {
       type: new GraphQLNonNull(GraphQLString),
-      description: "The content of the news to create.",
+      description: 'The content of the news to create.',
     },
   },
   async resolve(_parentVal, args) {
