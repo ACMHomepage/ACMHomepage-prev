@@ -1,6 +1,8 @@
 ACM Homepage's frontend
 ===============================================================================
 
+You can run `yarn build && yarn preview` to start frontend server.
+
 Remember to check
 -------------------------------------------------------------------------------
 
