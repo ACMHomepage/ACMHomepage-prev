@@ -1,19 +1,17 @@
 version: "3"
 services:
   db:
-    build: ./back/db/
+    build: ./back/src/db/
   backend:
-    image: node
-    user: node
-    working_dir: /home/node/app/
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./back/:/home/node/app/
-    command: "node main.js"
+    build: ./back/
+    depends_on:
+      - db
   nginx:
     build: ./server/
     ports:
       - 80:80
     volumes:
       - ./front/dist/:/usr/share/nginx/html/
+    depends_on:
+      - db
+      - backend

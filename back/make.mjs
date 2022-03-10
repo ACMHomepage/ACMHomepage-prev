@@ -13,7 +13,7 @@ const [_node_path, _zs_path, _this_file_path, ...argv] = process.argv;
  *****************************************************************************/
 const DB_NAME = 'acm-homepage.maria-db';
 const DB_PORT = 3306;
-const DB_DOCKERFILE_DIR = `${__dirname}/db`;
+const DB_DOCKERFILE_DIR = `${__dirname}/src/db`;
 
 /******************************************************************************
  * Main part
