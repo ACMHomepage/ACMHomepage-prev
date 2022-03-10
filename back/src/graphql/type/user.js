@@ -13,18 +13,15 @@ import {
  *****************************************************************************/
 export const getUserById = async (id) => {
   let result;
+  const SQL_SELECT_USER = ({ withId }) => `
+    SELECT id, email, nickname, isAdmin
+    FROM user
+    ${withId ? 'WHERE id = ?' : ''}
+  `;
   if (id === undefined) {
-    result = await conn.execute(`
-      SELECT id, email, nickname, isAdmin
-      FROM user
-    `);
+    result = await conn.execute(SQL_SELECT_USER({ withId: false }));
   } else {
-    result = await conn.execute(
-     `SELECT id, email, nickname, isAdmin
-      FROM user
-      WHERE id = ?`,
-      [id],
-    );
+    result = await conn.execute(SQL_SELECT_USER({ withId: true }), [id]);
   }
 
   const [rows, _fields] = result;
