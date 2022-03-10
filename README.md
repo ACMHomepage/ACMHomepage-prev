@@ -17,6 +17,15 @@ We utilize [MySQL][mysql] and [node.js][nodejs] to build the backend. As of
 now, the backend is separate from the frontend. We will implement front-end and
 back-end communication in subsequent versions.
 
+How to run
+-------------------------------------------------------------------------------
+
+We think the best way to run our website is using docker-compose:
+
+``` shell
+$ docker-compose up
+```
+
 Contribute
 -------------------------------------------------------------------------------
 
