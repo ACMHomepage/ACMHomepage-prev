@@ -7,11 +7,9 @@ services:
     depends_on:
       - db
   nginx:
-    build: ./server/
+    build: ./front/
     ports:
       - 80:80
-    volumes:
-      - ./front/dist/:/usr/share/nginx/html/
     depends_on:
       - db
       - backend

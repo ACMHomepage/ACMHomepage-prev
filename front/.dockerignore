@@ -1,0 +1,25 @@
+# #############################################################################
+# Generic
+# #############################################################################
+
+# yarn's packages
+node_modules/
+
+# yarn's log
+yarn-error.log
+
+# `npm install`'s lock file (We need yarn.lock rather than package-lock.json).
+package-lock.json
+
+# #############################################################################
+# Only for front-end
+# #############################################################################
+
+# `yarn build`'s aim folder and files
+dist/
+
+# `yarn test`'s aim folder
+__snapshots__/
+
+# `yarn test`'s aim folder
+coverage/
