@@ -428,7 +428,7 @@ export const setOutline = (props?: OutlineConfig) => {
 /******************************************************************************
  * Default theme.
  *****************************************************************************/
-export default {
+const theme = {
   config: {
     initialColorModeName: 'light',
   },
@@ -437,4 +437,6 @@ export default {
   radii,
   fontWeights,
   fontSizes,
-} as Theme;
+};
+
+export default theme;
