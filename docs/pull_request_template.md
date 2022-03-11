@@ -1,3 +1,11 @@
+What I did
+-------------------------------------------------------------------------------
+
+(So... what I did?)
+
+Checklist
+-------------------------------------------------------------------------------
+
 Hello! Welcome to send a PR to us! Here is a simple PR checklist:
 
 - [ ] Format your code, by `yarn format`. Good format is helpful for everyone.
