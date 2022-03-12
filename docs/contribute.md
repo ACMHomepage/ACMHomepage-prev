@@ -23,6 +23,17 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
     * `front`: For frontend. In folder `/front`.
   * `<subject>`, Make sure the first character is UPPERCASE and has a space
     before is. End by a **period(.)**.
+* Body:
+  * If you think a URL is useful, add it to the end of commit message.
+
+    For example, if you think a link to StackOverflow is useful, you can just
+    put `[stackoverflow-xxxx-and-xxx]: https://stackoverflow.com/...` at the end
+    of message.
+
+    In body you can use `[stackoverflow-xxxx-and-xxx][]` to use the link (in
+    markdown syntax!). Or `[xxxx and xxx][stackoverflow-xxxx-and-xxx]`.
+
+    **DO NOT WRAP URLs!**
 
 PR Check List
 -------------------------------------------------------------------------------
