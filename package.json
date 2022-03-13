@@ -5,9 +5,11 @@
     "front"
   ],
   "scripts": {
-    "format": "prettier -w \"{{front/mock,{front,back}/src}/**/,{front,back}/,}*.{mjs,js,jsx,ts,tsx,json,md}\""
+    "format": "zx ./scripts/prettier.mjs"
   },
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "prettier": "^2.5.1",
+    "prettier-plugin-sql": "^0.4.1",
+    "zx": "^5.2.0"
   }
 }
