@@ -1,5 +1,4 @@
-ACM-Homepage
-===============================================================================
+# ACM-Homepage
 
 ACM-homepage is a full-stacked project for Soochow University's ACM/ICPC team.
 
@@ -17,22 +16,23 @@ We utilize [MySQL][mysql] and [node.js][nodejs] to build the backend. As of
 now, the backend is separate from the frontend. We will implement front-end and
 back-end communication in subsequent versions.
 
-How to run
--------------------------------------------------------------------------------
+## How to run
 
 We think the best way to run our website is using docker-compose:
 
-``` shell
+```shell
 $ docker-compose up
 ```
 
-Contribute
--------------------------------------------------------------------------------
+## Contribute
 
 [Click](./docs/contribute.md) to see how to contribute.
 
-License
--------------------------------------------------------------------------------
+## Script
+
+[Click](./docs/scripts.ms) to see the scripts of our project.
+
+## License
 
 GPL.
 
