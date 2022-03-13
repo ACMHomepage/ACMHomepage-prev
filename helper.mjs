@@ -13,27 +13,27 @@ if (argv.length === 1 && argv[0] === 'find_all_file') {
     '.*/node_modules/.*',
     '.*/\\.git/.*',
     '.*/dist/.*',
-  
+
     '.*/yarn\\.lock',
     '.*/package-lock\\.json',
   ];
-  await $`find . -type f ${
-    (() => {
-      const result = []
-      ignore_regex.forEach(value => {
-        result.push('!');
-        result.push('-regex');
-        result.push(value);
-      })
-      return result;
-    })()
-  }`.pipe(process.stdout)
+  await $`find . -type f ${(() => {
+    const result = [];
+    ignore_regex.forEach((value) => {
+      result.push('!');
+      result.push('-regex');
+      result.push(value);
+    });
+    return result;
+  })()}`.pipe(process.stdout);
 } else {
-  console.log([
-    'Usage: ./helper.mjs <command>',
-    '',
-    'Command:',
-    '  find_all_file  Show all files of the pwd row by row.',
-    '  help           Show this message',
-  ].join('\n'))
+  console.log(
+    [
+      'Usage: ./helper.mjs <command>',
+      '',
+      'Command:',
+      '  find_all_file  Show all files of the pwd row by row.',
+      '  help           Show this message',
+    ].join('\n'),
+  );
 }

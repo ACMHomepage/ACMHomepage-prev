@@ -34,22 +34,24 @@ const main = async () => {
   } else {
     help();
   }
-}
+};
 
 /**
  * Show help message
  */
 const help = () => {
-  console.log([
-    'Usage: ./make.mjs <command>',
-    '',
-    'Command:',
-    '  help  Show this message',
-    '  build Build Database\'s docker image',
-    '  run   Run Database\'s docker container from its image',
-    '  rm    Remove Database\'s docker container',
-  ].join('\n'));
-}
+  console.log(
+    [
+      'Usage: ./make.mjs <command>',
+      '',
+      'Command:',
+      '  help  Show this message',
+      "  build Build Database's docker image",
+      "  run   Run Database's docker container from its image",
+      "  rm    Remove Database's docker container",
+    ].join('\n'),
+  );
+};
 
 /**
  * Build database's image by name ${DB_NAME}.
@@ -65,8 +67,8 @@ const run_db_docker_container = async () => {
   await build_db_docker_image();
   await remove_db_docker_container();
 
-  const RUN_FLAG = ['-d', '--name', DB_NAME, '-p', `${DB_PORT}:3306`]
-  await $`docker run ${RUN_FLAG} ${DB_NAME}`
+  const RUN_FLAG = ['-d', '--name', DB_NAME, '-p', `${DB_PORT}:3306`];
+  await $`docker run ${RUN_FLAG} ${DB_NAME}`;
 };
 
 /**
@@ -74,12 +76,12 @@ const run_db_docker_container = async () => {
  */
 const remove_db_docker_container = async () => {
   // If the container is already running, then rm it forcely firstly.
-  if (!await docker_container_id()) {
+  if (!(await docker_container_id())) {
     console.log('No container need to remove');
     return;
   }
   await $`docker rm -f ${DB_NAME}`;
-}
+};
 
 /******************************************************************************
  * Util part
@@ -87,13 +89,13 @@ const remove_db_docker_container = async () => {
 
 /**
  * Return docker container's id.
- * 
+ *
  * @returns If not existed, then return `undefined`. If existed, then return a
  * string of the id.
  */
 const docker_container_id = async () => {
   const result = (await $`docker ps -q -a -f name=${DB_NAME}`).stdout;
-  const result_list = result.split('\n').filter(id => /\w+/.test(id));
+  const result_list = result.split('\n').filter((id) => /\w+/.test(id));
   if (result_list.length === 0) {
     console.log(`No container named ${DB_NAME}`);
     return undefined;
@@ -108,6 +110,6 @@ const docker_container_id = async () => {
 try {
   main();
 } catch (p) {
-  console.log(`Exit code: ${p.exitCode}`)
-  console.log(`Error: ${p.stderr}`)
+  console.log(`Exit code: ${p.exitCode}`);
+  console.log(`Error: ${p.stderr}`);
 }
