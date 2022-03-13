@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "workspaces": [
+    "back",
+    "front"
+  ],
+  "scripts": {
+    "format": "prettier -w \"{{front/mock,{front,back}/src}/**/,{front,back}/,}*.{mjs,js,jsx,ts,tsx,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
+}

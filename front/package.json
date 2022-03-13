@@ -4,10 +4,9 @@
   "version": "0.0.0",
   "license": "GPL",
   "scripts": {
-    "start": "vite dev",
+    "dev": "vite dev",
     "preview": "vite preview",
     "build": "NODE_ENV=production vite build --mode analyze",
-    "format": "prettier --config ../.prettierrc -w \"?({mock,src}/**/)*.{js,jsx,ts,tsx,json}\"",
     "test": "jest --coverage"
   },
   "dependencies": {

@@ -6,13 +6,9 @@
     "graphql": "^15.8.0",
     "mysql2": "^2.3.3"
   },
-  "devDependencies": {
-    "prettier": "^2.2.1"
-  },
   "scripts": {
     "dev": "NODE_ENV=development node ./src/main.js",
-    "start": "NODE_ENV=production node ./src/main.js",
-    "format": "prettier --config ../.prettierrc -w \"?(src/**/)*.{js,jsx,ts,tsx,json}\""
+    "start": "NODE_ENV=production node ./src/main.js"
   },
   "type": "module"
 }
