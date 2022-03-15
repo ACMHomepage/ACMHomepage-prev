@@ -23,6 +23,20 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
     * `front`: For frontend. In folder `/front`.
   * `<subject>`, Make sure the first character is UPPERCASE and has a space
     before is. End by a **period(.)**.
+* Body:
+  * If you think a URL is useful to be referenced, we strongly recommend you follow the rule:
+    `> url`. If the length of url exceeds 78 chars (the `> ` includes 2 chars),
+    you shall split it into lines, and make sure not break the '80-char-per-line' rule.
+  * Example: 
+    * When the url is short enough to display in one line:
+    
+    `> www.google.com`.
+  
+    * When it has to be split into lines:
+    
+     `> https://stackoverflow.com/questions/52893454/does-the-comma-operator-odr-use-i`
+    
+     `ts-arguments`
 
 PR Check List
 -------------------------------------------------------------------------------
@@ -64,4 +78,3 @@ To-do Tree
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
 [PeterlitsZo/ACMHomepage/using-execute-and-pool]: https://github.com/PeterlitsZo/ACMHomepage/pull/1#discussion_r818478152
-
