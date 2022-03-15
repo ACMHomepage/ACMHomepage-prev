@@ -36,6 +36,33 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
     - `front`: For frontend. In folder `/front`.
   - `<subject>`, Make sure the first character is UPPERCASE and has a space
     before is. End by a **period(.)**.
+- Body:
+
+  - If you think a URL is useful to be referenced, we strongly recommend you
+    follow the rule: `> URL`.
+
+    **DO NOT** split URL even it will break the '80-char-per-line' rule to make
+    sure the URL is clickable.
+
+    Example:
+
+    - When the url is short enough to display in one line:
+
+      ```makedown
+      Please use the google to sreach:
+
+      > www.google.com
+      ```
+
+    - Even the link is too long, please **DO NOT** split it into two or more
+      lines:
+
+      ```makedown
+      An apple a day keep the doctor away. An apple a day keep the doctor away.
+      And please follow this link to know more:
+
+      > https://stackoverflow.com/questions/52893454/does-the-comma-operator-odr-use-its-arguments
+      ```
 
 ## PR Check List
 
@@ -68,12 +95,8 @@ Like [this rule][joshbuchea/git-commit-message] but changed something.
 - [ ] Update component PureSwitch with sx prop.
 - [ ] Add favicon.ico.
 - [ ] Use HTTPS instead of HTTP.
-- [ ] Add more `setXxxxxx` function to build style.
-- [ ] Let page export its url to use.
-- [ ] Deal with: [PeterlitsZo/ACMHomepage/using-execute-and-pool][]
 - [ ] Let backend use yarn than npm.
 - [ ] Well, the `Dockerfile` and `connection.js` use the same password but in
       different files. Move the password into the `makefile`.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
-[peterlitszo/acmhomepage/using-execute-and-pool]: https://github.com/PeterlitsZo/ACMHomepage/pull/1#discussion_r818478152
