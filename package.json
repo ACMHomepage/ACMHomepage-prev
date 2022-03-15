@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "acm-homepage",
   "workspaces": [
     "back",
     "front"

@@ -1,4 +1,8 @@
 {
+  "name": "@acm-homepage/back",
+  "description": "The backend for acm-homepage",
+  "version": "0.0.0",
+  "license": "GPL",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
