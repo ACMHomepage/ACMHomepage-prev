@@ -1,5 +1,5 @@
 {
-  "name": "acm-homepage-front",
+  "name": "@acm-homepage/front",
   "description": "The frontend for acm-homepage",
   "version": "0.0.0",
   "license": "GPL",
