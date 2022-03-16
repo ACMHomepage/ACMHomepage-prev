@@ -1,5 +1,12 @@
-import {conn} from '../../db/connection.js';
-import {GraphQLBoolean, GraphQLID, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString,} from 'graphql';
+import { conn } from '../../db/connection.js';
+import {
+  GraphQLBoolean,
+  GraphQLID,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLObjectType,
+  GraphQLString,
+} from 'graphql';
 
 /******************************************************************************
  * Util function.
@@ -9,7 +16,7 @@ export const getUserById = async (id) => {
   const SQL_SELECT_USER = ({ withId }) => `
     SELECT id, email, nickname, isAdmin
     FROM user
-           ${withId ? 'WHERE id = ?' : ''}
+    ${withId ? 'WHERE id = ?' : ''}
   `;
   if (id === undefined) {
     result = await conn.execute(SQL_SELECT_USER({ withId: false }));
@@ -97,16 +104,15 @@ export const register = {
       VALUES (?, ?, ?, ?)
     `;
     // TODO: Use bcrypt rather than plain text.
-    return getUserNumber().then(async (userNumber) => {
-      const [rows, _fields] = await conn.execute(SQL_ADD_USER, [
-        args.email,
-        args.password,
-        args.nickname,
-        // If this user is the first one, then he is the asmin.
-        userNumber === 0,
-      ]);
-      return (await getUserById(rows.insertId))[0];
-    })
+    const userNumber = await getUserNumber();
+    const [rows, _fields] = await conn.execute(SQL_ADD_USER, [
+      args.email,
+      args.password,
+      args.nickname,
+      // If this user is the first one, then he is the asmin.
+      userNumber === 0,
+    ]);
+    return (await getUserById(rows.insertId))[0];
   },
 };
 
