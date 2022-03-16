@@ -1,11 +1,11 @@
 import { conn } from '../../db/connection.js';
 import {
+  GraphQLBoolean,
   GraphQLID,
   GraphQLInt,
   GraphQLList,
   GraphQLObjectType,
   GraphQLString,
-  GraphQLBoolean,
 } from 'graphql';
 
 /******************************************************************************
@@ -35,8 +35,7 @@ const getUserNumber = async () => {
   `;
   const [rows, _fields] = await conn.execute(SQL_USER_NUMBER);
   // It must be only one line.
-  const row = rows[0];
-  return row.user_number;
+  return rows[0].userNumber;
 };
 
 /******************************************************************************
@@ -105,7 +104,7 @@ export const register = {
       VALUES (?, ?, ?, ?)
     `;
     // TODO: Use bcrypt rather than plain text.
-    const userNumber = getUserNumber();
+    const userNumber = await getUserNumber();
     const [rows, _fields] = await conn.execute(SQL_ADD_USER, [
       args.email,
       args.password,
@@ -113,8 +112,7 @@ export const register = {
       // If this user is the first one, then he is the asmin.
       userNumber === 0,
     ]);
-    const res = (await getUserById(rows.insertId))[0];
-    return res;
+    return (await getUserById(rows.insertId))[0];
   },
 };
 
