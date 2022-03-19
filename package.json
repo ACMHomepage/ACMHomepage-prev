@@ -3,7 +3,8 @@
   "name": "acm-homepage",
   "workspaces": [
     "back",
-    "front"
+    "front",
+    "front/packages/theme-shortcut"
   ],
   "scripts": {
     "format": "zx ./scripts/prettier.mjs"
