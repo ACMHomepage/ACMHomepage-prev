@@ -1,0 +1,12 @@
+export { default as spacing } from './src/spacing';
+export { default as flexbox } from './src/flexbox';
+export { default as text } from './src/text';
+export { default as bg } from './src/bg';
+export { default as size } from './src/size';
+export { default as border } from './src/border';
+export { default as layout } from './src/layout';
+export { default as trans } from './src/trans';
+export { default as interactivity } from './src/interactivity';
+export { default as effect } from './src/effect';
+export { default as font } from './src/font';
+export { default as outline } from './src/outline';

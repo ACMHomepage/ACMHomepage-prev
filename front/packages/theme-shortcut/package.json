@@ -1,0 +1,7 @@
+{
+  "name": "@acm-homepage/theme-shortcut",
+  "description": "The shortcut for acm-homepage's front-end's theme. Tailwind-liked.",
+  "version": "0.0.0",
+  "license": "GPL",
+  "main": "index.ts"
+}
