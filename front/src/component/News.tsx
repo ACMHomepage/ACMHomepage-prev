@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { Loader } from 'lucide-react';
+import { merge } from 'lodash';
+import { size, bg, flexbox, font, spacing } from '@acm-homepage/theme-shortcut';
 
-import { mRV, setFlex, setColor } from '../util/theme';
+import { mRV } from '../util/theme';
 import { preloadTime } from '../config';
 import { useGetNewsList } from '../store/newsSlice';
 
@@ -33,12 +35,14 @@ function NewsBody() {
   if (loading) {
     return (
       <div
-        sx={{
-          width: '100%',
-          height: HEIGHT,
-          ...setFlex({ center: true, gap: '0.5rem' }),
-          ...setColor({ bg: 'bg-2' }),
-        }}
+        sx={merge(
+          size({ w: '100%', h: HEIGHT }),
+          flexbox({
+            gap: '0.5rem',
+            place: { content: 'center', items: 'center' },
+          }),
+          bg({ col: 'bg-2' }),
+        )}
       >
         <Loader size={20} />
         Loading...
@@ -49,12 +53,11 @@ function NewsBody() {
     return (
       <Button
         onClick={() => refetch()}
-        sx={{
-          width: '100%',
-          height: HEIGHT,
-          gap: '0.5rem',
-          ...setColor({ bg: 'bg-2' }),
-        }}
+        sx={merge(
+          size({ w: '100%', h: HEIGHT }),
+          flexbox({ gap: '0.5rem' }),
+          bg({ col: 'bg-2' }),
+        )}
       >
         <Loader size={20} />
         Click to retry
@@ -66,7 +69,7 @@ function NewsBody() {
       <Carousel
         contentMinis={data.getNews}
         rowChangeBreakPoint="md"
-        sx={{ height: HEIGHT }}
+        sx={size({ h: HEIGHT })}
       />
     );
   }
@@ -78,11 +81,10 @@ export default function News() {
   return (
     <React.Fragment>
       <h2
-        sx={{
-          fontWeight: 'h2',
-          fontSize: mRV({ _: 'xl', md: '2xl', lg: '3xl' }),
-          mb: '1rem',
-        }}
+        sx={merge(
+          font({ weight: 'h2', size: mRV({ _: 'xl', md: '2xl', lg: '3xl' }) }),
+          spacing({ m: { b: '1rem' } }),
+        )}
       >
         News of ACM
       </h2>

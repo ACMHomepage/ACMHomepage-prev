@@ -1,5 +1,12 @@
 import { useColorMode } from 'theme-ui';
 import { Moon, Sun } from 'lucide-react';
+import { merge } from 'lodash';
+import {
+  layout,
+  flexbox,
+  size,
+  interactivity,
+} from '@acm-homepage/theme-shortcut';
 
 import PureSwitch from './PureSwitch';
 
@@ -40,23 +47,20 @@ export default (props: DarkToggleProps) => {
   return (
     <label
       tabIndex={0}
-      sx={{
-        display: 'flex',
-        gap: '0.5rem',
-        alignItems: 'center',
-        width: 'auto',
-        cursor: 'pointer',
-      }}
+      sx={merge(
+        layout({ display: 'flex' }),
+        flexbox({ align: { items: 'center' }, gap: '0.5rem' }),
+        size({ w: 'auto' }),
+        interactivity({ cursor: 'pointer' }),
+      )}
       className={className}
     >
       {showText ? (
         <span
-          sx={{
-            flex: 1,
-            display: 'flex',
-            gap: '0.25rem',
-            alignItems: 'center',
-          }}
+          sx={merge(
+            layout({ display: 'flex' }),
+            flexbox({ flex: 1, gap: '0.25rem', align: { items: 'center' } }),
+          )}
         >
           <Moon size={16} />
           Dark Mode

@@ -1,5 +1,6 @@
 import { LogIn, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { flexbox } from '@acm-homepage/theme-shortcut';
 
 import { useSelector, useDispatch } from '../hooks';
 import { selectAuthState, AuthStateEnum, signOut } from '../store/authSlice';
@@ -27,7 +28,7 @@ export default (props: SignButtonProps) => {
   if (authState !== AuthStateEnum.LoggedWithInfo) {
     return (
       <Button
-        sx={{ gap: '0.25rem' }}
+        sx={flexbox({ gap: '0.25rem' })}
         className={className}
         onClick={() => navigate(signInUrl)}
       >
@@ -39,7 +40,7 @@ export default (props: SignButtonProps) => {
     // TODO: Let it can sign out.
     return (
       <Button
-        sx={{ gap: '0.25rem' }}
+        sx={flexbox({ gap: '0.25rem' })}
         className={className}
         onClick={() => dispatch(signOut())}
       >

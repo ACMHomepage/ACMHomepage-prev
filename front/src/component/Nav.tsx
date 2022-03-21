@@ -1,9 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from '../hooks';
 import { Send } from 'lucide-react';
+import {
+  size,
+  bg,
+  flexbox,
+  layout,
+  spacing,
+  font,
+  border,
+} from '@acm-homepage/theme-shortcut';
+import { merge } from 'lodash';
 
 import { utilMainPart } from '../config';
-import { mRV, setColor, setBorder, setFlex } from '../util/theme';
+import { mRV } from '../util/theme';
 import { selectAuth, AuthStateEnum } from '../store/authSlice';
 import { URL as postNewsUrl } from '../page/PostNews';
 
@@ -17,14 +27,15 @@ export const PostNews = ({ className }: { className?: string }) => {
 
   return (
     <Button
-      sx={{
-        height: '2rem',
-        ...setColor({
-          bg: 'bg-2',
-          hover: { bg: 'bg-4' },
+      sx={merge(
+        size({ h: '2rem' }),
+        bg({ col: { _: 'bg-2', hv: 'bg-4' } }),
+        flexbox({
+          dir: 'row',
+          gap: '0.25rem',
+          place: { content: 'center', items: 'center' },
         }),
-        ...setFlex({ gap: '0.25rem', center: true, direction: 'row' }),
-      }}
+      )}
       className={className}
       onClick={() => navigate(postNewsUrl)}
     >
@@ -51,53 +62,45 @@ export default () => {
 
   return (
     <div
-      sx={{
-        position: 'sticky',
-        top: 0,
-        width: '100%',
-        bg: 'secondaryBackground',
-        zIndex: 50,
-      }}
+      sx={merge(
+        layout({ pos: 'sticky', t: 0, z: 50 }),
+        size({ w: '100%' }),
+        // TODO: delete secondaryBackground. Change it to bg-<number>.
+        bg({ col: 'secondaryBackground' }),
+      )}
     >
       <nav
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          '& > * + *': { marginLeft: '1rem' },
-          py: '0.75rem',
-          height: '3rem',
-          ...utilMainPart,
-        }}
+        sx={merge(
+          layout({ display: 'flex' }),
+          flexbox({ align: { items: 'center' }, gap: '1rem' }),
+          spacing({ p: { t: '0.75rem', b: '0.75rem' } }),
+          size({ h: '3rem' }),
+          utilMainPart,
+        )}
       >
-        <Link to="/" sx={{ fontWeight: 'bold', flex: 1 }}>
+        <Link to="/" sx={merge(font({ weight: 'bold' }), flexbox({ flex: 1 }))}>
           ACM Homepage
         </Link>
         {/* WARNING: Remember that function button should also be in Dropdown */}
         <DarkToggle
           showText={false}
-          sx={{ display: mRV({ _: 'none', md: 'flex' }) }}
+          sx={layout({ display: mRV({ _: 'none', md: 'flex' }) })}
         />
         <SignButton
-          sx={{
-            display: mRV({ _: 'none', md: 'flex' }),
-            height: '2rem',
-            ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
-            ...setBorder({ color: 'bg-6', width: '2px' }),
-          }}
+          sx={merge(
+            layout({ display: mRV({ _: 'none', md: 'flex' }) }),
+            size({ h: '2rem' }),
+            bg({ col: { _: 'bg-2', hv: 'bg-4' } }),
+            border({ col: 'bg-6', width: '2px' }),
+          )}
         />
         {showPostNews ? (
           <PostNews
-            sx={{
-              ...setBorder({ color: 'bg-6', width: '2px' }),
-              display: mRV({ _: 'none', md: 'flex' }),
-            }}
+            sx={merge(layout({ display: mRV({ _: 'none', md: 'flex' }) }))}
           />
         ) : null}
         <Dropdown
-          sx={{
-            ...setBorder({ color: 'bg-6', width: '2px' }),
-            display: mRV({ _: 'block', md: 'none' }),
-          }}
+          sx={merge(layout({ display: mRV({ _: 'block', md: 'none' }) }))}
         />
       </nav>
     </div>

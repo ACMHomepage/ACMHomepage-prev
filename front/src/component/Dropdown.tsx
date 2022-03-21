@@ -2,8 +2,18 @@ import { Menu as MenuIcon } from 'lucide-react';
 import { useState, useRef } from 'react';
 import type { ThemeUIStyleObject } from 'theme-ui';
 import { merge } from 'lodash';
+import {
+  layout,
+  size,
+  border,
+  bg,
+  spacing,
+  flexbox,
+  font,
+  text,
+  outline,
+} from '@acm-homepage/theme-shortcut';
 
-import { setColor, setBorder, setOutline, setFont } from '../util/theme';
 import useOutsideListener from '../util/outsideListener';
 
 import Button from './Button';
@@ -73,18 +83,16 @@ export default ({ buttonSx, className }: DropdownProps) => {
 
   return (
     <Menu
-      sx={{ position: 'relative' }}
+      sx={layout({ pos: 'relative' })}
       open={open}
       setOpen={setOpen}
       className={className}
     >
       <Button
         sx={merge(
-          {
-            height: '2rem',
-            ...setBorder({ width: '2px', color: 'bg-4' }),
-            ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
-          },
+          size({ h: '2rem' }),
+          border({ width: '1px', col: 'bg-4' }),
+          bg({ col: { _: 'bg-2', hover: 'bg-4' } }),
           buttonSx,
         )}
         onClick={Menu.toggleOpen(open, setOpen)}
@@ -96,46 +104,43 @@ export default ({ buttonSx, className }: DropdownProps) => {
         open={open}
         self={
           <div
-            sx={{
-              position: 'absolute',
-              top: '2.5rem',
-              right: 0,
-              width: '16rem',
-              py: '0.5rem',
-              ...setColor({ bg: 'bg-2' }),
-              ...setBorder({ width: '2px', color: 'bg-4' }),
-            }}
+            sx={merge(
+              layout({ pos: 'absolute', t: '2.5rem', r: 0 }),
+              size({ w: '16rem' }),
+              spacing({ p: { t: '0.5rem', b: '0.5rem' } }),
+              bg({ col: 'bg-2' }),
+              border({ width: '1px', col: 'bg-4', radius: '0.25rem' }),
+            )}
           >
             <DarkToggle
-              sx={{
-                ':hover': { bg: 'bg-4' },
-                p: '0.5rem',
-                height: '2.5rem',
-                ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
-                ...setBorder({ radius: '0px', width: '0px' }),
-                ':focus': { ...setOutline() },
-              }}
+              sx={merge(
+                bg({ col: { _: 'bg-2', hover: 'bg-4' } }),
+                spacing({ p: '0.5rem' }),
+                size({ h: '2.5rem' }),
+                border({ width: '0px', radius: '0px' }),
+                outline({ width: { hover: '2px' } }),
+              )}
             />
             <SignButton
-              sx={{
-                gap: '0.25rem',
-                width: '100%',
-                height: '2.5rem',
-                placeContent: 'start',
-                p: '0.5rem',
-                ...setColor({ bg: 'bg-2', hover: { bg: 'bg-4' } }),
-                ...setBorder({ radius: '0px', width: '0px' }),
-                ...setFont({ size: 'base', color: 'fg-0' }),
-              }}
+              sx={merge(
+                flexbox({ gap: '0.25rem', place: { content: 'start' } }),
+                size({ h: '2.5rem', w: '100%' }),
+                spacing({ p: '0.5rem' }),
+                bg({ col: { _: 'bg-2', hover: 'bg-4' } }),
+                border({ radius: '0px', width: '0px' }),
+                font({ size: 'base' }),
+                text({ col: 'fg-0' }),
+              )}
             />
             <PostNews
-              sx={{
-                p: '0.5rem',
-                width: '100%',
-                height: '2.5rem',
-                placeContent: 'start',
-                ...setFont({ size: 'base', color: 'fg-0' }),
-              }}
+              sx={merge(
+                size({ w: '100%', h: '2.5rem' }),
+                flexbox({ place: { content: 'start' } }),
+                font({ size: 'base' }),
+                text({ col: 'fg-0' }),
+                spacing({ p: '0.5rem' }),
+                border({ width: '0px' }),
+              )}
             />
           </div>
         }

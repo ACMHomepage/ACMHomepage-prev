@@ -1,10 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Lock, Mail, Eye } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import { merge } from 'lodash';
+import {
+  border,
+  bg,
+  text,
+  flexbox,
+  font,
+  spacing,
+  size,
+  layout,
+} from '@acm-homepage/theme-shortcut';
 
 import { useSelector } from '../hooks';
 import { utilMainPart, boxSx } from '../config';
-import { setBorder, setColor, setFlex } from '../util/theme';
 import { useSignIn, selectAuthState, AuthStateEnum } from '../store/authSlice';
 
 import Header from '../component/Header';
@@ -31,15 +41,20 @@ export default () => {
   });
 
   return (
-    <Header.Space sx={{ ...utilMainPart }}>
-      <div sx={{ ...boxSx, ...setFlex({ gap: '1rem', direction: 'column' }) }}>
+    <Header.Space sx={utilMainPart}>
+      <div
+        sx={merge(
+          layout({ display: 'flex' }),
+          flexbox({ gap: '1rem', dir: 'column' }),
+          boxSx,
+        )}
+      >
         <div
-          sx={{
-            textAlign: 'center',
-            fontSize: '4xl',
-            fontWeight: 'h3',
-            mb: '1.5rem',
-          }}
+          sx={merge(
+            text({ align: 'center' }),
+            font({ size: '4xl', weight: 'h3' }),
+            spacing({ m: { b: '1.5rem' } }),
+          )}
         >
           ACM Homepage
         </div>
@@ -54,22 +69,25 @@ export default () => {
           endIcon={Eye}
           value={[password, (event) => setPassword(event.target.value)]}
         />
-        <div sx={{ textAlign: 'right' }}>
-          <a sx={{ color: 'link', fontWeight: 'link', fontSize: 'sm' }}>
+        <div sx={text({ align: 'right' })}>
+          <a
+            sx={merge(
+              text({ col: 'link' }),
+              font({ weight: 'link', size: 'sm' }),
+            )}
+          >
             Forget password?
           </a>
         </div>
         <Button
-          sx={{
-            height: '2.5rem',
-            fontSize: 'lg',
-            mt: '2rem',
-            ...setColor({ bg: 'bg-0', color: 'fg-0', hover: { bg: 'bg-2' } }),
-            ...setBorder({ width: '2px', color: 'bg-4' }),
-            '&:hover': {
-              ...setBorder({ width: '2px', color: 'bg-5' }),
-            },
-          }}
+          sx={merge(
+            border({ width: '2px', col: { _: 'bg-4', hv: 'bg-5' } }),
+            size({ h: '2.5rem' }),
+            font({ size: 'lg' }),
+            spacing({ m: { t: '2rem' } }),
+            text({ col: 'fg-0' }),
+            bg({ col: { _: 'bg-0', hv: 'bg-2' } }),
+          )}
           onClick={() => signIn(email, password)}
         >
           Sign in

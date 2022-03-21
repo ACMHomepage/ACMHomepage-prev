@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { merge } from 'lodash';
+import { border, size, spacing, font } from '@acm-homepage/theme-shortcut';
 
 import { title, utilMainPart } from '../config';
-import { setBorder } from '../util/theme';
 
 import News from '../component/News';
 import Button, { buttonFlipStyle } from '../component/Button';
@@ -13,24 +14,24 @@ export default function Index() {
 
   return (
     <React.Fragment>
-      <div sx={{ ...utilMainPart }}>
+      <div sx={utilMainPart}>
         <Header.Space>
           <Header>{title}</Header>
           <Button
             onClick={() => navigate('info')}
-            sx={{
-              px: '2rem',
-              fontSize: 'xl',
-              height: '3rem',
-              ...setBorder({ width: '2px', color: 'fg-0' }),
-              ...buttonFlipStyle(),
-            }}
+            sx={merge(
+              spacing({ p: { l: '2rem', r: '2rem' } }),
+              font({ size: 'xl' }),
+              size({ h: '3rem' }),
+              border({ width: '2px', col: 'fg-0' }),
+              buttonFlipStyle(),
+            )}
           >
             More infomation
           </Button>
         </Header.Space>
       </div>
-      <div sx={{ ...utilMainPart }}>
+      <div sx={utilMainPart}>
         <News />
       </div>
     </React.Fragment>
