@@ -7,7 +7,8 @@
     "dev": "vite dev",
     "preview": "vite preview",
     "build": "NODE_ENV=production vite build --mode analyze",
-    "test": "jest --coverage"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@acm-homepage/theme-shortcut": "0.0.0",
