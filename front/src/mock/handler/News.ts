@@ -39,10 +39,10 @@ const data = {
 };
 
 const GetNews = graphql.query('GetNews', (req, res, ctx) => {
-  const { newsId } = req.variables;
-  const news = isUndefined(newsId)
+  const { id } = req.variables;
+  const news = isUndefined(id)
     ? data.news
-    : filter(data.news, (new_) => parseInt(newsId) === new_.id);
+    : filter(data.news, (new_) => parseInt(id) === new_.id);
   return res(ctx.data({ getNews: news }));
 });
 

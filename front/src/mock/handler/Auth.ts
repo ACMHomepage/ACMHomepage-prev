@@ -1,7 +1,12 @@
 import { graphql } from 'msw';
 import { filter, isUndefined } from 'lodash';
 
-import type { RegisterData, RegisterVars } from '../../store/authSlice';
+import type {
+  RegisterData,
+  RegisterVars,
+  SignInData,
+  SignInVars,
+} from '../../store/authSlice';
 
 const data = {
   _id: 1,
@@ -16,34 +21,36 @@ const data = {
   ],
 };
 
-/**
- * See file `front/src/store/authSlice.ts`.
- */
-const signIn = graphql.query('SignIn', (req, res, ctx) => {
-  const { email, password } = req.variables;
+const signIn = graphql.mutation<SignInData, SignInVars>(
+  'SignIn',
+  (req, res, ctx) => {
+    const { email, password } = req.variables;
 
-  // get the user by email
-  const userArray = filter(data.users, (user) => user.email === email);
-  if (userArray.length === 0) {
-    return res(ctx.errors([{ message: `The email ${email} is not existed` }]));
-  } else if (userArray.length !== 1) {
-    return res(ctx.errors([{ message: 'I am teapot.' }]));
-  }
-  const user = userArray[0];
+    // get the user by email
+    const userArray = filter(data.users, (user) => user.email === email);
+    if (userArray.length === 0) {
+      return res(
+        ctx.errors([{ message: `The email ${email} is not existed` }]),
+      );
+    } else if (userArray.length !== 1) {
+      return res(ctx.errors([{ message: 'I am teapot.' }]));
+    }
+    const user = userArray[0];
 
-  // check the password.
-  if (user.password !== password) {
-    return res(ctx.errors([{ message: 'The password is not right' }]));
-  }
+    // check the password.
+    if (user.password !== password) {
+      return res(ctx.errors([{ message: 'The password is not right' }]));
+    }
 
-  const result = res(
-    ctx.cookie('jwt', `${email}`),
-    ctx.data({
-      signIn: user,
-    }),
-  );
-  return result;
-});
+    const result = res(
+      ctx.cookie('jwt', `${email}`),
+      ctx.data({
+        signIn: user,
+      }),
+    );
+    return result;
+  },
+);
 
 const register = graphql.mutation<RegisterData, RegisterVars>(
   'Register',
