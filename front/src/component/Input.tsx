@@ -1,7 +1,18 @@
 import { forwardRef } from 'react';
+import { merge } from 'lodash';
+import {
+  font,
+  spacing,
+  layout,
+  size,
+  outline,
+  border,
+  bg,
+  interactivity,
+  text,
+} from '@acm-homepage/theme-shortcut';
 
 import type { ThemeUICSSObject, ThemeUIStyleObject } from 'theme-ui';
-import { setBorder, setColor } from '../util/theme';
 
 interface InputProps {
   label?: React.ReactNode;
@@ -56,45 +67,54 @@ export default forwardRef((props: InputProps, ref) => {
   return (
     <label>
       {label ? (
-        <div sx={{ fontSize: 'sm', mb: '0.25rem', ...labelsx }}>{label}</div>
+        <div
+          sx={merge(
+            font({ size: 'sm' }),
+            spacing({ m: { b: '0.25rem' } }),
+            labelsx,
+          )}
+        >
+          {label}
+        </div>
       ) : null}
-      <div sx={{ position: 'relative' }}>
+      <div sx={layout({ pos: 'relative' })}>
         {StartIcon ? (
           /* @ts-ignore The theme-ui sx prop will turn into className */
-          <StartIcon sx={{ top: 0, left: iconPadding, ...iconSx }} />
+          <StartIcon sx={merge(layout({ t: 0, l: iconPadding }), iconSx)} />
         ) : null}
         <InputElement
           ref={ref}
           placeholder={placeholder}
           type={type}
           {...(value ? { value: value[0], onChange: value[1] } : {})}
-          sx={{
-            fontSize: 'lg',
-            height,
-            width: '100%',
-            padding,
-            pl: StartIcon ? height : padding,
-            pr: EndIcon ? height : padding,
-            resize: 'vertical',
-            outline: 'none',
-            ...setColor(),
-            ...setBorder({ width: '2px', color: 'bg-3' }),
-            '&:hover': {
-              ...setBorder({ width: '2px', color: 'fg-6' }),
-            },
-            '&:focus': {
-              bg: 'bg-1',
-              outlineColor: 'outline',
-              outlineStyle: 'solid',
-              outlineWidth: '0.25rem',
-              ...setBorder({ width: '2px', color: 'fg-6' }),
-            },
-          }}
+          sx={merge(
+            font({ size: 'lg' }),
+            size({ h: height, w: '100%' }),
+            spacing({
+              p: {
+                _: padding,
+                l: StartIcon ? height : padding,
+                r: EndIcon ? height : padding,
+              },
+            }),
+            outline({
+              col: { fc: 'outline' },
+              width: { fc: '0.25rem' },
+              style: { fc: 'solid' },
+            }),
+            border({
+              width: { _: '2px', fc: '2px' },
+              col: { _: 'bg-3', fc: 'fg-6', hv: 'fg-6' },
+            }),
+            text({ col: 'fg-0' }),
+            bg({ col: { _: 'bg-0', fc: 'bg-1' } }),
+            interactivity({ resize: 'vertical' }),
+          )}
           className={className}
         />
         {EndIcon ? (
           /* @ts-ignore The theme-ui sx prop will turn into className */
-          <EndIcon sx={{ top: 0, right: iconPadding, ...iconSx }} />
+          <EndIcon sx={merge(layout({ t: 0, r: iconPadding }), iconSx)} />
         ) : null}
       </div>
     </label>

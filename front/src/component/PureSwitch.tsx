@@ -1,7 +1,14 @@
 import React from 'react';
 import { Box, Label } from 'theme-ui';
 import type { CSSProperties as CSSProp } from 'theme-ui';
-import { setFlex } from '../util/theme';
+import { merge } from 'lodash';
+import {
+  layout,
+  size as sizeFunc,
+  effect,
+  flexbox,
+  interactivity,
+} from '@acm-homepage/theme-shortcut';
 
 const GUTTER = 2;
 const SIZE = 18;
@@ -61,14 +68,11 @@ export default React.forwardRef(
         __themeKey="forms"
         aria-label={label}
         {...otherProps}
-        sx={{
-          position: 'absolute',
-          opacity: 0,
-          zIndex: -1,
-          width: 1,
-          height: 1,
-          overflow: 'hidden',
-        }}
+        sx={merge(
+          layout({ pos: 'absolute', z: -1, overflow: 'hideen' }),
+          sizeFunc({ w: 1, h: 1 }),
+          effect({ opacity: 0 }),
+        )}
       />
     );
 
@@ -112,7 +116,7 @@ export default React.forwardRef(
           },
         }}
       >
-        <Box sx={{ ...setFlex({ center: true }) }}>
+        <Box sx={flexbox({ place: { content: 'center', items: 'center' } })}>
           {label && inner ? <>{label}</> : null}
         </Box>
       </Box>
@@ -120,7 +124,7 @@ export default React.forwardRef(
 
     if (label && !inner) {
       return (
-        <Label sx={{ cursor: 'pointer' }}>
+        <Label sx={interactivity({ cursor: 'pointer' })}>
           {Checkbox}
           {Switch}
           <span>{label}</span>

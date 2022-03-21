@@ -1,9 +1,17 @@
 import { Book, Image, AlignLeft, Send } from 'lucide-react';
 import { useState, useRef, Ref } from 'react';
-import { isNull } from 'lodash';
+import { isNull, merge } from 'lodash';
+import {
+  flexbox,
+  size,
+  font,
+  bg,
+  text,
+  border,
+} from '@acm-homepage/theme-shortcut';
 
 import { utilMainPart } from '../config';
-import { setFlex, setColor, setBorder } from '../util/theme';
+import { setColor } from '../util/theme';
 import { useCreateNews } from '../store/newsSlice';
 
 import Header from '../component/Header';
@@ -40,11 +48,11 @@ export default () => {
   };
 
   return (
-    <div sx={{ ...utilMainPart }}>
+    <div sx={utilMainPart}>
       <Header.Space>
         <Header>Post News</Header>
       </Header.Space>
-      <div sx={{ ...setFlex({ direction: 'column', gap: '0.25rem' }) }}>
+      <div sx={flexbox({ dir: 'column', gap: '0.25rem' })}>
         <Input
           startIcon={Book}
           placeholder="Title"
@@ -56,19 +64,17 @@ export default () => {
           placeholder="Content"
           type="textarea"
           value={[content, (e) => setContent(e.target.value)]}
-          sx={{ height: '40rem' }}
+          sx={size({ h: '40rem' })}
         />
-        <div sx={{ ...setFlex(), justifyContent: 'flex-end' }}>
+        <div sx={flexbox({ place: { content: 'flex' } })}>
           <Button
-            sx={{
-              height: '2.5rem',
-              fontSize: 'lg',
-              ...setColor({ bg: 'bg-0', color: 'fg-0', hover: { bg: 'bg-2' } }),
-              ...setBorder({ width: '2px', color: 'bg-4' }),
-              '&:hover': {
-                ...setBorder({ width: '2px', color: 'bg-5' }),
-              },
-            }}
+            sx={merge(
+              size({ h: '2.5rem' }),
+              font({ size: 'lg' }),
+              bg({ col: { _: 'bg-0', hv: 'bg-2' } }),
+              text({ col: { _: 'fg-0' } }),
+              border({ width: '2px', col: { _: 'bg-4', hv: 'bg-5' } }),
+            )}
             onClick={submit}
           >
             <Send size={16} />

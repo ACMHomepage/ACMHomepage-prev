@@ -1,29 +1,35 @@
 import range from 'lodash/range';
-import isUndefined from 'lodash/isUndefined';
+import { isUndefined, merge } from 'lodash';
 import type { ThemeUICSSProperties } from 'theme-ui';
+import {
+  bg,
+  size,
+  border,
+  effect,
+  flexbox,
+  layout,
+} from '@acm-homepage/theme-shortcut';
 
 // Dot. Clickable. If the onClick function name is `a`, when we click it, it
 // will call `a(index)`.
 interface DotProps {
   index: number;
   current: number;
-  size: ThemeUICSSProperties['size'];
+  size: string | number;
   onClick?: () => void;
 }
 
-const Dot = ({ index, current, size, onClick }: DotProps) => {
+const Dot = ({ index, current, size: sz, onClick }: DotProps) => {
   const active: boolean = index === current;
 
   return (
     <button
-      sx={{
-        bg: active ? 'gray.1' : 'gray.7',
-        opacity: active ? 1 : 0.5,
-        size,
-        borderWidth: '1.5px',
-        borderColor: active ? 'gray.7' : 'gray.3',
-        borderRadius: 'inf',
-      }}
+      sx={merge(
+        bg({ col: active ? 'gray.1' : 'gray.7' }),
+        size({ w: sz, h: sz }),
+        border({ width: '1px', col: `gray.${active ? 7 : 3}`, radius: 'inf' }),
+        effect({ opacity: active ? 1 : 0.5 }),
+      )}
       onClick={onClick}
     />
   );
@@ -43,10 +49,7 @@ const Dots = (props: DotsProps) => {
 
   return (
     <div
-      sx={{
-        display: 'flex',
-        gap: '0.5rem',
-      }}
+      sx={merge(layout({ display: 'flex' }), flexbox({ gap: '0.5rem' }))}
       className={className}
     >
       {range(length).map((index) => (

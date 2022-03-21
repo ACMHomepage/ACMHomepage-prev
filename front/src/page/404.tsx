@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { merge } from 'lodash';
+import { spacing, font, size, border } from '@acm-homepage/theme-shortcut';
 
 import Header from '../component/Header';
 import Button, { buttonFlipStyle } from '../component/Button';
-import { setBorder } from '../util/theme';
 
 export default () => {
   const navigate = useNavigate();
@@ -16,13 +17,13 @@ export default () => {
         Please check your URL is right.
       </Header>
       <Button
-        sx={{
-          px: '2rem',
-          fontSize: 'xl',
-          height: '3rem',
-          ...buttonFlipStyle(),
-          ...setBorder({ width: '2px', color: 'fg-0' }),
-        }}
+        sx={merge(
+          spacing({ p: { l: '2rem', r: '2rem' } }),
+          font({ size: 'xl' }),
+          size({ h: '3rem' }),
+          border({ width: '2px', col: 'fg-0' }),
+          buttonFlipStyle(),
+        )}
         onClick={() => navigate('/')}
       >
         Return to homepage

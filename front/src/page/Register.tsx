@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Lock, User, Mail, Eye } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import { merge } from 'lodash';
+import {
+  flexbox,
+  text,
+  font,
+  spacing,
+  size,
+  bg,
+  border,
+  layout,
+} from '@acm-homepage/theme-shortcut';
 
 import { useSelector } from '../hooks';
 
 import { utilMainPart, boxSx } from '../config';
-import { setBorder, setColor, setFlex } from '../util/theme';
 import {
   selectAuthState,
   AuthStateEnum,
@@ -44,15 +54,20 @@ export default () => {
   // TODO: We do not handler if email is already in database.
   // TODO: We do not show the helpful message in different state.
   return (
-    <Header.Space sx={{ ...utilMainPart }}>
-      <div sx={{ ...boxSx, ...setFlex({ direction: 'column', gap: '1rem' }) }}>
+    <Header.Space sx={utilMainPart}>
+      <div
+        sx={merge(
+          layout({ display: 'flex' }),
+          flexbox({ dir: 'column', gap: '1rem' }),
+          boxSx,
+        )}
+      >
         <div
-          sx={{
-            textAlign: 'center',
-            fontSize: '4xl',
-            fontWeight: 'h3',
-            mb: '1.5rem',
-          }}
+          sx={merge(
+            text({ align: 'center' }),
+            font({ size: 'center', weight: 'h3' }),
+            spacing({ m: { b: '1.5rem' } }),
+          )}
         >
           ACM Homepage
         </div>
@@ -73,16 +88,14 @@ export default () => {
           value={[password, (event) => setPassword(event.target.value)]}
         />
         <Button
-          sx={{
-            height: '2.5rem',
-            fontSize: 'lg',
-            mt: '2rem',
-            ...setColor({ bg: 'bg-0', color: 'fg-0', hover: { bg: 'bg-2' } }),
-            ...setBorder({ width: '2px', color: 'bg-4' }),
-            '&:hover': {
-              ...setBorder({ width: '2px', color: 'bg-5' }),
-            },
-          }}
+          sx={merge(
+            size({ h: '2.5rem' }),
+            font({ size: 'lg' }),
+            spacing({ m: { t: 'lg' } }),
+            bg({ col: { _: 'bg-0', hv: 'bg-2' } }),
+            text({ col: 'fg-0' }),
+            border({ width: '2px', col: { _: 'bg-4', hv: 'bg-5' } }),
+          )}
           onClick={() => register(nickname, email, password)}
         >
           Resgister
