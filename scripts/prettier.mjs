@@ -15,11 +15,13 @@ const exts = [
   'yml',
 ].join(',');
 const path = [
+  'front/',
   'front/mock/**/',
   'front/src/**/',
-  'front/',
-  'back/src/**/',
+  'front/packages/theme-shortcut/',
+  'front/packages/theme-shortcut/src/**/',
   'back/',
+  'back/src/**/',
   'scripts/',
   '',
 ].join(',');
