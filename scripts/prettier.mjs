@@ -23,6 +23,7 @@ const path = [
   'back/',
   'back/src/**/',
   'scripts/',
+  'docs/',
   '',
 ].join(',');
 const file_glob = `{${path}}*.{${exts}}`;
