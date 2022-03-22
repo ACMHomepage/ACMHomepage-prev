@@ -1,5 +1,4 @@
-How To Contribute
-===============================================================================
+# How To Contribute
 
 ## Steps
 
@@ -20,30 +19,30 @@ How To Contribute
 
 Like [this rule][joshbuchea/git-commit-message] but changed something.
 
-* 80 character each line.
-* Use Markdown syntax.
-* Head: `<type>[scope]: <subject>`.
-  * `<type>`:
-    * `feat`: Add a new feature.
-    * `fix`: Fix a bug.
-    * `docs`: Documenttation.
-    * `style`: Just change the code's style or just fix typo.
-    * `refactor`: Not add a new feature, neither fix a bug. Just make code
+- 80 character each line.
+- Use Markdown syntax.
+- Head: `<type>[scope]: <subject>`.
+  - `<type>`:
+    - `feat`: Add a new feature.
+    - `fix`: Fix a bug.
+    - `docs`: Documenttation.
+    - `style`: Just change the code's style or just fix typo.
+    - `refactor`: Not add a new feature, neither fix a bug. Just make code
       clear than before.
-    * `test`: About test.
-    * `chore`: Updating grunt tasks etc; no production code change.
-  * `[scope]`: Optional. Enclosed in parentheses.
-    * `back`: For backend. In folder `/back`.
-    * `front`: For frontend. In folder `/front`.
-  * `<subject>`, Make sure the first character is UPPERCASE and has a space
+    - `test`: About test.
+    - `chore`: Updating grunt tasks etc; no production code change.
+  - `[scope]`: Optional. Enclosed in parentheses.
+    - `back`: For backend. In folder `/back`.
+    - `front`: For frontend. In folder `/front`.
+  - `<subject>`, Make sure the first character is UPPERCASE and has a space
     before is. End by a **period(.)**.
 
-PR Check List
--------------------------------------------------------------------------------
+## PR Check List
+
 [Click](./pull_request_template.md) to know more.
 
-To-do Tree
--------------------------------------------------------------------------------
+## To-do Tree
+
 - [ ] Add a user entrypoint.
   - [ ] Add error message if sign in fail.
 - [ ] Remove typescript's warning and error.
@@ -60,7 +59,7 @@ To-do Tree
 - [ ] Let the `ACM Homepage` in `Nav` be a button.
 - [ ] Remove warning of msw when it ask for picture.
 - [ ] Now we have `News` component and `News` page. Try to remove one or
-  something else.
+      something else.
 - [ ] How can I use typedoc?
 - [ ] Make the Nav has bigger place to touch.
 - [ ] Deal with JWT + cookie + CORS.
@@ -74,8 +73,7 @@ To-do Tree
 - [ ] Deal with: [PeterlitsZo/ACMHomepage/using-execute-and-pool][]
 - [ ] Let backend use yarn than npm.
 - [ ] Well, the `Dockerfile` and `connection.js` use the same password but in
-  different files. Move the password into the `makefile`.
+      different files. Move the password into the `makefile`.
 
 [joshbuchea/git-commit-message]: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
-[PeterlitsZo/ACMHomepage/using-execute-and-pool]: https://github.com/PeterlitsZo/ACMHomepage/pull/1#discussion_r818478152
-
+[peterlitszo/acmhomepage/using-execute-and-pool]: https://github.com/PeterlitsZo/ACMHomepage/pull/1#discussion_r818478152
