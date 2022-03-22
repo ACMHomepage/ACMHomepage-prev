@@ -1,8 +1,22 @@
 How To Contribute
 ===============================================================================
 
-Git Commit Message Style
--------------------------------------------------------------------------------
+## Steps
+
+1. First, you should fork this project. If your Github username is Mary, then
+   you will have your own project named `Mary/ACMHomepage`.
+2. Then, use the command `git clone` or something else to get the source code.
+3. If you want to update README of the package `front`, then you need to create
+   a new branch named `update-README-of-the-package-front`. A meaningful branch
+   name will be helpful.
+4. Edit, commit, rebase to get a really clear commit list.
+5. Push to your own project `Mary/ACMHomepage` (so you can push with flag
+   `--force`).
+6. Create a PR from `Mary/ACMHomepage` to `ACMHomepage/ACMHomepage`. We will
+   talk with you. The next step will be the 5th or 7th step.
+7. Done.
+
+## Git Commit Message Style
 
 Like [this rule][joshbuchea/git-commit-message] but changed something.
 
