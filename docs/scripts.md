@@ -7,6 +7,7 @@ You can use `yarn format` to format all code prettier support.
 ## Show all files' name
 
 You can just run:
+
 ```shell
 $ ZX="$(yarn bin)/zx"
 $ $ZX scripts/find_all_file.mjs

@@ -9,10 +9,11 @@ merge(
   bg({ col: { _: 'bg-2', hover: 'bg-4' } }),
   size({ h: '2rem', w: '8rem' }),
   border({ width: '2px', col: 'bg-6' }),
-)
+);
 ```
 
 And it equals to:
+
 ```typescript
 {
   position: 'absolute',
@@ -51,4 +52,3 @@ The emotion style object would be valid for function `cszp`.
 
 The function `cszp` need to be a pure function and we can deal with it at the
 compile time with a plugin we defined.
-
