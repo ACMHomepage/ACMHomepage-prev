@@ -1,5 +1,5 @@
 import Signin from './Signin'
 
-test('After Register return to',() =>{
+test('After Signin return to',() =>{
 	expect(useEffect()).toEqual(-1);
 });
