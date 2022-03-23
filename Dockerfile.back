@@ -1,0 +1,12 @@
+FROM node
+
+WORKDIR /home/node/app/
+COPY ./back/ ./back/
+COPY ./package.json ./yarn.lock ./
+RUN yarn
+
+USER node
+EXPOSE 4000
+
+WORKDIR /home/node/app/back
+CMD ["yarn", "start"]
