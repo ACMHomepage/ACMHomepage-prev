@@ -1,0 +1,19 @@
+FROM node as builder
+
+WORKDIR /root/
+COPY ./front/ ./front/
+COPY ./package.json ./yarn.lock ./
+RUN yarn && \
+    cd front/ && \
+    yarn build
+
+
+FROM nginx
+
+COPY --from=builder /root/front/dist/ /usr/share/nginx/html/
+
+WORKDIR /etc/nginx/
+RUN rm -r ./conf.d
+COPY ./front/server-config/ ./
+
+EXPOSE 80

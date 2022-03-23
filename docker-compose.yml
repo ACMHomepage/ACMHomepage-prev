@@ -2,14 +2,27 @@ version: '3'
 services:
   db:
     build: ./back/src/db/
+    deploy:
+      restart_policy:
+        condition: on-failure
   backend:
-    build: ./back/
+    build:
+      context: ./
+      dockerfile: Dockerfile.back
     depends_on:
       - db
+    deploy:
+      restart_policy:
+        condition: on-failure
   nginx:
-    build: ./front/
+    build:
+      context: ./
+      dockerfile: Dockerfile.front
     ports:
       - 80:80
     depends_on:
       - db
       - backend
+    deploy:
+      restart_policy:
+        condition: on-failure
