@@ -25,7 +25,9 @@ import {
 // Import components.
 import Header from '../component/Header';
 import Button from '../component/Button';
-import Input from '../component/Input';
+import EmailInput from '../component/InputSet/EmailInput';
+import NickNameInput from '../component/InputSet/NicknameInput';
+import PasswordInput from '../component/InputSet/PasswordInput';
 
 import { URL as signInUrl } from './SignIn';
 
@@ -71,22 +73,9 @@ export default () => {
         >
           ACM Homepage
         </div>
-        <Input
-          placeholder="Nickname"
-          startIcon={User}
-          value={[nickname, (event) => setNickname(event.target.value)]}
-        />
-        <Input
-          placeholder="Email"
-          startIcon={Mail}
-          value={[email, (event) => setEmail(event.target.value)]}
-        />
-        <Input
-          placeholder="Password"
-          startIcon={Lock}
-          endIcon={Eye}
-          value={[password, (event) => setPassword(event.target.value)]}
-        />
+        <NickNameInput nickname={nickname} setNickname={setNickname} />
+        <EmailInput email={email} setEmail={setEmail} />
+        <PasswordInput password={password} setPassword={setPassword} />
         <Button
           sx={merge(
             size({ h: '2.5rem' }),
