@@ -1,5 +1,5 @@
 import { Book, Image, AlignLeft, Send } from 'lucide-react';
-import { useState, useRef, Ref } from 'react';
+import { useState, useRef } from 'react';
 import { isNull, merge } from 'lodash';
 import {
   flexbox,
@@ -11,41 +11,21 @@ import {
 } from '@acm-homepage/theme-shortcut';
 
 import { utilMainPart } from '../config';
-import { setColor } from '../util/theme';
 import { useCreateNews } from '../store/newsSlice';
 
 import Header from '../component/Header';
-import Input from '../component/Input';
 import Button from '../component/Button';
+import TitleInput from '../component/InputSet/TitleInput';
+import ImageInput from '../component/InputSet/ImageInput';
+import ContentTextArea from '../component/InputSet/ContextTextArea';
 
 export const URL = '/postnews';
 
-const toBase64 = (file: File) =>
-  new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
-
 export default () => {
   const [title, setTitle] = useState('');
-  const imageRef = useRef<HTMLInputElement>(null);
   const [content, setContent] = useState('');
+  const [imageDataURL, setImageDataURL] = useState('');
   const [createNews, { loading, error, data }] = useCreateNews();
-
-  const submit = () => {
-    // TODO: handle those cases.
-    if (isNull(imageRef.current)) return;
-    if (isNull(imageRef.current.files)) return;
-
-    // TODO: Better idea: Add a image post bar, which can turn a image to a
-    // HTTP URL auto rather than DATA URL.
-    const image = imageRef.current.files[0];
-    toBase64(image).then((image_uri) => {
-      createNews(title, image_uri, content);
-    });
-  };
 
   return (
     <div sx={utilMainPart}>
@@ -53,19 +33,9 @@ export default () => {
         <Header>Post News</Header>
       </Header.Space>
       <div sx={flexbox({ dir: 'column', gap: '0.25rem' })}>
-        <Input
-          startIcon={Book}
-          placeholder="Title"
-          value={[title, (e) => setTitle(e.target.value)]}
-        />
-        <Input startIcon={Image} type="file" ref={imageRef} />
-        <Input
-          startIcon={AlignLeft}
-          placeholder="Content"
-          type="textarea"
-          value={[content, (e) => setContent(e.target.value)]}
-          sx={size({ h: '40rem' })}
-        />
+        <TitleInput title={title} setTitle={setTitle} />
+        <ImageInput setDataURL={setImageDataURL} />
+        <ContentTextArea content={content} setContent={setContent} />
         <div sx={flexbox({ place: { content: 'flex' } })}>
           <Button
             sx={merge(
@@ -75,7 +45,7 @@ export default () => {
               text({ col: { _: 'fg-0' } }),
               border({ width: '2px', col: { _: 'bg-4', hv: 'bg-5' } }),
             )}
-            onClick={submit}
+            onClick={() => createNews(title, imageDataURL, content)}
           >
             <Send size={16} />
             Submit

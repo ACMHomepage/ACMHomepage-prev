@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 import { Lock, Mail, Eye } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { merge } from 'lodash';
@@ -19,7 +19,8 @@ import { useSignIn, selectAuthState, AuthStateEnum } from '../store/authSlice';
 
 import Header from '../component/Header';
 import Button from '../component/Button';
-import Input from '../component/Input';
+import EmailInput from '../component/InputSet/EmailInput';
+import PasswordInput from '../component/InputSet/PasswordInput';
 
 export const URL = '/signin';
 
@@ -58,17 +59,8 @@ export default () => {
         >
           ACM Homepage
         </div>
-        <Input
-          placeholder="Email"
-          startIcon={Mail}
-          value={[email, (event) => setEmail(event.target.value)]}
-        />
-        <Input
-          placeholder="Password"
-          startIcon={Lock}
-          endIcon={Eye}
-          value={[password, (event) => setPassword(event.target.value)]}
-        />
+        <EmailInput email={email} setEmail={setEmail} />
+        <PasswordInput password={password} setPassword={setPassword} />
         <div sx={text({ align: 'right' })}>
           <a
             sx={merge(
