@@ -19,9 +19,6 @@ package-lock.json
 front/dist/
 
 # `yarn test`'s aim folder
-front/**/__snapshots__/
-
-# `yarn test`'s aim folder
 front/coverage/
 
 # #############################################################################

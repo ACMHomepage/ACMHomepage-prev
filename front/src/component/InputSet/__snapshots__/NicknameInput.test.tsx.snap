@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`make sure NicknameInput looks same as before 1`] = `
+<div>
+  <label
+    class="css-f5kwef"
+  >
+    <svg
+      class="css-phcl6x-NickNameInput"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"
+      />
+      <circle
+        cx="12"
+        cy="7"
+        r="4"
+      />
+    </svg>
+    <input
+      class="css-1y8h48x-NickNameInput"
+      placeholder="Nickname"
+      value=""
+    />
+  </label>
+</div>
+`;
