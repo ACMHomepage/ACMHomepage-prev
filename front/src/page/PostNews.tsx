@@ -1,6 +1,6 @@
-import { Book, Image, AlignLeft, Send } from 'lucide-react';
-import { useState, useRef } from 'react';
-import { isNull, merge } from 'lodash';
+import { Send } from 'lucide-react';
+import { useState } from 'react';
+import { merge } from 'lodash';
 import {
   flexbox,
   size,

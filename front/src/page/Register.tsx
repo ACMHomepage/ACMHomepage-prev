@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Lock, User, Mail, Eye } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { merge } from 'lodash';
 import {
