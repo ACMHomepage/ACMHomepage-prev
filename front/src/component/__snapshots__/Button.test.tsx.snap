@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`make sure Button looks same as before 1`] = `
+<div>
+  <button
+    class="css-1u1t6li"
+  >
+    Hello
+  </button>
+</div>
+`;
