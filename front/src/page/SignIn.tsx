@@ -1,5 +1,4 @@
-import { useEffect, useState, ChangeEvent } from 'react';
-import { Lock, Mail, Eye } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { merge } from 'lodash';
 import {
