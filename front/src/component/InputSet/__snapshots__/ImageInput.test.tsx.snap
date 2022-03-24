@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`make sure ImageInput looks same as before 1`] = `
+<div>
+  <label
+    class="css-f5kwef"
+  >
+    <svg
+      class="css-29qq03-ImageInput"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        height="18"
+        rx="2"
+        ry="2"
+        width="18"
+        x="3"
+        y="3"
+      />
+      <circle
+        cx="8.5"
+        cy="8.5"
+        r="1.5"
+      />
+      <polyline
+        points="21 15 16 10 5 21"
+      />
+    </svg>
+    <div
+      class="css-1cprmi-Infomation"
+    >
+      Please upload images...
+    </div>
+    <input
+      class="css-1xn7iig-ImageInput"
+      tabindex="-1"
+      type="file"
+    />
+  </label>
+</div>
+`;

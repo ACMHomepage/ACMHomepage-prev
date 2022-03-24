@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`make sure ContentTextArea looks same as before 1`] = `
+<div>
+  <label
+    class="css-f5kwef"
+  >
+    <svg
+      class="css-c1znx3-ContentTextArea"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <line
+        x1="21"
+        x2="3"
+        y1="6"
+        y2="6"
+      />
+      <line
+        x1="15"
+        x2="3"
+        y1="12"
+        y2="12"
+      />
+      <line
+        x1="17"
+        x2="3"
+        y1="18"
+        y2="18"
+      />
+    </svg>
+    <textarea
+      class="css-sxl6kr-ContentTextArea"
+      placeholder="Content"
+    />
+  </label>
+</div>
+`;
