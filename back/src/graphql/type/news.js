@@ -7,7 +7,8 @@ import {
   GraphQLID,
   GraphQLNonNull,
 } from 'graphql';
-
+import { salt } from '../../main.js';
+import jwt from 'jsonwebtoken';
 /******************************************************************************
  * Util function.
  *****************************************************************************/
@@ -87,7 +88,23 @@ export const createNews = {
       description: 'The content of the news to create.',
     },
   },
-  async resolve(_parentVal, args) {
+  async resolve(_parentVal, args, context) {
+    const verified = await jwt.verify(
+      context.req.cookies.jwt,
+      salt,
+      (err, decoded) => {
+        if (err) {
+          console.log('Error!');
+          return false;
+        } else if (decoded.isAdmin) {
+          return true;
+        }
+      },
+    );
+    if (!verified) {
+      return {};
+    }
+
     const sql = `INSERT INTO news
       (title, image_url, content, created_date, modified_date)
       VALUES ( ?, ?, ?, NOW(), NOW() )`;
