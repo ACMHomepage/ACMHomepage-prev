@@ -11,15 +11,15 @@ yarn-error.log
 # `npm install`'s lock file (We need yarn.lock rather than package-lock.json).
 package-lock.json
 
+# `yarn test`'s aim folder
+coverage/
+
 # #############################################################################
 # Only for front-end
 # #############################################################################
 
 # `yarn build`'s aim folder and files
 front/dist/
-
-# `yarn test`'s aim folder
-front/coverage/
 
 # #############################################################################
 # Only for back-end
