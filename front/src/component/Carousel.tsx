@@ -24,14 +24,14 @@ import type { BreakpointNameWithoutInit } from '../util/theme';
  */
 interface CarouselPreviewProps {
   rowChangeBreakPoint: BreakpointNameWithoutInit;
-  image_url: string;
+  imageUrl: string;
   current: number;
   length: number;
   setCurrent: (current: number) => void;
 }
 
 const CarouselPreview = (props: CarouselPreviewProps) => {
-  const { rowChangeBreakPoint, image_url, length, current, setCurrent } = props;
+  const { rowChangeBreakPoint, imageUrl, length, current, setCurrent } = props;
   return (
     <div
       sx={merge(
@@ -43,7 +43,7 @@ const CarouselPreview = (props: CarouselPreviewProps) => {
       )}
     >
       <img
-        src={image_url}
+        src={imageUrl}
         sx={merge(
           size({ w: '100%', h: '100%' }),
           bg({ col: 'green.5' }),
@@ -136,7 +136,7 @@ interface contentMini {
   id: number;
   title: string;
   summary: string;
-  image_url: string;
+  imageUrl: string;
 }
 
 interface CarouselProps {
@@ -164,7 +164,7 @@ export default (props: CarouselProps) => {
   }
 
   const [current, setCurrent] = useState(0);
-  const { id, title, summary, image_url } = contentMinis[current];
+  const { id, title, summary, imageUrl } = contentMinis[current];
 
   return (
     <div
@@ -178,7 +178,7 @@ export default (props: CarouselProps) => {
     >
       <CarouselPreview
         rowChangeBreakPoint={bp}
-        image_url={image_url}
+        imageUrl={imageUrl}
         length={length}
         current={current}
         setCurrent={setCurrent}

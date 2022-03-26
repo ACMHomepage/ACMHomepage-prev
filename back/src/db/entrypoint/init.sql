@@ -9,10 +9,10 @@ CREATE TABLE IF NOT EXISTS news (
   title TEXT NOT NULL,
   -- Why it is mediumtext?
   -- Because it need to hold data URL (<16MB).
-  image_url MEDIUMTEXT NOT NULL,
+  imageUrl MEDIUMTEXT NOT NULL,
   content TEXT NOT NULL,
-  created_date DATE NOT NULL,
-  modified_date DATE NOT NULL
+  createdDate DATE NOT NULL,
+  modifiedDate DATE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS user (

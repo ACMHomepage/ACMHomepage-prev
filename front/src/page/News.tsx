@@ -41,7 +41,7 @@ export default () => {
   return (
     <div sx={utilMainPart}>
       <img
-        src={new_.image_url}
+        src={new_.imageUrl}
         sx={merge(
           size({ w: '100%', h: '50vh' }),
           layout({ objectFit: 'cover' }),

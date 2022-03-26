@@ -27,7 +27,7 @@ function NewsBody() {
     setTimeout(() => {
       for (let i = 0; i < data.getNews.length; i++) {
         let preloadPic = new Image();
-        preloadPic.src = data.getNews[i].image_url;
+        preloadPic.src = data.getNews[i].imageUrl;
       }
     }, preloadTime);
   }, [data]);
