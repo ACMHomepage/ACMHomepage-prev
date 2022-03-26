@@ -1,4 +1,3 @@
-import { conn } from '../../db/connection.js';
 import {
   GraphQLInt,
   GraphQLList,
@@ -9,21 +8,6 @@ import {
 } from 'graphql';
 import { salt } from '../../main.js';
 import jwt from 'jsonwebtoken';
-/******************************************************************************
- * Util function.
- *****************************************************************************/
-const getNewsById = async (id) => {
-  let result;
-  if (id === undefined) {
-    result = await conn.execute('SELECT * FROM news');
-  } else {
-    result = await conn.execute('SELECT * FROM news WHERE id = ?', [id]);
-  }
-
-  const [rows, _fields] = result;
-  return rows;
-};
-
 /******************************************************************************
  * Main part
  *****************************************************************************/
@@ -46,9 +30,9 @@ const NewsType = new GraphQLObjectType({
         return self.content.substr(0, SUMMARY_LENGTH);
       },
     },
-    image_url: { type: GraphQLString },
-    created_date: { type: GraphQLString },
-    modified_date: { type: GraphQLString },
+    imageUrl: { type: GraphQLString },
+    createdDate: { type: GraphQLString },
+    modifiedDate: { type: GraphQLString },
   },
 });
 export default NewsType;
@@ -56,7 +40,7 @@ export default NewsType;
 /******************************************************************************
  * Query field.
  *****************************************************************************/
-export const getNews = {
+export const getNews = (database) => ({
   type: new GraphQLList(NewsType),
   args: {
     id: {
@@ -65,21 +49,30 @@ export const getNews = {
     },
   },
   async resolve(_parentVal, args) {
-    return getNewsById(args.id);
+    const FIELDS = database.news.FIELDS;
+    const { ID, TITLE, IMAGE_URL, CONTENT, CREATE_DATA, MODIFIED_DATA } =
+      FIELDS;
+    const fields = [ID, TITLE, IMAGE_URL, CONTENT, CREATE_DATA, MODIFIED_DATA];
+
+    if (args.id === undefined) {
+      return await database.news.getAll(fields);
+    } else {
+      return await database.news.getById(fields, args.id);
+    }
   },
-};
+});
 
 /******************************************************************************
  * Mutation field.
  *****************************************************************************/
-export const createNews = {
+export const createNews = (database) => ({
   type: NewsType,
   args: {
     title: {
       type: new GraphQLNonNull(GraphQLString),
       description: 'The title of the news to create.',
     },
-    image_url: {
+    imageUrl: {
       type: new GraphQLNonNull(GraphQLString),
       description: "The picture's URL of the news to create.",
     },
@@ -94,29 +87,23 @@ export const createNews = {
       salt,
       (err, decoded) => {
         if (err) {
-          console.log('Error!');
-          return false;
+          throw new Error('Cannot verify.');
         } else if (decoded.isAdmin) {
           return true;
         }
       },
     );
-    if (!verified) {
-      throw new Error('Cannot verify.');
-    }
 
-    const sql = `INSERT INTO news
-      (title, image_url, content, created_date, modified_date)
-      VALUES ( ?, ?, ?, NOW(), NOW() )`;
-    const [rows, _fields] = await conn.execute(sql, [
-      args.title,
-      args.image_url,
-      args.content,
-    ]);
+    const FIELDS = database.news.FIELDS;
+    const { ID, TITLE, IMAGE_URL, CONTENT, CREATE_DATA, MODIFIED_DATA } =
+      FIELDS;
+    const fields = [ID, TITLE, IMAGE_URL, CONTENT, CREATE_DATA, MODIFIED_DATA];
 
-    // With the `rows.insertId`, we can find the created news, and it will
-    // return the an array with length 1.
-    const result = await getNewsById(rows.insertId);
-    return result[0];
+    const rows = database.news.insert({
+      title: args.title,
+      imageUrl: args.imageUrl,
+      content: args.content,
+    });
+    return await database.news.getById(fields, rows.insertId);
   },
-};
+});

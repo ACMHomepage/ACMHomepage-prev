@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 
-import getDatabase from './database';
+import getUser from './user';
 
 const userList = [
   {
@@ -19,7 +19,7 @@ const userList = [
 
 const execute = jest.fn();
 const conn = { execute };
-const database = getDatabase(conn);
+const user = getUser(conn);
 
 beforeEach(() => {
   execute.mockReset();
@@ -27,12 +27,7 @@ beforeEach(() => {
 
 test('Get all users', async () => {
   execute.mockReturnValueOnce([userList, undefined]);
-  let result = await database.user.getAll([
-    'id',
-    'email',
-    'nickname',
-    'isAdmin',
-  ]);
+  let result = await user.getAll(['id', 'email', 'nickname', 'isAdmin']);
   expect(execute).toBeCalledTimes(1);
   expect(execute.mock.calls[0].length).toBe(1);
   expect(execute.mock.calls[0][0]).toMatch(
@@ -43,10 +38,7 @@ test('Get all users', async () => {
 
 test('Get a user by his/her id', async () => {
   execute.mockReturnValueOnce([[userList[0]], undefined]);
-  let result = await database.user.getById(
-    ['id', 'email', 'nickname', 'isAdmin'],
-    1,
-  );
+  let result = await user.getById(['id', 'email', 'nickname', 'isAdmin'], 1);
   expect(execute).toBeCalledTimes(1);
   expect(execute.mock.calls[0].length).toBe(2);
   expect(execute.mock.calls[0][0]).toMatch(

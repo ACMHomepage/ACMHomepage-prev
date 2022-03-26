@@ -6,8 +6,8 @@ import { useLazyQuery, useMutation, gql } from '@apollo/client';
 
 const CREATE_NEWS = gql`
   # The image should be a base64 data string.
-  mutation CreateNews($title: String!, $image_url: String!, $content: String!) {
-    createNews(title: $title, image_url: $image_url, content: $content) {
+  mutation CreateNews($title: String!, $imageUrl: String!, $content: String!) {
+    createNews(title: $title, imageUrl: $imageUrl, content: $content) {
       id
     }
   }
@@ -21,7 +21,7 @@ export interface CreateNewsData {
 
 export interface CreateNewsVars {
   title: string;
-  image_url: string;
+  imageUrl: string;
   content: string;
 }
 
@@ -37,10 +37,10 @@ export const useCreateNews = () => {
 
   const createNewsWithVars = (
     title: string,
-    image_url: string,
+    imageUrl: string,
     content: string,
   ) => {
-    createNews({ variables: { title, image_url, content } });
+    createNews({ variables: { title, imageUrl, content } });
   };
 
   return [createNewsWithVars, state] as [
@@ -58,7 +58,7 @@ const GET_NEWS = gql`
     getNews(id: $id) {
       title
       content
-      image_url
+      imageUrl
     }
   }
 `;
@@ -68,7 +68,7 @@ export interface GetNewsData {
     id: number;
     title: string;
     content: string;
-    image_url: string;
+    imageUrl: string;
   }[];
 }
 
@@ -100,7 +100,7 @@ const GET_NEWS_LIST = gql`
     getNews {
       id
       title
-      image_url
+      imageUrl
       summary
     }
   }
@@ -110,7 +110,7 @@ export interface GetNewsListData {
   getNews: {
     id: number;
     title: string;
-    image_url: string;
+    imageUrl: string;
     summary: string;
   }[];
 }
