@@ -102,7 +102,7 @@ export const createNews = {
       },
     );
     if (!verified) {
-      return {};
+      throw new Error('Cannot verify.');
     }
 
     const sql = `INSERT INTO news
