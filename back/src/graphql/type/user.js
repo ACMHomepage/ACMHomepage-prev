@@ -7,7 +7,8 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from 'graphql';
-
+import jwt from 'jsonwebtoken';
+import { salt } from '../../main.js';
 /******************************************************************************
  * Util function.
  *****************************************************************************/
@@ -109,7 +110,7 @@ export const register = {
       args.email,
       args.password,
       args.nickname,
-      // If this user is the first one, then he is the asmin.
+      // If this user is the first one, then he is the admin.
       userNumber === 0,
     ]);
     return (await getUserById(rows.insertId))[0];
@@ -144,7 +145,18 @@ export const signIn = {
       throw new Error('The password is not right.');
     }
     const res = (await getUserById(id))[0];
-    context.res.cookie('jwt', `${res.email}`);
+    const token = jwt.sign(
+      {
+        id: res.id,
+        isAdmin: res.isAdmin,
+      },
+      salt,
+      {
+        expiresIn: '15d',
+        algorithm: 'HS256',
+      },
+    );
+    context.res.cookie('jwt', token, { httpOnly: true });
     return res;
   },
 };
