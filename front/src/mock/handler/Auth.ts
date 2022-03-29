@@ -1,28 +1,35 @@
 import { graphql } from 'msw';
-import { filter, isUndefined } from 'lodash';
+import { filter } from 'lodash';
 
 import type {
   RegisterData,
   RegisterVars,
   SignInData,
   SignInVars,
-} from '../../store/authSlice';
+  SignOutData,
+} from '../../api/auth';
+import {
+  SIGN_IN_MUTATION_NAME,
+  REGISTER_MUTATION_NAME,
+  SIGN_OUT_MUTATION_NAME,
+} from '../../api/auth';
+import type { UserData } from '../../store/authSlice';
+
+interface FullUserData extends UserData {
+  id: number;
+  password: string;
+}
 
 const data = {
-  _id: 1,
-  users: [
-    {
-      id: 1,
-      nickname: 'Peter',
-      email: 'peterlitszo@gmail.com',
-      password: 'admin123',
-      isAdmin: true,
-    },
-  ],
+  _id: 0,
+  users: [] as FullUserData[],
 };
 
+/**
+ * Handle sign in GraphQL request.
+ */
 const signIn = graphql.mutation<SignInData, SignInVars>(
-  'SignIn',
+  SIGN_IN_MUTATION_NAME,
   (req, res, ctx) => {
     const { email, password } = req.variables;
 
@@ -52,8 +59,11 @@ const signIn = graphql.mutation<SignInData, SignInVars>(
   },
 );
 
+/**
+ * Handle the register GraphQL request.
+ */
 const register = graphql.mutation<RegisterData, RegisterVars>(
-  'Register',
+  REGISTER_MUTATION_NAME,
   (req, res, ctx) => {
     const { nickname, email, password } = req.variables;
 
@@ -64,45 +74,29 @@ const register = graphql.mutation<RegisterData, RegisterVars>(
       nickname,
       email,
       password,
-      isAdmin: false,
+      isAdmin: data.users.length === 0,
     });
 
     return res(
+      ctx.cookie('jwt', `${email}`, { path: '/', httpOnly: true }),
       ctx.data({
-        register: {
-          nickname,
-          email,
-          isAdmin: false,
-        },
+        register: data.users[data._id],
       }),
     );
   },
 );
 
-const currentUser = graphql.query('CurrentUser', (req, res, ctx) => {
-  // In mock data, the jwt will just be the email.
-  const jwt = req.cookies['jwt'];
-  if (isUndefined(jwt)) {
-    return res(ctx.errors([{ message: 'Do not have JWT. Please sign in.' }]));
-  }
-
-  const users = filter(data.users, (user) => user.email === jwt);
-  if (users.length === 0) {
+/**
+ * Handle the sign out GraphQL request.
+ */
+const signOut = graphql.mutation<SignOutData>(
+  SIGN_OUT_MUTATION_NAME,
+  (_req, res, ctx) => {
     return res(
-      ctx.errors([{ message: 'Your JWT is invaild. Please sign in.' }]),
+      ctx.cookie('jwt', '', { path: '/', httpOnly: true }),
+      ctx.data({ signOut: true }),
     );
-  } else if (users.length !== 1) {
-    return res(ctx.errors([{ message: 'I am teapot.' }]));
-  }
+  },
+);
 
-  const { id, nickname, email, isAdmin } = users[0];
-
-  const result = res(
-    ctx.data({
-      currentUser: { id, nickname, email, isAdmin },
-    }),
-  );
-  return result;
-});
-
-export default [signIn, currentUser, register];
+export default [signIn, register, signOut];

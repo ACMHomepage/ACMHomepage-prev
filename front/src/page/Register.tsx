@@ -15,11 +15,8 @@ import {
 import { useSelector } from '../hooks';
 
 import { utilMainPart, boxSx } from '../config';
-import {
-  selectAuthState,
-  AuthStateEnum,
-  useRegister,
-} from '../store/authSlice';
+import { selectAuthState, AuthStateEnum } from '../store/authSlice';
+import { useRegister } from '../api/auth';
 
 // Import components.
 import Header from '../component/Header';
@@ -33,11 +30,12 @@ import { URL as signInUrl } from './SignIn';
 export const URL = '/register';
 
 /**
- * Page `Sign`. Handle the sign in / sign on.
+ * Page `Register`. Handle the user register event.
  */
 export default () => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+
   const [password, setPassword] = useState('');
   const authState = useSelector(selectAuthState);
   const navigator = useNavigate();
@@ -46,8 +44,8 @@ export default () => {
 
   useEffect(() => {
     if (authState === AuthStateEnum.LoggedWithInfo) {
-      // Just go back.
-      navigator(-1);
+      // Just go to the homepage.
+      navigator('/');
     }
   });
 
