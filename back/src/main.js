@@ -2,7 +2,8 @@ import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import { GraphQLSchema } from './graphql/schema.js';
 import cors from 'cors';
-
+import cryptoRandomString from 'crypto-random-string';
+import cookieParser from 'cookie-parser';
 /**
  * GRAPHIQL means if open graphiql (graph-i-ql but not graph-ql). It is helpful
  * for debug.
@@ -12,6 +13,11 @@ const GRAPHIQL = process.env.NODE_ENV === 'development';
 const GraphQLServer = express();
 
 GraphQLServer.use(express.json({ limit: '20mb' }));
+GraphQLServer.use(cookieParser());
+export const salt = cryptoRandomString({
+  length: 32,
+  type: 'base64',
+});
 
 // If the env is development, then open the CORS to support front-end's GraphQL
 // Query and Mutation from another port.
