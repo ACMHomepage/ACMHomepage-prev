@@ -1,11 +1,18 @@
-import { useMutation, gql } from '@apollo/client';
+// TODO: Split this file into folder `auth/`.
+// TODO: I think that store error message into redux is a bad idea. We should
+// return it as the hooks result as well. We do not need `unloggedWithError`.
 
-import { useDispatch } from '../hooks';
+import { useMutation, gql } from '@apollo/client';
+import { useCallback, useEffect } from 'react';
+
+import { useDispatch, useSelector } from '../hooks';
 import {
   signInWithInfo,
   signInAndLoading,
   unloggedWithError,
   signOut,
+  selectAuthState,
+  AuthStateEnum,
 } from '../store/authSlice';
 import type { UserData } from '../store/authSlice';
 
@@ -69,17 +76,31 @@ export const useSignIn = () => {
     SignInVars
   >(SIGN_IN_MUTATION);
   const dispatch = useDispatch();
+  const authState = useSelector(selectAuthState);
 
-  if (data) {
-    dispatch(signInWithInfo(data.signIn));
-  } else if (loading) {
-    dispatch(signInAndLoading());
-  } else if (error) {
-    dispatch(unloggedWithError(error.message));
-  }
+  useEffect(() => {
+    if (data) {
+      if (authState !== AuthStateEnum.LoggedWithInfo)
+        dispatch(signInWithInfo(data.signIn));
+    } else if (loading) {
+      if (authState !== AuthStateEnum.LoggedAndLoadingInfo)
+        dispatch(signInAndLoading());
+    } else if (error) {
+      if (authState !== AuthStateEnum.UnloggedWithError)
+        dispatch(unloggedWithError(error.message));
+    }
+  }, [data, loading, error]);
 
-  return (email: string, password: string) =>
-    signIn({ variables: { email, password } });
+  return useCallback(
+    async (email: string, password: string) => {
+      try {
+        await signIn({ variables: { email, password } });
+      } catch (_err) {
+        /* Do nothing, because it will be catched by redux store. */
+      }
+    },
+    [signIn],
+  );
 };
 
 /******************************************************************************
@@ -148,17 +169,30 @@ export const useRegister = () => {
     RegisterVars
   >(REGISTER_MUTATION);
   const dispatch = useDispatch();
+  const authState = useSelector(selectAuthState);
 
-  if (data) {
-    dispatch(signInWithInfo(data.register));
-  } else if (loading) {
-    dispatch(signInAndLoading());
-  } else if (error) {
-    dispatch(unloggedWithError(error.message));
-  }
+  useEffect(() => {
+    if (data) {
+      if (authState !== AuthStateEnum.LoggedWithInfo) {
+        dispatch(signInWithInfo(data.register));
+      }
+    } else if (loading) {
+      if (authState !== AuthStateEnum.LoggedAndLoadingInfo) {
+        dispatch(signInAndLoading());
+      }
+    } else if (error) {
+      if (authState !== AuthStateEnum.UnloggedWithError) {
+        dispatch(unloggedWithError(error.message));
+      }
+    }
+  }, [data, loading, error]);
 
-  return (nickname: string, email: string, password: string) =>
-    register({ variables: { nickname, email, password } });
+  return useCallback(
+    (nickname: string, email: string, password: string) => {
+      register({ variables: { nickname, email, password } });
+    },
+    [register],
+  );
 };
 
 /******************************************************************************
@@ -197,7 +231,7 @@ export interface SignOutData {
  * const authState = useSelector(selectAuthState);
  *
  * return (
- *   <button onClick={signOut()}>
+ *   <button onClick={signOut}>
  *     {
  *       // Remember it do not hold all state!
  *       authState === AuthStateEnum.LoggedWithInfo
@@ -210,13 +244,22 @@ export interface SignOutData {
  */
 
 export const useSignOut = () => {
-  const [signOutFunction, { data }] =
+  const [signOutFunction, { data, error }] =
     useMutation<SignOutData>(SIGN_OUT_MUTATION);
   const dispatch = useDispatch();
+  const authState = useSelector(selectAuthState);
 
-  if (data) {
-    dispatch(signOut());
-  }
+  useEffect(() => {
+    if (data) {
+      if (authState !== AuthStateEnum.Unlogged) {
+        dispatch(signOut());
+      }
+    } else if (error) {
+      if (authState !== AuthStateEnum.UnloggedWithError) {
+        dispatch(unloggedWithError(error.message));
+      }
+    }
+  }, [data, error]);
 
-  return signOutFunction;
+  return useCallback(() => signOutFunction(), [signOutFunction]);
 };
