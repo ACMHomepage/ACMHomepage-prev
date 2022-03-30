@@ -15,7 +15,8 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development node ./src/main.js",
-    "start": "NODE_ENV=production node ./src/main.js"
+    "start": "NODE_ENV=production node ./src/main.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "type": "module"
 }
