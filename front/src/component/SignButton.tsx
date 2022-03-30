@@ -8,18 +8,19 @@ import { URL as signInUrl } from '../page/SignIn';
 import { useSignOut } from '../api/auth';
 
 import Button from './Button';
+import { useEffect } from 'react';
 
 interface SignInOrRegisterProps {
   className?: string;
 }
 
 /**
- * SignInOrRegister. A button to go to sign in / register page.
+ * SignInOrRegisterButton. A button to go to sign in / register page.
  *
  * @param props - Holdes:
  * - className. `<string>`. To set its class.
  */
-const SignInOrRegister = (props: SignInOrRegisterProps) => {
+const SignInOrRegisterButton = (props: SignInOrRegisterProps) => {
   const { className } = props;
 
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const SignInOrRegister = (props: SignInOrRegisterProps) => {
       onClick={() => navigate(signInUrl)}
     >
       <LogIn size={16} />
-      Sign in / Sign up
+      Sign in / Register
     </Button>
   );
 };
@@ -40,31 +41,31 @@ interface SignOutProps {
 }
 
 /**
- * SignOut. A button to go to sign out.
+ * SignOutButton. A button to go to sign out.
  *
  * @param props - Holdes:
  * - className. `<string>`. To set its class.
  */
-const SignOut = (props: SignOutProps) => {
+const SignOutButton = (props: SignOutProps) => {
   const { className } = props;
 
   const signOut = useSignOut();
   const authState = useSelector(selectAuthState);
   const navigate = useNavigate();
 
-  if (authState === AuthStateEnum.Unlogged) {
-    // If sign out, then go to the homepage.
-    navigate('/');
-  }
+  useEffect(() => {
+    if (authState === AuthStateEnum.Unlogged) {
+      // If sign out, then go to the homepage.
+      navigate('/');
+    }
+  }, [authState]);
 
   // TODO: Let it can sign out.
   return (
     <Button
       sx={flexbox({ gap: '0.25rem' })}
       className={className}
-      onClick={() => {
-        signOut();
-      }}
+      onClick={signOut}
     >
       <LogOut size={16} />
       Sign out
@@ -83,13 +84,15 @@ interface SignButtonProps {
  * @param props - Holdes:
  * - className. `<string>`. To set its class.
  */
-export default (props: SignButtonProps) => {
+const SignButton = (props: SignButtonProps) => {
   const { className } = props;
   const authState = useSelector(selectAuthState);
 
-  if (authState !== AuthStateEnum.LoggedWithInfo) {
-    return <SignInOrRegister className={className} />;
-  } else {
-    return <SignOut className={className} />;
-  }
+  return authState !== AuthStateEnum.LoggedWithInfo ? (
+    <SignInOrRegisterButton className={className} />
+  ) : (
+    <SignOutButton className={className} />
+  );
 };
+
+export default SignButton;
