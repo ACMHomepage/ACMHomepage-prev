@@ -1,3 +1,5 @@
+// TODO: Move those to the folder `api/`. :)
+
 import { useLazyQuery, useMutation, gql } from '@apollo/client';
 
 /******************************************************************************
