@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "jsxImportSource": "theme-ui"
   },
-  "include": ["./src"]
+  "include": ["./src", "./jest-setup.ts"]
 }

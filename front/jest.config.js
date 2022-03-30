@@ -6,4 +6,5 @@ module.exports = {
   transform: {
     '^.+\\.[tj]s$': 'ts-jest',
   },
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
 };
