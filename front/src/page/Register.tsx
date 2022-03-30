@@ -47,7 +47,7 @@ export default () => {
       // Just go to the homepage.
       navigator('/');
     }
-  });
+  }, [authState]);
 
   // TODO: Return error if the nickname, email or password is empty.
   // TODO: We do not handler if email is already in database.
@@ -84,7 +84,7 @@ export default () => {
           )}
           onClick={() => register(nickname, email, password)}
         >
-          Resgister
+          Register
         </Button>
       </div>
       <div sx={boxSx}>

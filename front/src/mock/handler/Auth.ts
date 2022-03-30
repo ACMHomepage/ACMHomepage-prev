@@ -28,7 +28,7 @@ const data = {
 /**
  * Handle sign in GraphQL request.
  */
-const signIn = graphql.mutation<SignInData, SignInVars>(
+export const signIn = graphql.mutation<SignInData, SignInVars>(
   SIGN_IN_MUTATION_NAME,
   (req, res, ctx) => {
     const { email, password } = req.variables;
@@ -62,7 +62,7 @@ const signIn = graphql.mutation<SignInData, SignInVars>(
 /**
  * Handle the register GraphQL request.
  */
-const register = graphql.mutation<RegisterData, RegisterVars>(
+export const register = graphql.mutation<RegisterData, RegisterVars>(
   REGISTER_MUTATION_NAME,
   (req, res, ctx) => {
     const { nickname, email, password } = req.variables;
@@ -80,7 +80,7 @@ const register = graphql.mutation<RegisterData, RegisterVars>(
     return res(
       ctx.cookie('jwt', `${email}`, { path: '/', httpOnly: true }),
       ctx.data({
-        register: data.users[data._id],
+        register: data.users[data._id - 1],
       }),
     );
   },
@@ -89,7 +89,7 @@ const register = graphql.mutation<RegisterData, RegisterVars>(
 /**
  * Handle the sign out GraphQL request.
  */
-const signOut = graphql.mutation<SignOutData>(
+export const signOut = graphql.mutation<SignOutData>(
   SIGN_OUT_MUTATION_NAME,
   (_req, res, ctx) => {
     return res(
