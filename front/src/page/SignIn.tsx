@@ -14,7 +14,7 @@ import {
 
 import { useSelector } from '../hooks';
 import { utilMainPart, boxSx } from '../config';
-import { selectAuthState, AuthStateEnum } from '../store/authSlice';
+import { selectAuth, AuthStateEnum } from '../store/authSlice';
 import { useSignIn } from '../api/auth';
 
 import Header from '../component/Header';
@@ -27,20 +27,20 @@ export const URL = '/signin';
 /**
  * Page `Sign`. Handle the sign in / sign on.
  */
-export default () => {
+const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const signIn = useSignIn();
-  const authState = useSelector(selectAuthState);
+  const auth = useSelector(selectAuth);
   const navigator = useNavigate();
 
   useEffect(() => {
-    if (authState === AuthStateEnum.LoggedWithInfo) {
+    if (auth.state === AuthStateEnum.LoggedWithInfo) {
       // Just go to the homepage.
       navigator('/');
     }
-  });
+  }, [auth]);
 
   return (
     <Header.Space sx={utilMainPart}>
@@ -72,6 +72,9 @@ export default () => {
             Forget password?
           </a>
         </div>
+        {auth.state === AuthStateEnum.UnloggedWithError ? (
+          <div>{`Error!! ${auth.message}`}</div>
+        ) : null}
         <Button
           sx={merge(
             border({ width: '2px', col: { _: 'bg-4', hv: 'bg-5' } }),
@@ -92,3 +95,5 @@ export default () => {
     </Header.Space>
   );
 };
+
+export default SignIn;
