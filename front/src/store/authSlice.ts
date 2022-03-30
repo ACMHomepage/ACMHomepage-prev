@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useMutation, gql } from '@apollo/client';
 
 import type { RootState } from './store';
-import { useDispatch } from '../hooks';
 
 /******************************************************************************
  * Constant values.
@@ -45,6 +43,7 @@ interface Unlogged {
 
 interface UnloggedWithError {
   state: AuthStateEnum.UnloggedWithError;
+  message: string;
 }
 
 type AuthState =
@@ -91,9 +90,12 @@ export const authSlice = createSlice({
       localStorage.removeItem(IS_LOGGED_ITEM_KEY);
       state.state = AuthStateEnum.LoggedWithoutInfo;
     },
-    unloggedWithError: (state: AuthState) => {
+    unloggedWithError: (_state: AuthState, actions: PayloadAction<string>) => {
       localStorage.removeItem(IS_LOGGED_ITEM_KEY);
-      state.state = AuthStateEnum.UnloggedWithError;
+      return {
+        state: AuthStateEnum.UnloggedWithError,
+        message: actions.payload,
+      } as UnloggedWithError;
     },
   },
 });

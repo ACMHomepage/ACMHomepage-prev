@@ -75,7 +75,7 @@ export const useSignIn = () => {
   } else if (loading) {
     dispatch(signInAndLoading());
   } else if (error) {
-    dispatch(unloggedWithError());
+    dispatch(unloggedWithError(error.message));
   }
 
   return (email: string, password: string) =>
@@ -154,7 +154,7 @@ export const useRegister = () => {
   } else if (loading) {
     dispatch(signInAndLoading());
   } else if (error) {
-    dispatch(unloggedWithError());
+    dispatch(unloggedWithError(error.message));
   }
 
   return (nickname: string, email: string, password: string) =>
