@@ -123,11 +123,10 @@ export const signIn = (database) => ({
       nickname: user[NICKNAME],
       isAdmin: user[IS_ADMIN],
     };
-    const token = jwt.sign(
-      { id: res.id, isAdmin: res.isAdmin },
-      salt,
-      { expiresIn: '15d', algorithm: 'HS256' },
-    );
+    const token = jwt.sign({ id: res.id, isAdmin: res.isAdmin }, salt, {
+      expiresIn: '15d',
+      algorithm: 'HS256',
+    });
     context.res.cookie('jwt', token, { httpOnly: true });
     return res;
   },
