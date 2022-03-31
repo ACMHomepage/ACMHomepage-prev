@@ -11,7 +11,6 @@ import { useLocation } from 'react-router-dom';
 
 import theme from '../util/theme';
 import store from '../store/store';
-import { server } from '../mock/server';
 import { client } from '../client';
 
 import SignIn, { URL as signInURL } from './SignIn';
@@ -25,12 +24,6 @@ const Warpper = ({ children }: { children: ReactNode }) => (
     </ApolloProvider>
   </Provider>
 );
-
-beforeAll(() => server.listen());
-
-beforeEach(() => server.resetHandlers());
-
-afterAll(() => server.close());
 
 test('Make sure `Resgister` looks same as before.', () => {
   const { container } = render(

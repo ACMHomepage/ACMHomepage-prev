@@ -21,13 +21,6 @@ const RegisterWapper = ({ children }: { children: ReactNode }) => (
     </ApolloProvider>
   </Provider>
 );
-const server = setupServer(registerHandler);
-
-beforeAll(() => server.listen());
-
-beforeEach(() => server.resetHandlers());
-
-afterAll(() => server.close());
 
 test('Make sure `Resgister` looks same as before.', () => {
   const { container } = render(
