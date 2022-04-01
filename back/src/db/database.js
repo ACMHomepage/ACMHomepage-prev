@@ -1,5 +1,5 @@
-import getUser from './database/user';
-import getNews from './database/news';
+import getUser from './database/user.js';
+import getNews from './database/news.js';
 
 const getDatabase = (conn) => ({
   user: getUser(conn),

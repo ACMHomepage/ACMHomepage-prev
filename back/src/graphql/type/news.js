@@ -6,7 +6,7 @@ import {
   GraphQLID,
   GraphQLNonNull,
 } from 'graphql';
-import { salt } from '../../main.js';
+import { salt } from '../../salt.js';
 import jwt from 'jsonwebtoken';
 /******************************************************************************
  * Main part

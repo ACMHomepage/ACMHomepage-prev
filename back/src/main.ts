@@ -3,6 +3,7 @@ import { graphqlHTTP } from 'express-graphql';
 import { GraphQLSchema } from './graphql/schema.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import { IncomingMessage, ServerResponse } from 'http';
 /**
  * GRAPHIQL means if open graphiql (graph-i-ql but not graph-ql). It is helpful
  * for debug.
@@ -23,7 +24,7 @@ if (process.env.NODE_ENV === 'development') {
 GraphQLServer.use(
   '/graphql',
   // Let the req and res be in these `resolve` functions' context.
-  (req, res) => {
+  (req: IncomingMessage & { url: string; }, res: ServerResponse & { json?: (data: unknown) => void; }) => {
     return graphqlHTTP({
       schema: GraphQLSchema,
       graphiql: GRAPHIQL,
