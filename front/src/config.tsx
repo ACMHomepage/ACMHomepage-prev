@@ -2,7 +2,7 @@ import React from 'react';
 import type { ThemeUIStyleObject } from 'theme-ui';
 import { merge } from 'lodash';
 import { border, size, spacing, bg, text } from '@acm-homepage/theme-shortcut';
-
+todo : import requirejs
 import Header from './component/Header';
 
 import { mRV } from './util/theme';
@@ -17,7 +17,23 @@ export const title = (
     ACM Homepage
   </React.Fragment>
 );
+export function Copy() {
+    const [copySuccess, setCopySuccess] = useState("")
+    const textAreaRef = useRef(null)
 
+    async function copyToClip() {
+        await navigator.clipboard.writeText(location.href);
+        setCopySuccess("Copied");
+    }
+
+    return (
+        <>
+            <Text onClick={copyToClip}>
+                Copy
+            </Text>
+        </>
+    )
+}
 export const footer = <span>This is footer.</span>;
 
 export const info = (
@@ -28,6 +44,8 @@ export const info = (
     <Header headnumber={4} sx={{ textAlign: 'left', py: '1rem' }}>
       Soochow University
     </Header>
+	
+	
     <div>
       Soochow University, also known as Suzhou University, is a public
       university in Suzhou (Soochow), China. Its root can be traced to the
@@ -41,6 +59,7 @@ export const info = (
       Chemistry, Chemical Engineering and Materials Science, and School of
       Medicine are the university's most distinguished schools.
     </div>
+	<Copy />
   </React.Fragment>
 );
 
