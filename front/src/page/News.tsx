@@ -11,6 +11,8 @@ import Header from '../component/Header';
 
 import _404 from './404';
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 export default () => {
   const { newsId } = useParams();
 
@@ -55,11 +57,7 @@ export default () => {
       >
         {new_.title}
       </Header>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: replace(new_.content, /\n/g, '<br />'),
-        }}
-      />
+      <ReactMarkdown children={new_.content} remarkPlugins={[remarkGfm]} />
     </div>
   );
 };
