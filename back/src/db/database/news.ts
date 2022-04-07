@@ -2,7 +2,7 @@ const ID = 'id';
 const TITLE = 'title';
 const IMAGE_URL = 'imageUrl';
 const CONTENT = 'content';
-const CREATE_DATE = 'createDate';
+const CREATE_DATE = 'createdDate';
 const MODIFIED_DATE = 'modifiedDate';
 
 const getNews = (conn) => ({
