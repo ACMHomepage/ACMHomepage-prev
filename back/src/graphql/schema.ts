@@ -14,7 +14,7 @@ const database = getDatabase(conn);
 export const QueryType = new GraphQLObjectType({
   name: 'query',
   fields: {
-    getNews,
+    getNews: getNews(database),
     getUser: getUser(database),
   },
 });
@@ -22,7 +22,7 @@ export const QueryType = new GraphQLObjectType({
 export const MutationType = new GraphQLObjectType({
   name: 'mutation',
   fields: {
-    createNews,
+    createNews: createNews(database),
     register: register(database),
     signIn: signIn(database),
   },

@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise';
+import {createConnection} from 'mysql2/promise';
 
 /**
  * MySQL connection object. Make sure that the values match the Dockerfile,
@@ -7,7 +7,7 @@ import mysql from 'mysql2/promise';
 export const conn = await (async () => {
   while (true) {
     try {
-      return await mysql.createConnection({
+      return await createConnection({
         // Check `docker-compose.yml` in the root of project.
         host: 'db',
         user: 'root',

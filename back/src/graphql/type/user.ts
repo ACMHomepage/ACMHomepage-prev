@@ -6,9 +6,9 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from 'graphql';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import { salt } from '../../salt.js';
-
+const {sign} = jwt;
 /******************************************************************************
  * Main part
  *****************************************************************************/
@@ -123,7 +123,7 @@ export const signIn = (database) => ({
       nickname: user[NICKNAME],
       isAdmin: user[IS_ADMIN],
     };
-    const token = jwt.sign({ id: res.id, isAdmin: res.isAdmin }, salt, {
+    const token = sign({ id: res.id, isAdmin: res.isAdmin }, salt, {
       expiresIn: '15d',
       algorithm: 'HS256',
     });
