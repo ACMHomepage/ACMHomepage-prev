@@ -25,3 +25,17 @@ CREATE TABLE IF NOT EXISTS user (
   nickname TEXT NOT NULL,
   isAdmin BOOL NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS tag (
+    id INT NOT NULL AUTO_INCREMENt,
+    name VARCHAR(64) NOT NULL UNIQUE,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS tagNewsRelation (
+    tagID INT NOT NULL,
+    newsID INT NOT NULL,
+    PRIMARY KEY(tagID, newsID),
+    FOREIGN KEY(tagID) REFERENCES tag(id)
+    FOREIGN KEY(newsID) REFERENCES news(id),
+);
