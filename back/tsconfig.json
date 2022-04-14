@@ -8,13 +8,10 @@
         "outDir":"./build",
         "watch":false,
         "allowJs": true,
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "skipLibCheck": true
     },
-    "include":[
-        "./src/**/*",
-        "../node_modules/*",
-        "../../node_modules/*"
-    ],
+    "include":[ "./src" ],
     "exclude":[
         "views",
         "static"
