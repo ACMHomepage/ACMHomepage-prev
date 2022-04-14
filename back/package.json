@@ -14,9 +14,13 @@
     "mysql2": "^2.3.3"
   },
   "scripts": {
-    "dev": "NODE_ENV=development && tsc --project ./ && node ./build/main.js",
+    "dev": "tsc --project ./ && NODE_ENV=development node ./build/main.js",
     "start": "NODE_ENV=production node ./build/main.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "jest ./src"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "ts-jest": "^27.1.4"
+  }
 }

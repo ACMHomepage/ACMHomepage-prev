@@ -1,9 +1,11 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
-import { GraphQLSchema } from './graphql/schema.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { IncomingMessage, ServerResponse } from 'http';
+import type { IncomingMessage, ServerResponse } from 'http';
+
+import { GraphQLSchema } from './graphql/schema.js';
+
 /**
  * GRAPHIQL means if open graphiql (graph-i-ql but not graph-ql). It is helpful
  * for debug.

@@ -2,17 +2,30 @@ import { jest } from '@jest/globals';
 
 import { getUser, register, signIn } from './user';
 
-let userList = [];
-userList._id = 1;
+interface User {
+  nickname: string;
+  email: string;
+  isAdmin: boolean;
+  password: string;
+}
 
-const PETER = {
+interface UserWithId extends User {
+  id: number;
+}
+
+let userList = [] as UserWithId[];
+let _userListId = 1;
+
+const PETER: User = {
   nickname: 'peter',
   email: 'p@g.c',
+  password: 'pp',
   isAdmin: true,
 };
-const MARY = {
+const MARY: User = {
   nickname: 'mary',
   email: 'm@g.c',
+  password: 'mm',
   isAdmin: false,
 };
 
@@ -29,9 +42,9 @@ const getByEmail = jest.fn((_fields, email) => {
   return userList.filter((u) => u.email === email)[0];
 });
 const getNumber = jest.fn(() => userList.length);
-const insert = jest.fn((user) => {
-  userList.push({ ...user, [ID]: userList._id });
-  return { insertId: userList._id++ };
+const insert = jest.fn((user: User) => {
+  userList.push({ ...user, [ID]: _userListId });
+  return { insertId: _userListId++ };
 });
 
 const database = {
@@ -45,17 +58,17 @@ const database = {
   },
 };
 
-let contextCookie = {};
+let contextCookie: { jwt?: undefined } = {};
 
 const context = {
   res: {
-    cookie: jest.fn((key, value) => (contextCookie[key] = value)),
+    cookie: jest.fn((key: string, value: string) => (contextCookie[key] = value)),
   },
 };
 
 beforeEach(() => {
   userList = [];
-  userList._id = 1;
+  _userListId = 1;
 
   getAll.mockClear();
   getById.mockClear();
