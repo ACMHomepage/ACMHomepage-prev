@@ -7,7 +7,7 @@ import {
   GraphQLString,
 } from 'graphql';
 import jwt from 'jsonwebtoken';
-import { salt } from '../../salt';
+import { salt } from '../../salt.js';
 
 /******************************************************************************
  * Main part
