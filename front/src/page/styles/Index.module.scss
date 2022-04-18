@@ -1,0 +1,62 @@
+@use "../../styles/duration";
+@use "../../styles/mixin";
+@use "../../styles/mediaQuery";
+@use "../../styles/color";
+@use "../../styles/fontWeight";
+@use "../../styles/fontSize";
+@use "../../styles/lineHeight";
+
+.header_wrapper {
+    @include mixin.mainpart;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+
+    @media (width > mediaQuery.$md) {
+        padding-top: 10rem;
+        padding-bottom: 10rem;
+    }
+}
+
+.header {
+    font-size: 2.75rem;
+    line-height: 3rem;
+    font-weight: fontWeight.$extrabold;
+    line-height: lineHeight.$tight;
+
+    @media (width > mediaQuery.$md) {
+        font-size: 3.25rem;
+    }
+    @media (width > mediaQuery.$lg) {
+        font-size: 3.75rem;
+    }
+}
+
+.info_button {
+    @include mixin.clickable;
+
+    background-color: color.$prime;
+    color: color.$fg-on-prime;
+    padding: 0.5rem 2rem;
+    font-size: fontSize.$lg;
+
+    &:hover {
+        background-color: color.$prime-darker;
+    }
+}
+
+.news_wrapper {
+    @include mixin.mainpart($padding-at-begin: 0);
+}
+
+.news_title {
+    @include mixin.mainpart;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

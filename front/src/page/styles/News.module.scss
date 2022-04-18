@@ -1,0 +1,45 @@
+@use "../../styles/mixin";
+@use "../../styles/mediaQuery";
+
+.wrapper {
+    @include mixin.mainpart($padding-at-begin: 0);
+
+    margin-top: 0rem;
+
+    @media (width > mediaQuery.$md) {
+        margin-top: 2rem;
+    }
+}
+
+.news {
+    box-shadow: var(--shadow);
+    background-color: var(--clr-bg);
+    border-radius: 0;
+
+    @media (width > mediaQuery.$md) {
+        border-radius: var(--rad);
+    }
+}
+
+.img {
+    width: 100%;
+    border-radius: 0;
+    aspect-ratio: 16 / 9;
+    background-color: var(--clr-bg-third);
+
+    @media (width > mediaQuery.$md) {
+        border-top-left-radius: var(--rad);
+        border-top-right-radius: var(--rad);
+    }
+}
+
+.header {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    font-size: var(--fs-h0);
+}
+
+.content {
+    padding: 1rem;
+}

@@ -1,18 +1,16 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { replace, isUndefined } from 'lodash';
-import { merge } from 'lodash';
-import { size, layout, text, spacing } from '@acm-homepage/theme-shortcut';
+import { useParams } from 'react-router-dom';
+import { isUndefined } from 'lodash';
 import { useEffect } from 'react';
 
 import { utilMainPart } from '../config';
 import { useGetNews } from '../store/newsSlice';
 
-import Header from '../component/Header';
+import Markdown from '../component/Markdown/Markdown';
 
 import _404 from './404';
 
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import styles from './styles/News.module.scss';
+
 export default () => {
   const { newsId } = useParams();
 
@@ -41,23 +39,12 @@ export default () => {
   const new_ = data.getNews[0];
 
   return (
-    <div sx={utilMainPart}>
-      <img
-        src={new_.imageUrl}
-        sx={merge(
-          size({ w: '100%', h: '50vh' }),
-          layout({ objectFit: 'cover' }),
-        )}
-      />
-      <Header
-        sx={merge(
-          text({ align: 'left' }),
-          spacing({ m: { t: '1rem', b: '1rem' } }),
-        )}
-      >
-        {new_.title}
-      </Header>
-      <ReactMarkdown children={new_.content} remarkPlugins={[remarkGfm]} />
+    <div className={styles.wrapper}>
+      <div className={styles.news}>
+        <img src={new_.imageUrl} className={styles.img} />
+        <h1 className={styles.header}>{new_.title}</h1>
+        <Markdown children={new_.content} className={styles.content} />
+      </div>
     </div>
   );
 };
