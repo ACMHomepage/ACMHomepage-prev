@@ -1,0 +1,23 @@
+@use "../../../index";
+@use "../../../styles/mixin";
+@use "../../../styles/color";
+@use "./Nav.module.scss";
+
+@mixin dropdownItem {
+  @include mixin.clickable;
+
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  background-color: color.$bg-second;
+  gap: 0.75rem;
+
+  &:hover {
+    background-color: color.$bg-third;
+  }
+
+  svg {
+    height: 1rem;
+    width: 1rem;
+  }
+} 

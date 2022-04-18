@@ -1,0 +1,35 @@
+@use "../../../styles/mixin";
+@use "./Nav.module.scss";
+
+.button {
+  @include mixin.clickable;
+  @include Nav.nav_font_size;
+
+  display: block;
+
+  color: var(--clr-fg-on-prime);
+  background-color: var(--clr-prime);
+  border-color: var(--clr-prime-darker);
+
+  @media (--md) {
+    display: none;
+  }
+
+  &:hover {
+    background-color: var(--clr-prime-darker)
+  }
+}
+
+.list {
+  position: absolute;
+  top: 2.15rem;
+  right: 0;
+  width: 15rem;
+  color: var(--clr-fg);
+  background-color: var(--clr-bg-second);
+  border: 1px var(--clr-prime) solid;
+  border-radius: var(--rad);
+  box-shadow: var(--shadow);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}

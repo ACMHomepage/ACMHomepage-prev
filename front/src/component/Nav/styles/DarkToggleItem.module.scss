@@ -1,0 +1,5 @@
+@import "./dropdownItem";
+
+.darkToggleItem {
+  @include dropdownItem;
+} 

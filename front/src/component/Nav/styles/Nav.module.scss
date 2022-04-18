@@ -1,0 +1,52 @@
+@use "../../../styles/mixin";
+@use "../../../styles/mediaQuery";
+@use "../../../styles/color";
+@use "../../../styles/shadow";
+
+$sm_size: 0.75rem;
+
+@mixin nav_font_size {
+  font-size: $sm_size;
+
+  @media(width > mediaQuery.$sm) {
+    font-size: 1rem;
+  }
+}
+
+@mixin nav_svg {
+  height: $sm_size;
+  width: $sm_size;
+
+  @media(width > mediaQuery.$sm) {
+    height: 1rem;
+    width: 1rem;
+  }
+}
+
+.Nav {
+  color: color.$fg-on-prime;
+  background-color: color.$prime;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  box-shadow: shadow.$md;
+}
+
+.Main {
+  @include mixin.mainpart;
+
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  button {
+    padding: 0.375rem;
+  }
+}
+
+.Space {
+  flex: 1;
+}

@@ -19,7 +19,7 @@ import Resgister, { URL as resgisterUrl } from './page/Register';
 import PostNews, { URL as postNewsUrl } from './page/PostNews';
 
 // Import components.
-import Nav from './component/Nav';
+import Nav from './component/Nav/Nav';
 import Footer from './component/Footer';
 import ScrollToTop from './component/ScrollToTop.tsx';
 import Preflight from './component/Preflight';

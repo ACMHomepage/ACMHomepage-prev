@@ -1,0 +1,20 @@
+@use "../../../styles/color";
+@use "../../../styles/mixin";
+@use "./Nav.module.scss" as Nav;
+
+.logo {
+  @include mixin.clickable($shadow-hover: var(--shadow-none));
+  @include Nav.nav_font_size;
+
+  display: flex;
+  align-items: center;
+  color: color.$fg-on-prime;
+
+  &:hover {
+    color: color.$fg-second-on-prime;
+  }
+}
+
+.img {
+  height: 2rem;
+}
