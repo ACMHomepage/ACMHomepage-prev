@@ -1,0 +1,26 @@
+.markdown {
+    h1 { font-size: var(--fs-5xl); }
+    h2 { font-size: var(--fs-4xl); }
+    h3 { font-size: var(--fs-3xl); }
+    h4 { font-size: var(--fs-2xl); }
+    h5 { font-size: var(--fs-xl); }
+    h6 { font-size: var(--fs-lg); }
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: var(--fw-bold);
+        line-height: 1.5;
+        line-height: var(--lh-tight);
+        margin: calc(var(--fs-base) / 2) 0;
+    }
+    p {
+        font-size: var(--fs-base);
+        font-weight: var(--fw-base);
+        line-height: var(--lh-base);
+        margin: 0 0 var(--fs-base) 0;
+    }
+    pre {
+        background-color: var(--clr-bg-second);
+        border-radius: var(--rad);
+        padding: 0.5rem;
+        margin: 0 0 var(--fs-base) 0;
+    }
+}
