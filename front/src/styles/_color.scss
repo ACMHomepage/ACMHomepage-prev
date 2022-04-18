@@ -1,0 +1,28 @@
+:root {
+    --clr-bg: white;
+    --clr-bg-second: #EEE;
+    --clr-bg-third: #DDD;
+    --clr-fg: black;
+    --clr-border: #CCC;
+
+    &.dark {
+        --clr-bg: #222;
+        --clr-bg-second: #333;
+        --clr-bg-third: #444;
+        --clr-fg: white;
+        --clr-border: #555;
+    }
+}
+
+$bg: var(--clr-bg);
+$bg-second: var(--clr-bg-second);
+$bg-third: var(--clr-bg-third);
+$fg: var(--clr-fg);
+$fg-on-prime: white;
+$fg-second-on-prime: #EEE;
+$border: var(--clr-border);
+$gray: #777;
+$prime: hsl(142, 40%, 50%);
+$prime-lighter: hsl(142, 40%, 60%);
+$prime-darker: hsl(142, 40%, 40%);
+

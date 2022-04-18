@@ -1,0 +1,70 @@
+@use "./styles/color";
+@use "./styles/fontFamily";
+@use "./styles/timingFunc";
+@use "./styles/fontWeight";
+@use "./styles/fontSize";
+@use "./styles/duration";
+
+:root {
+    color: color.$fg;
+    background-color: color.$bg-second;
+    font-size: 18px;
+    font-family: fontFamily.$sans;
+}
+
+* {
+    color: inherit;
+    box-sizing: border-box;
+    transition-timing-function: timingFunc.$ease-in-out;
+}
+
+blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: fontWeight.$bold;
+}
+
+h1 { font-size: fontSize.$h1; }
+h2 { font-size: fontSize.$h2; }
+h3 { font-size: fontSize.$h3; }
+h4 { font-size: fontSize.$h4; }
+h5 { font-size: fontSize.$h5; }
+h6 { font-size: fontSize.$h6; }
+
+ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    border-width: 0;
+    border-style: solid;
+}
+
+img {
+    background-color: color.$gray;
+}
+
+a {
+    color: color.$prime;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 1px;
+    cursor: 'pointer';
+    transition: color duration.$base;
+
+    &:hover {
+        color: color.$prime-darker;
+    }
+}
+
+button {
+    border-radius: 0.25rem;
+    background-color: transparent;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
