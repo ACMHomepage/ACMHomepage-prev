@@ -1,0 +1,22 @@
+@use "../../../styles/color";
+@use "../../../styles/mixin";
+@use "../../../styles/mediaQuery";
+@use "./Nav.module.scss" as Nav;
+
+.button {
+  @include mixin.clickable;
+
+  display: none;
+
+  &:hover {
+    background-color: color.$prime-darker;
+  }
+
+  @media (width > mediaQuery.$md) {
+    display: block;
+  }
+
+  svg {
+    @include Nav.nav_svg;
+  }
+} 

@@ -1,0 +1,5 @@
+@use "./dropdownItem";
+
+.postNewsItem {
+  @include dropdownItem.dropdownItem;
+} 

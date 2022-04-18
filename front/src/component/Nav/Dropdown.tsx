@@ -14,12 +14,14 @@ import {
   outline,
 } from '@acm-homepage/theme-shortcut';
 
-import useOutsideListener from '../util/outsideListener';
+import useOutsideListener from '../../util/outsideListener';
 
-import Button from './Button';
-import SignButton from './SignButton';
-import DarkToggle from './DarkToggle';
-import { PostNews } from './Nav';
+import Button from '../Button';
+import DarkToggleItem from './DarkToggleItem';
+import SignItem from './SignItem';
+import PostNewsItem from './PostNewsItem';
+
+import styles from './styles/Dropdown.module.scss';
 
 interface MenuProps {
   className?: string;
@@ -88,60 +90,19 @@ export default ({ buttonSx, className }: DropdownProps) => {
       setOpen={setOpen}
       className={className}
     >
-      <Button
-        sx={merge(
-          size({ h: '2rem' }),
-          border({ width: '1px', col: 'bg-4' }),
-          bg({ col: { _: 'bg-2', hover: 'bg-4' } }),
-          buttonSx,
-        )}
+      <button
+        className={styles.button}
         onClick={Menu.toggleOpen(open, setOpen)}
       >
         <MenuIcon size={20} />
-        Menu
-      </Button>
+      </button>
       <Menu.Items
         open={open}
         self={
-          <div
-            sx={merge(
-              layout({ pos: 'absolute', t: '2.5rem', r: 0 }),
-              size({ w: '16rem' }),
-              spacing({ p: { t: '0.5rem', b: '0.5rem' } }),
-              bg({ col: 'bg-2' }),
-              border({ width: '1px', col: 'bg-4', radius: '0.25rem' }),
-            )}
-          >
-            <DarkToggle
-              sx={merge(
-                bg({ col: { _: 'bg-2', hover: 'bg-4' } }),
-                spacing({ p: '0.5rem' }),
-                size({ h: '2.5rem' }),
-                border({ width: '0px', radius: '0px' }),
-                outline({ width: { hover: '2px' } }),
-              )}
-            />
-            <SignButton
-              sx={merge(
-                flexbox({ gap: '0.25rem', place: { content: 'start' } }),
-                size({ h: '2.5rem', w: '100%' }),
-                spacing({ p: '0.5rem' }),
-                bg({ col: { _: 'bg-2', hover: 'bg-4' } }),
-                border({ radius: '0px', width: '0px' }),
-                font({ size: 'base' }),
-                text({ col: 'fg-0' }),
-              )}
-            />
-            <PostNews
-              sx={merge(
-                size({ w: '100%', h: '2.5rem' }),
-                flexbox({ place: { content: 'start' } }),
-                font({ size: 'base' }),
-                text({ col: 'fg-0' }),
-                spacing({ p: '0.5rem' }),
-                border({ width: '0px' }),
-              )}
-            />
+          <div className={styles.list}>
+            <DarkToggleItem />
+            <SignItem />
+            <PostNewsItem />
           </div>
         }
       />
