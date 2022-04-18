@@ -99,9 +99,9 @@ export const createNews = (database) => ({
     );
 
     const FIELDS = database.news.FIELDS;
-    const { ID, TITLE, IMAGE_URL, CONTENT, CREATE_DATA, MODIFIED_DATA } =
+    const { ID, TITLE, IMAGE_URL, CONTENT, CREATE_DATA: CREATED_DATE, MODIFIED_DATA } =
       FIELDS;
-    const fields = [ID, TITLE, IMAGE_URL, CONTENT, CREATE_DATA, MODIFIED_DATA];
+    const fields = [ID, TITLE, IMAGE_URL, CONTENT, CREATED_DATE, MODIFIED_DATA];
 
     const rows = database.news.insert({
       title: args.title,
