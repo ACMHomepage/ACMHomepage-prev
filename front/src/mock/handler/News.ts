@@ -4,34 +4,60 @@ import { faker } from '@faker-js/faker';
 
 import type { CreateNewsData, CreateNewsVars } from '../../store/newsSlice';
 
+const markdown = [
+  '# This is the H1',
+  faker.lorem.paragraphs(1, '\n\n'),
+  '## This is the H2',
+  faker.lorem.paragraphs(2, '\n\n'),
+  '```js',
+  'const a = 10;',
+  '```',
+  faker.lorem.paragraphs(2, '\n\n'),
+  'This is a [link](localhost) for you',
+  '### This is the H3',
+  faker.lorem.paragraphs(1, '\n\n'),
+  '## This is the H2',
+  faker.lorem.paragraphs(2, '\n\n'),
+  '## This is the H2',
+  faker.lorem.paragraphs(2, '\n\n'),
+  '### This is the H3',
+  faker.lorem.paragraphs(1, '\n\n'),
+  '#### This is the H4',
+  faker.lorem.paragraphs(4, '\n\n'),
+  '##### This is the H5',
+  faker.lorem.paragraphs(2, '\n\n'),
+  '###### This is the H6',
+  faker.lorem.paragraphs(1, '\n\n'),
+].join('\n');
+
 const data = {
   _id: 4,
   news: [
     {
       id: 1,
       title: 'First',
-      imageUrl: faker.image.abstract(undefined, undefined, true),
-      content: 'First '.repeat(1000),
+      imageUrl: faker.image.abstract(1600, 900),
+      content: markdown,
       summary: 'A lot of word `First`',
     },
     {
       id: 2,
       title: 'Second',
-      imageUrl: faker.image.abstract(undefined, undefined, true),
+      imageUrl: faker.image.abstract(1600, 900),
       content: 'Second '.repeat(1000),
       summary: 'A lot of word `Second`',
     },
     {
       id: 3,
       title: 'White',
-      imageUrl: faker.image.abstract(undefined, undefined, true),
+      imageUrl: faker.image.abstract(1600, 900),
       content: 'White '.repeat(1000),
       summary: 'Just white',
     },
     {
       id: 4,
       title: 'Random',
-      imageUrl: faker.image.abstract(undefined, undefined, true),
+      imageUrl: faker.image.abstract(1600, 900),
       content: faker.lorem.paragraphs(100, '\n\n'), // markdown
       summary: 'Hello',
     },
