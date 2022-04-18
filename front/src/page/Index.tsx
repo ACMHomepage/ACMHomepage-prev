@@ -1,37 +1,27 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { merge } from 'lodash';
-import { border, size, spacing, font } from '@acm-homepage/theme-shortcut';
 
-import { title, utilMainPart } from '../config';
+import { title } from '../config';
 
 import News from '../component/News/News';
-import Button, { buttonFlipStyle } from '../component/Button';
-import Header from '../component/Header';
+
+import styles from './styles/Index.module.scss';
 
 export default function Index() {
   const navigate = useNavigate();
 
+  const goto_info_page = () => navigate('info');
+
   return (
     <React.Fragment>
-      <div sx={utilMainPart}>
-        <Header.Space>
-          <Header>{title}</Header>
-          <Button
-            onClick={() => navigate('info')}
-            sx={merge(
-              spacing({ p: { l: '2rem', r: '2rem' } }),
-              font({ size: 'xl' }),
-              size({ h: '3rem' }),
-              border({ width: '2px', col: 'fg-0' }),
-              buttonFlipStyle(),
-            )}
-          >
-            More infomation
-          </Button>
-        </Header.Space>
+      <div className={styles.header_wrapper}>
+        <h1 className={styles.header}>{title}</h1>
+        <button onClick={goto_info_page} className={styles.info_button}>
+          More infomation
+        </button>
       </div>
-      <div sx={utilMainPart}>
+      <h2 className={styles.news_title}>News of ACM</h2>
+      <div className={styles.news_wrapper}>
         <News />
       </div>
     </React.Fragment>
