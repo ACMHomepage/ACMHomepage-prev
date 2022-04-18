@@ -5,7 +5,7 @@ import { border, size, spacing, font } from '@acm-homepage/theme-shortcut';
 
 import { title, utilMainPart } from '../config';
 
-import News from '../component/News';
+import News from '../component/News/News';
 import Button, { buttonFlipStyle } from '../component/Button';
 import Header from '../component/Header';
 

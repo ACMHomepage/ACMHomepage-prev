@@ -1,0 +1,90 @@
+@use "../../../styles/mixin";
+@use "../../../styles/color";
+@use "../../../styles/shadow";
+@use "../../../styles/fontSize";
+@use "../../../styles/mediaQuery";
+
+.Carousel {
+  display: flex;
+  position: relative;
+  background: color.$bg;
+  box-shadow: shadow.$base;
+  flex-direction: column;
+
+  .Preview {
+    position: relative;
+    width: 100%;
+  }
+
+  .Img {
+    width: 100%;
+    border-radius: 0;
+    aspect-ratio: 16 / 9;
+    background-color: color.$bg-third;
+  }
+
+  .Dots {
+    position: absolute;
+    left: 50%;
+    bottom: 0.75rem;
+    transform: translateX(-50%);
+  }
+
+  .Entry {
+    @include mixin.clickable;
+
+    flex: auto;
+    padding: 1rem;
+    height: 10rem;
+
+    &:hover {
+      border-color: color.$prime;
+    }
+  }
+
+  .Title {
+    font-size: fontSize.$h2;
+  }
+
+  &._row {
+    flex-direction: row-reverse;
+
+    .Preview {
+      width: calc(100% * 2 / 3);
+    }
+    .Dots {
+      flex-direction: column;
+      left: 0.75rem;
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+    .Entry {
+        flex: 1;
+        height: auto;
+    }
+  }
+
+  @media (width > mediaQuery.$md) {
+    border-radius: 0.25rem;
+
+    .Img {
+      border-top-right-radius: 0.25rem;
+      border-top-left-radius: 0.25rem;
+    }
+
+    &._row .Img {
+      border-bottom-right-radius: 0.25rem;
+      border-top-left-radius: 0;
+    }
+
+    .Entry {
+      border-bottom-right-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+    }
+
+    &._row .Entry {
+      border-top-left-radius: 0.25rem;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
