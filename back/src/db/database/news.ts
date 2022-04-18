@@ -2,7 +2,7 @@ const ID = 'id';
 const TITLE = 'title';
 const IMAGE_URL = 'imageUrl';
 const CONTENT = 'content';
-const CREATE_DATE = 'createdDate';
+const CREATED_DATE = 'createdDate';
 const MODIFIED_DATE = 'modifiedDate';
 
 const getNews = (conn) => ({
@@ -11,7 +11,7 @@ const getNews = (conn) => ({
     TITLE,
     IMAGE_URL,
     CONTENT,
-    CREATE_DATE,
+    CREATE_DATE: CREATED_DATE,
     MODIFIED_DATE,
   },
   getAll: async (fields) => {
@@ -39,7 +39,7 @@ const getNews = (conn) => ({
 
     const sql = `
       INSERT INTO news
-      (${TITLE}, ${IMAGE_URL}, ${CONTENT}, ${CREATE_DATE}, ${MODIFIED_DATE})
+      (${TITLE}, ${IMAGE_URL}, ${CONTENT}, ${CREATED_DATE}, ${MODIFIED_DATE})
       VALUES (?, ?, ?, NOW(), NOW())
     `;
     const [rows, _fields] = await conn.execute(sql, [title, imageUrl, content]);
