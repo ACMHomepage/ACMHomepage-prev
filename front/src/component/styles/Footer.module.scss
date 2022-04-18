@@ -1,0 +1,19 @@
+@use "../../styles/color";
+@use "../../styles/shadow";
+@use "../../styles/mixin";
+
+.Footer {
+    margin-top: 4rem;
+    padding-bottom: 4rem;
+    padding-top: 1rem;
+    background-color: color.$bg-third;
+    box-shadow: shadow.$md-top;
+}
+
+.Space {
+    flex: 1;
+}
+
+.Main {
+    @include mixin.mainpart;
+}
