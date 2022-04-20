@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite';
 import visualizer from 'rollup-plugin-visualizer';
+import svgr from '@svgr/rollup';
+import postcssPresetEnv from 'postcss-preset-env';
 
 const env = process.argv[process.argv.length - 1];
 
@@ -26,4 +28,12 @@ export default defineConfig({
       plugins: rollupPlugins,
     },
   },
+  css: {
+    postcss: {
+      plugins: [
+        postcssPresetEnv,
+      ]
+    }
+  },
+  plugins: [svgr()],
 });
