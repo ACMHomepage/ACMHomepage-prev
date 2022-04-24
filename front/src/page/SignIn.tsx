@@ -1,26 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { merge } from 'lodash';
-import {
-  border,
-  bg,
-  text,
-  flexbox,
-  font,
-  spacing,
-  size,
-  layout,
-} from '@acm-homepage/theme-shortcut';
+import { useNavigate } from 'react-router-dom';
 
 import { useSelector } from '../hooks';
-import { utilMainPart, boxSx } from '../config';
+import { utilMainPart } from '../config';
 import { selectAuth, AuthStateEnum } from '../store/authSlice';
 import { useSignIn } from '../api/auth';
 
 import Header from '../component/Header';
-import Button from '../component/Button';
 import EmailInput from '../component/InputSet/EmailInput';
 import PasswordInput from '../component/InputSet/PasswordInput';
+
+import styles from './styles/SignIn.module.scss';
 
 export const URL = '/signin';
 
@@ -44,53 +34,30 @@ const SignIn = () => {
 
   return (
     <Header.Space sx={utilMainPart}>
-      <div
-        sx={merge(
-          layout({ display: 'flex' }),
-          flexbox({ gap: '1rem', dir: 'column' }),
-          boxSx,
-        )}
-      >
-        <div
-          sx={merge(
-            text({ align: 'center' }),
-            font({ size: '4xl', weight: 'h3' }),
-            spacing({ m: { b: '1.5rem' } }),
-          )}
-        >
-          ACM Homepage
-        </div>
+      <div className={styles.signBox}>
+        <div className={styles.title}>ACM Homepage</div>
         <EmailInput email={email} setEmail={setEmail} />
         <PasswordInput password={password} setPassword={setPassword} />
-        <div sx={text({ align: 'right' })}>
-          <a
-            sx={merge(
-              text({ col: 'link' }),
-              font({ weight: 'link', size: 'sm' }),
-            )}
-          >
-            Forget password?
-          </a>
+        <div className={styles.forgetPasswordRow}>
+          <a>Forget password?</a>
         </div>
         {auth.state === AuthStateEnum.UnloggedWithError ? (
           <div>{`Error!! ${auth.message}`}</div>
         ) : null}
-        <Button
-          sx={merge(
-            border({ width: '2px', col: { _: 'bg-4', hv: 'bg-5' } }),
-            size({ h: '2.5rem' }),
-            font({ size: 'lg' }),
-            spacing({ m: { t: '2rem' } }),
-            text({ col: 'fg-0' }),
-            bg({ col: { _: 'bg-0', hv: 'bg-2' } }),
-          )}
-          onClick={() => signIn(email, password)}
-        >
-          Sign in
-        </Button>
-      </div>
-      <div sx={boxSx}>
-        New user? Try to <Link to="/register">register</Link>.
+        <div className={styles.buttonRow}>
+          <button
+            className={styles.signInButton}
+            onClick={() => signIn(email, password)}
+          >
+            Sign in
+          </button>
+          <button
+            className={styles.registerButton}
+            onClick={() => signIn(email, password)}
+          >
+            Register
+          </button>
+        </div>
       </div>
     </Header.Space>
   );
