@@ -1,0 +1,43 @@
+@use "../../styles/mixin";
+@use "../../styles/color";
+@use "../../styles/fontSize";
+@use "../../styles/fontWeight";
+
+.signBox {
+    @include mixin.box;
+
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.title {
+    text-align: center;
+    font-size: fontSize.$h1;
+    font-weight: fontWeight.$bold;
+    padding: 0.75rem;
+}
+
+.forgetPasswordRow {
+    text-align: right;
+}
+
+.buttonRow {
+    display: flex;
+    gap: 1rem;
+}
+
+.signInButton {
+    @include mixin.clickable;
+
+    flex: 1;
+    background-color: color.$prime;
+    color: white;
+}
+
+.registerButton {
+    @include mixin.clickable;
+
+    flex: 1;
+    border: 1px color.$border solid;
+}

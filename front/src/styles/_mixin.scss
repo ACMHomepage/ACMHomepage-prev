@@ -1,6 +1,8 @@
 @use "./mediaQuery";
+@use "./color";
+@use "./shadow";
 
-@mixin clickable($shadow: var(--shadow-none), $shadow-hover: var(--shadow)) {
+@mixin clickable($shadow: shadow.$none, $shadow-hover: shadow.$base) {
   border: 1px transparent solid;
   box-shadow: $shadow;
   cursor: pointer;
@@ -32,3 +34,13 @@
       width: calc(100% * 8 / 12);
   }
 }
+
+@mixin box {
+  border: 1px color.$border solid;
+  border-radius: 0.25rem;
+  box-shadow: shadow.$base;
+  width: 30rem;
+  max-width: 100%;
+  padding: 1rem;
+}
+
