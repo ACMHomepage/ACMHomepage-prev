@@ -3,7 +3,5 @@ export default {
   transform: {
     '^.+\\.[tj]s$': 'ts-jest',
   },
-  transformIgnorePatterns: [
-    "node_modules/(?!crypto-random-string)",
-  ]
+  transformIgnorePatterns: ['node_modules/(?!crypto-random-string)'],
 };
