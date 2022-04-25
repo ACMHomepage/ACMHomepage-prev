@@ -8,7 +8,7 @@ import { conn } from '../db/connection.js';
 
 import { createNews, getNews } from './type/news.js';
 import { register, signIn, getUser } from './type/user.js';
-import {getTag, removeTag} from './type/tag.js'
+import { getTag, removeTag } from './type/tag.js';
 
 const database = getDatabase(conn);
 
@@ -17,7 +17,7 @@ export const QueryType = new GraphQLObjectType({
   fields: {
     getNews: getNews(database),
     getUser: getUser(database),
-    getTag: getTag(database)
+    getTag: getTag(database),
   },
 });
 
@@ -27,7 +27,7 @@ export const MutationType = new GraphQLObjectType({
     createNews: createNews(database),
     register: register(database),
     signIn: signIn(database),
-    removeTag:  removeTag(database)
+    removeTag: removeTag(database),
   },
 });
 

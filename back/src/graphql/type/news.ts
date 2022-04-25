@@ -8,7 +8,7 @@ import {
 } from 'graphql';
 import { salt } from '../../salt.js';
 import * as jwt from 'jsonwebtoken';
-const {verify} = jwt;
+const { verify } = jwt;
 /******************************************************************************
  * Main part
  *****************************************************************************/
@@ -83,24 +83,25 @@ export const createNews = (database) => ({
     },
   },
   async resolve(_parentVal, args, context) {
-    verify(
-      context.req.cookies.jwt,
-      salt,
-      (err, decoded) => {
-        if (process.env.NODE_ENV === 'development') {
-          return true;
-        }
-        else if (err) {
-          throw new Error('Cannot verify.');
-        } else if (decoded.isAdmin) {
-          return true;
-        }
+    verify(context.req.cookies.jwt, salt, (err, decoded) => {
+      if (process.env.NODE_ENV === 'development') {
+        return true;
+      } else if (err) {
+        throw new Error('Cannot verify.');
+      } else if (decoded.isAdmin) {
+        return true;
       }
-    );
+    });
 
     const FIELDS = database.news.FIELDS;
-    const { ID, TITLE, IMAGE_URL, CONTENT, CREATE_DATA: CREATED_DATE, MODIFIED_DATA } =
-      FIELDS;
+    const {
+      ID,
+      TITLE,
+      IMAGE_URL,
+      CONTENT,
+      CREATE_DATA: CREATED_DATE,
+      MODIFIED_DATA,
+    } = FIELDS;
     const fields = [ID, TITLE, IMAGE_URL, CONTENT, CREATED_DATE, MODIFIED_DATA];
 
     const rows = database.news.insert({

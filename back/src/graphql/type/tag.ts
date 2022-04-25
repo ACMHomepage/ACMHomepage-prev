@@ -1,67 +1,47 @@
-import {
-    GraphQLBoolean,
-    GraphQLID,
-    GraphQLInt,
-    GraphQLList,
-    GraphQLObjectType,
-    GraphQLString,
-  } from 'graphql';
+import { GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql';
 
 /******************************************************************************
  * Main part
  *****************************************************************************/
 export const TagType = new GraphQLObjectType({
-    name: 'tag',
-    fields: {
-        id: {
-            type: GraphQLInt,
-            description: 'The tag ID.'
-        },
-        name: {
-            type: GraphQLString,
-            description: 'The tag name'
-        }
-    }
-});
-
-/******************************************************************************
- * Query field.
- *****************************************************************************/
-export const getTag = (database) => ({
-    type: new GraphQLList(TagType),
-    args: {
-        id: {
-            type: GraphQLInt,
-            description: 'The ID of the tag.'
-        }
+  name: 'tag',
+  fields: {
+    id: {
+      type: GraphQLInt,
+      description: 'The tag ID.',
     },
-    async resolve(_parentVal, args){
-        const {ID, NAME} = database.tag.FIELDS;
-        const fields = [ID, NAME];
-        if (args.id === undefined){
-            return await database.tag.getAll();
-        } else{
-            return await database.tag.getById(args.id);
-        }
-    }
+    name: {
+      type: GraphQLString,
+      description: 'The tag name',
+    },
+  },
 });
 
 /******************************************************************************
  * Mutation field.
  *****************************************************************************/
-export const removeTag = (database) => ({
-    type: TagType,
-    args: {
-        id: {
-            type: GraphQLInt,
-            description: 'The tag ID.'
-        },
-        name: {
-            type: GraphQLString,
-            description: 'The tag name.'
-        }
+export const insertTag = (database) => ({
+  type: TagType,
+  args: {
+    name: {
+      type: GraphQLString,
+      description: 'The name of the tag.',
     },
-    async resolve(_parentVal, args) {
+  },
+  async resolve(_parentVal, args) {
+    return await database.tag.insert(args.name);
+  },
+});
 
-    }
+export const removeTag = (database) => ({
+  type: TagType,
+  args: {
+    name: {
+      type: GraphQLString,
+      description: 'The tag name.',
+    },
+  },
+  async resolve(_parentVal, args) {
+    return database.tag.remove(args.name);
+  },
 });

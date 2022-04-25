@@ -1,4 +1,4 @@
-import {createConnection} from 'mysql2/promise';
+import { createConnection } from 'mysql2/promise';
 
 /**
  * MySQL connection object. Make sure that the values match the Dockerfile,

@@ -62,7 +62,9 @@ let contextCookie: { jwt?: undefined } = {};
 
 const context = {
   res: {
-    cookie: jest.fn((key: string, value: string) => (contextCookie[key] = value)),
+    cookie: jest.fn(
+      (key: string, value: string) => (contextCookie[key] = value),
+    ),
   },
 };
 
