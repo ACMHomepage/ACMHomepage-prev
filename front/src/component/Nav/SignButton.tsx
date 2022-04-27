@@ -48,8 +48,7 @@ const SignOutButton = (props: SignOutProps) => {
 
   // TODO: Let it can sign out.
   return (
-    <button className={className} onClick={signOut}>
-      <LogOut size={16} />
+    <button className={styles.button} onClick={signOut}>
       Sign out
     </button>
   );

@@ -1,22 +1,10 @@
 import { Menu as MenuIcon } from 'lucide-react';
 import { useState, useRef } from 'react';
 import type { ThemeUIStyleObject } from 'theme-ui';
-import { merge } from 'lodash';
-import {
-  layout,
-  size,
-  border,
-  bg,
-  spacing,
-  flexbox,
-  font,
-  text,
-  outline,
-} from '@acm-homepage/theme-shortcut';
+import { layout, } from '@acm-homepage/theme-shortcut';
 
 import useOutsideListener from '../../util/outsideListener';
 
-import Button from '../Button';
 import DarkToggleItem from './DarkToggleItem';
 import SignItem from './SignItem';
 import PostNewsItem from './PostNewsItem';
