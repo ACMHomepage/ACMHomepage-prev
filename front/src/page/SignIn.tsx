@@ -5,10 +5,12 @@ import { useSelector } from '../hooks';
 import { utilMainPart } from '../config';
 import { selectAuth, AuthStateEnum } from '../store/authSlice';
 import { useSignIn } from '../api/auth';
+import { URL as registerURL } from './Register';
 
 import Header from '../component/Header';
 import EmailInput from '../component/InputSet/EmailInput';
 import PasswordInput from '../component/InputSet/PasswordInput';
+import LinkButton from '../component/LinkButton';
 
 import styles from './styles/SignIn.module.scss';
 
@@ -51,12 +53,9 @@ const SignIn = () => {
           >
             Sign in
           </button>
-          <button
-            className={styles.registerButton}
-            onClick={() => signIn(email, password)}
-          >
+          <LinkButton className={styles.registerButton} to={registerURL}>
             Register
-          </button>
+          </LinkButton>
         </div>
       </div>
     </Header.Space>

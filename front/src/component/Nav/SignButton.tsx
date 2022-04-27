@@ -1,12 +1,13 @@
 import { LogIn, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import { useSelector } from '../../hooks';
 import { selectAuthState, AuthStateEnum } from '../../store/authSlice';
 import { URL as signInUrl } from '../../page/SignIn';
 import { useSignOut } from '../../api/auth';
 
-import { useEffect } from 'react';
+import LinkButton from '../LinkButton';
 
 import styles from './styles/SignButton.module.scss';
 
@@ -14,12 +15,10 @@ import styles from './styles/SignButton.module.scss';
  * SignInOrRegisterButton. A button to go to sign in / register page.
  */
 const SignInOrRegisterButton = (props: SignInOrRegisterProps) => {
-  const navigate = useNavigate();
-
   return (
-    <button className={styles.button} onClick={() => navigate(signInUrl)}>
+    <LinkButton className={styles.button} to={signInUrl}>
       Sign in / Register
-    </button>
+    </LinkButton>
   );
 };
 
