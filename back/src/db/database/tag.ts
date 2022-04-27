@@ -28,10 +28,8 @@ const tag = (conn) => ({
     const [rows, _fields] = await conn.execute(sql);
     return rows[0].tagNumber;
   },
-  insert: async (tag) => {
-    const { name } = tag;
-    const sql = `INSERT INTO tag (${NAME})
-        VALUES (?)`;
+  insert: async (name: string) => {
+    const sql = `INSERT INTO tag (name) VALUES (?)`;
     const [rows, _fields] = await conn.execute(sql, [name]);
     return rows;
   },
