@@ -63,6 +63,19 @@ export const getNews = (database) => ({
   },
 });
 
+export const getNewsByTagName = (database) => ({
+  type: new GraphQLList(NewsType),
+  args: {
+    name: {
+      type: GraphQLString,
+      description: 'The name of the tag',
+    },
+  },
+  async resolve(_parentVal, args) {
+    return await database.tagNews.getNewsByTagName(args.name);
+  },
+});
+
 /******************************************************************************
  * Mutation field.
  *****************************************************************************/
