@@ -1,17 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { merge } from 'lodash';
-import {
-  flexbox,
-  text,
-  font,
-  spacing,
-  size,
-  bg,
-  border,
-  layout,
-} from '@acm-homepage/theme-shortcut';
-
 import { useSelector } from '../hooks';
 
 import { utilMainPart, boxSx } from '../config';
@@ -20,10 +8,12 @@ import { useRegister } from '../api/auth';
 
 // Import components.
 import Header from '../component/Header';
-import Button from '../component/Button';
+import LinkButton from '../component/LinkButton';
 import EmailInput from '../component/InputSet/EmailInput';
 import NickNameInput from '../component/InputSet/NicknameInput';
 import PasswordInput from '../component/InputSet/PasswordInput';
+
+import styles from './styles/Register.module.scss';
 
 import { URL as signInUrl } from './SignIn';
 
@@ -54,41 +44,24 @@ export default () => {
   // TODO: We do not show the helpful message in different state.
   return (
     <Header.Space sx={utilMainPart}>
-      <div
-        sx={merge(
-          layout({ display: 'flex' }),
-          flexbox({ dir: 'column', gap: '1rem' }),
-          boxSx,
-        )}
-      >
-        <div
-          sx={merge(
-            text({ align: 'center' }),
-            font({ size: 'center', weight: 'h3' }),
-            spacing({ m: { b: '1.5rem' } }),
-          )}
-        >
+      <div className={styles.registerBox} >
+        <div className={styles.title}>
           ACM Homepage
         </div>
-        <NickNameInput nickname={nickname} setNickname={setNickname} />
+        <NickNameInput onChange={e => setNickname(e.target.value)} />
         <EmailInput onChange={e => setEmail(e.target.value)} />
-        <PasswordInput password={password} setPassword={setPassword} />
-        <Button
-          sx={merge(
-            size({ h: '2.5rem' }),
-            font({ size: 'lg' }),
-            spacing({ m: { t: 'lg' } }),
-            bg({ col: { _: 'bg-0', hv: 'bg-2' } }),
-            text({ col: 'fg-0' }),
-            border({ width: '2px', col: { _: 'bg-4', hv: 'bg-5' } }),
-          )}
-          onClick={() => register(nickname, email, password)}
-        >
-          Register
-        </Button>
-      </div>
-      <div sx={boxSx}>
-        Already have an account? Try to <Link to={signInUrl}>sign in</Link>.
+        <PasswordInput onChange={e => setPassword(e.target.value)} />
+        <div className={styles.buttonRow}>
+          <button
+            className={styles.registerButton}
+            onClick={() => register(nickname, email, password)}
+          >
+            Register
+          </button>
+          <LinkButton className={styles.signInButton} to={signInUrl}>
+            Sign In
+          </LinkButton>
+        </div>
       </div>
     </Header.Space>
   );

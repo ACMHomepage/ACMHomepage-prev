@@ -1,0 +1,9 @@
+@use "./inputBase";
+
+.nicknameInput {
+  @include inputBase.input($hasStartIcon: true, $hasEndIcon: false);
+}
+
+.user {
+  @include inputBase.startIcon;
+}

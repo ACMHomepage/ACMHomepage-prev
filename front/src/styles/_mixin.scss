@@ -16,6 +16,19 @@
   }
 }
 
+@mixin clickable_prime($shadow: shadow.$none, $shadow-hover: shadow.$base) {
+  @include clickable($shadow, $shadow-hover);
+
+  background-color: color.$prime;
+  color: white;
+}
+
+@mixin clickable_normal($shadow: shadow.$none, $shadow-hover: shadow.$base) {
+  @include clickable($shadow, $shadow-hover);
+
+  border: 1px color.$border solid;
+}
+
 @mixin mainpart($padding-at-begin: 1rem) {
   margin-left: auto;
   margin-right: auto;
