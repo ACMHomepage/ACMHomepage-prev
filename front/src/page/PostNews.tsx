@@ -35,7 +35,7 @@ export default () => {
       <div sx={flexbox({ dir: 'column', gap: '0.25rem' })}>
         <TitleInput title={title} setTitle={setTitle} />
         <ImageInput setDataURL={setImageDataURL} />
-        <ContentTextArea content={content} setContent={setContent} />
+        <ContentTextArea onChange={e => setContent(e.target.value)} />
         <div sx={flexbox({ place: { content: 'flex' } })}>
           <Button
             sx={merge(

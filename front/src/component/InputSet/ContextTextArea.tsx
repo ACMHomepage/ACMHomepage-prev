@@ -1,23 +1,20 @@
 import { AlignLeft } from 'lucide-react';
-import { merge } from 'lodash';
-import { size } from '@acm-homepage/theme-shortcut';
 
-import Input from '../Input';
+import Input from './Input';
+import type { InputProps } from './Input';
 
-const ContentTextArea = (props: {
-  content: string;
-  setContent: (nickname: string) => void;
-}) => {
-  const { content, setContent } = props;
+import styles from './styles/ContextTextArea.module.scss';
+
+const ContentTextArea = (props: InputProps) => {
+  const { onChange } = props;
 
   return (
     <Input.container>
-      <AlignLeft sx={Input.sx.startIcon()} />
+      <AlignLeft className={styles.alignLeft} />
       <textarea
         placeholder="Content"
-        sx={merge(Input.sx.input({ hasStartIcon: true }), size({ h: '40rem' }))}
-        value={content}
-        onChange={(event) => setContent(event.target.value)}
+        className={styles.contextTextArea}
+        onChange={onChange}
       />
     </Input.container>
   );

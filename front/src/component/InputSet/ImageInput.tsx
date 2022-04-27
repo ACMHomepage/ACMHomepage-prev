@@ -3,7 +3,7 @@ import { Image } from 'lucide-react';
 import { isNull, merge } from 'lodash';
 import { layout, size, effect, text } from '@acm-homepage/theme-shortcut';
 
-import Input from '../Input';
+import Input from './Input';
 
 type SetDataURL = (DataURL: string) => void;
 

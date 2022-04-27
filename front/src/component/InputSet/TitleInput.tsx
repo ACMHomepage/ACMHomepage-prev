@@ -1,5 +1,5 @@
 import { Book } from 'lucide-react';
-import Input from '../Input';
+import Input from './Input';
 
 const TitleInput = (props: {
   title: string;

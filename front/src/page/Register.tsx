@@ -71,7 +71,7 @@ export default () => {
           ACM Homepage
         </div>
         <NickNameInput nickname={nickname} setNickname={setNickname} />
-        <EmailInput email={email} setEmail={setEmail} />
+        <EmailInput onChange={e => setEmail(e.target.value)} />
         <PasswordInput password={password} setPassword={setPassword} />
         <Button
           sx={merge(
