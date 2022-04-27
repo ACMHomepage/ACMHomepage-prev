@@ -1,0 +1,11 @@
+@use "./inputBase";
+
+.contextTextArea {
+  @include inputBase.input($hasStartIcon: true, $hasEndIcon: false);
+
+  height: 40rem;
+}
+
+.alignLeft {
+  @include inputBase.startIcon;
+}

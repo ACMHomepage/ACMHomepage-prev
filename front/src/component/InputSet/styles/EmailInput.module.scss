@@ -1,0 +1,9 @@
+@use "./inputBase";
+
+.emailInput {
+  @include inputBase.input($hasStartIcon: true, $hasEndIcon: false);
+}
+
+.mail {
+  @include inputBase.startIcon;
+}

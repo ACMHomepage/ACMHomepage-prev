@@ -1,22 +1,22 @@
 import { Lock, Eye } from 'lucide-react';
-import Input from '../Input';
+import Input from './Input';
 
-const PasswordInput = (props: {
-  password: string;
-  setPassword: (nickname: string) => void;
-}) => {
-  const { password, setPassword } = props;
+import type { InputProps } from './Input';
+
+import styles from './styles/PasswordInput.module.scss';
+
+const PasswordInput = (props: InputProps) => {
+  const { onChange } = props;
 
   return (
     <Input.container>
-      <Lock sx={Input.sx.startIcon()} />
+      <Lock className={styles.lock} />
       <input
         placeholder="Password"
-        sx={Input.sx.input({ hasStartIcon: true, hasEndIcon: true })}
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
+        className={styles.passwordInput}
+        onChange={onChange}
       />
-      <Eye sx={Input.sx.endIcon()} />
+      <Eye className={styles.eye} />
     </Input.container>
   );
 };

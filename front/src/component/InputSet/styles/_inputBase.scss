@@ -1,0 +1,49 @@
+@use "../../../styles/fontSize";
+@use "../../../styles/mixin";
+@use "../../../styles/color";
+@use "sass:math";
+
+$iconSize: 2.2rem;
+$height: 3rem;
+$iconPadding: math.div($height - $iconSize, 2);
+$padding: 0.5rem;
+
+@mixin icon {
+    position: absolute;
+    padding: $padding;
+    height: $height;
+    width: $iconSize;
+}
+
+@mixin startIcon {
+    @include icon;
+
+    top: 0;
+    left: $iconPadding;
+}
+
+@mixin endIcon {
+    @include icon;
+
+    top: 0;
+    right: $iconPadding;
+}
+
+@mixin input($hasStartIcon, $hasEndIcon) {
+    @include mixin.clickable;
+
+    font-size: fontSize.$base;
+    height: $height;
+    width: 100%;
+    outline: none;
+    resize: none;
+    border: 1px color.$border solid;
+    color: color.$fg;
+    background-color: color.$bg;
+    cursor: text;
+    border-radius: 0.25rem;
+    padding-top: $padding;
+    padding-bottom: $padding;
+    padding-left: if($hasStartIcon, $height, $padding);
+    padding-right: if($hasEndIcon, $height, $padding);
+}

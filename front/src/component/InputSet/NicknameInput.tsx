@@ -1,5 +1,5 @@
 import { User } from 'lucide-react';
-import Input from '../Input';
+import Input from './Input';
 
 const NickNameInput = (props: {
   nickname: string;
