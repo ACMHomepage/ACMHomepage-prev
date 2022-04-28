@@ -1,0 +1,9 @@
+@use "./inputBase";
+
+.imageInput {
+  @include inputBase.input($hasStartIcon: true, $hasEndIcon: false);
+}
+
+.image {
+  @include inputBase.startIcon;
+}

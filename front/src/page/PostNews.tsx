@@ -1,23 +1,14 @@
 import { Send } from 'lucide-react';
 import { useState } from 'react';
-import { merge } from 'lodash';
-import {
-  flexbox,
-  size,
-  font,
-  bg,
-  text,
-  border,
-} from '@acm-homepage/theme-shortcut';
-
 import { utilMainPart } from '../config';
 import { useCreateNews } from '../store/newsSlice';
 
 import Header from '../component/Header';
-import Button from '../component/Button';
 import TitleInput from '../component/InputSet/TitleInput';
 import ImageInput from '../component/InputSet/ImageInput';
 import ContentTextArea from '../component/InputSet/ContextTextArea';
+
+import styles from './styles/PostNews.module.scss';
 
 export const URL = '/postnews';
 
@@ -32,24 +23,18 @@ export default () => {
       <Header.Space>
         <Header>Post News</Header>
       </Header.Space>
-      <div sx={flexbox({ dir: 'column', gap: '0.25rem' })}>
-        <TitleInput title={title} setTitle={setTitle} />
+      <div className={styles.form}>
+        <TitleInput onChange={e => setTitle(e.target.value)} />
         <ImageInput setDataURL={setImageDataURL} />
         <ContentTextArea onChange={e => setContent(e.target.value)} />
-        <div sx={flexbox({ place: { content: 'flex' } })}>
-          <Button
-            sx={merge(
-              size({ h: '2.5rem' }),
-              font({ size: 'lg' }),
-              bg({ col: { _: 'bg-0', hv: 'bg-2' } }),
-              text({ col: { _: 'fg-0' } }),
-              border({ width: '2px', col: { _: 'bg-4', hv: 'bg-5' } }),
-            )}
+        <div className={styles.buttonRow}>
+          <button
+            className={styles.button}
             onClick={() => createNews(title, imageDataURL, content)}
           >
             <Send size={16} />
             Submit
-          </Button>
+          </button>
         </div>
       </div>
     </div>
