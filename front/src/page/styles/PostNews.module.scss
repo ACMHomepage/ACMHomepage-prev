@@ -1,0 +1,16 @@
+@use "../../styles/mixin";
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.buttonRow {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+    @include mixin.button_prime;
+}

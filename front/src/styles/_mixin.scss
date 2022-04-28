@@ -29,6 +29,15 @@
   border: 1px color.$border solid;
 }
 
+@mixin button_prime($shadow: shadow.$none, $shadow-hover: shadow.$base) {
+  @include clickable_prime;
+
+  display: flex;
+  place-items: center;
+  place-content: center;
+  gap: 0.25rem;
+}
+
 @mixin mainpart($padding-at-begin: 1rem) {
   margin-left: auto;
   margin-right: auto;

@@ -1,0 +1,9 @@
+@use "./inputBase";
+
+.titleInput {
+  @include inputBase.input($hasStartIcon: true, $hasEndIcon: false);
+}
+
+.book {
+  @include inputBase.startIcon;
+}

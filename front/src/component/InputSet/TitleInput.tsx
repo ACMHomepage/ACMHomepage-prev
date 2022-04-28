@@ -1,20 +1,19 @@
 import { Book } from 'lucide-react';
 import Input from './Input';
+import type { InputProps } from './Input';
 
-const TitleInput = (props: {
-  title: string;
-  setTitle: (nickname: string) => void;
-}) => {
-  const { title, setTitle } = props;
+import styles from './styles/TitleInput.module.scss';
+
+const TitleInput = (props: InputProps) => {
+  const { onChange } = props;
 
   return (
     <Input.container>
-      <Book sx={Input.sx.startIcon()} />
+      <Book className={styles.book} />
       <input
         placeholder="Title"
-        sx={Input.sx.input({ hasStartIcon: true })}
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
+        className={styles.titleInput}
+        onChange={onChange}
       />
     </Input.container>
   );

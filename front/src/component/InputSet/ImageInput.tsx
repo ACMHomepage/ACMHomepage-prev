@@ -5,6 +5,8 @@ import { layout, size, effect, text } from '@acm-homepage/theme-shortcut';
 
 import Input from './Input';
 
+import styles from './styles/ImageInput.module.scss';
+
 type SetDataURL = (DataURL: string) => void;
 
 const toDataURL = (file: File) =>
@@ -38,18 +40,13 @@ const Infomation = (props: {
     fileInputRef.current.files.length == 0
   ) {
     return (
-      <div
-        sx={merge(
-          Input.sx.input({ hasStartIcon: true }),
-          text({ col: 'gray' }),
-        )}
-      >
+      <div className={styles.imageInput}>
         Please upload images...
       </div>
     );
   } else {
     return (
-      <div sx={Input.sx.input({ hasStartIcon: true })}>
+      <div className={styles.imageInput}>
         {fileInputRef.current.files[0].name}
       </div>
     );
@@ -62,7 +59,7 @@ const ImageInput = (props: { setDataURL: SetDataURL }) => {
 
   return (
     <Input.container>
-      <Image sx={Input.sx.startIcon()} />
+      <Image className={styles.image} />
       <Infomation fileInputRef={fileInput} />
       <input
         ref={fileInput}
