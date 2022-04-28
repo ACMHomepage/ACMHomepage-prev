@@ -1,5 +1,5 @@
-const ID: string = 'tagID';
-const NAME: string = 'tagName';
+const ID: string = 'id';
+const NAME: string = 'name';
 
 const tag = (conn) => ({
   FIELDS: { TAGID: ID, TAG_NAME: NAME },
