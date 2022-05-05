@@ -1,5 +1,6 @@
 @use "../../styles/mixin";
 @use "../../styles/mediaQuery";
+@use "../../styles/fontSize";
 
 .wrapper {
     @include mixin.mainpart($padding-at-begin: 0);
@@ -37,7 +38,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 1rem;
-    font-size: var(--fs-h0);
+    font-size: fontSize.$h0;
 }
 
 .content {
