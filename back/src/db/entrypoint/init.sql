@@ -39,3 +39,17 @@ CREATE TABLE IF NOT EXISTS tagNewsRelation (
   FOREIGN KEY(tagID) REFERENCES tag(id) ON DELETE CASCADE,
   FOREIGN KEY(newsID) REFERENCES news(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS userAccount(
+  id INT,
+  account varchar(128),
+  source varchar(128),
+  FOREIGN KEY(id) REFERENCES user(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS problemSolved(
+  account varchar(128),
+  source varchar(128),
+  solved INT,
+  date DATE
+);
