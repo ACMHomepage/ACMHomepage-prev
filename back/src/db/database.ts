@@ -11,7 +11,7 @@ const getDatabase = (conn) => ({
   tagNews: tagNews(conn),
   tag: tag(conn),
   userAccount: userAccount(conn),
-  problemSolved: problemSolved(conn)
+  problemSolved: problemSolved(conn),
 });
 
 export default getDatabase;

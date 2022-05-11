@@ -1,1 +1,2 @@
-# no-op
+import leetcode
+leetcode.update()

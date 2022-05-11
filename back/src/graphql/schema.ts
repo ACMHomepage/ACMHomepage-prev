@@ -10,7 +10,11 @@ import { createNews, getNews, getNewsByTagName } from './type/news.js';
 import { register, signIn, getUser } from './type/user.js';
 import { getTagsByNewsID, insertTag, removeTag } from './type/tag.js';
 import { unbindRelation } from './type/tagNews.js';
-import { getUserAccount, insertUserAccount, removeUserAccount } from './type/userAccount.js';
+import {
+  getUserAccount,
+  insertUserAccount,
+  removeUserAccount,
+} from './type/userAccount.js';
 import { getSovled, insertSolved, removeSolved } from './type/problemSolved.js';
 
 const database = getDatabase(conn);
@@ -23,7 +27,7 @@ export const QueryType = new GraphQLObjectType({
     getTagsByNewsID: getTagsByNewsID(database),
     getNewsByTagName: getNewsByTagName(database),
     getUserAccount: getUserAccount(database),
-    getSovled: getSovled(database)
+    getSovled: getSovled(database),
   },
 });
 
@@ -39,7 +43,7 @@ export const MutationType = new GraphQLObjectType({
     insertUserAccount: insertUserAccount(database),
     removeUserAccount: removeUserAccount(database),
     insertSolved: insertSolved(database),
-    removeSolved: removeSolved(database)
+    removeSolved: removeSolved(database),
   },
 });
 
