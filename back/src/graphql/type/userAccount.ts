@@ -86,9 +86,9 @@ export const removeUserAccount = (database) => ({
         }
     },
     async resolve(_parentVal, args) {
-        if (args.account === undefined && args.source === undefined) {
+        if (args.account === null && args.source === null) {
             return await database.userAccount.removeByID(args.id);
-        } else if (args.account !== undefined && args.source !== undefined) {
+        } else if (args.account !== null && args.source !== null) {
             return await database.userAccount.remove(args.id, args.account, args.source)
         } else {
             return null;
