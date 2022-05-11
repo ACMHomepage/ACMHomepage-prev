@@ -11,6 +11,12 @@ const userAccount = (conn) => ({
         const [rows, _fields] = result;
         return rows;
     },
+    getBySource: async (source: String) => {
+        const sql = `SELECT * FROM userAccount WHERE source = ?`;
+        const result = await conn.execute(sql, [source]);
+        const [rows, _fields] = result;
+        return rows;
+    },
     insert: async (id: Number, account: String, source: String) => {
         const sql = `INSERT INTO userAccount VALUES (?, ?, ?)`;
         const result = await conn.execute(sql, [id, account, source]);
