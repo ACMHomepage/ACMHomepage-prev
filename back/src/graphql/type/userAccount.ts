@@ -35,11 +35,17 @@ export const getUserAccount = (database) => ({
         id: {
             type: GraphQLInt,
             description: 'the user id'
+        },
+        source: {
+            type: GraphQLString,
+            description: 'the contest website/name'
         }
     },
     async resolve(_parentVal, args) {
-        if (args.id === null) {
+        if (args.id === null && args.source === null) {
             return await database.userAccount.getAll();
+        } else if (args.id === null) {
+            return await database.userAccount.getBySource(args.source);
         }
         return await database.userAccount.getByID(args.id);
     }
