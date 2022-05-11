@@ -1,5 +1,6 @@
-import requests
 import json
+
+import requests
 
 __url = 'https://leetcode-cn.com/graphql/'
 __headers = {
@@ -35,7 +36,7 @@ def __get_payload(account):
         """
     }
 
-def get_number(account):
+def get_number(account)->int:
     r = requests.post(
         __url,
         headers = __headers,
@@ -52,5 +53,5 @@ def get_number(account):
         else:
             hard = i['count']
     r.close()
-    return account, (easy, medium, hard)
+    return easy + medium + hard
 
