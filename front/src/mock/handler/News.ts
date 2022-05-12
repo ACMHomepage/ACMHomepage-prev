@@ -39,6 +39,7 @@ const data = {
       imageUrl: faker.image.abstract(1600, 900),
       content: markdown,
       summary: 'A lot of word `First`',
+      tagList: ['a', 'b', 'c'],
     },
     {
       id: 2,
@@ -46,6 +47,7 @@ const data = {
       imageUrl: faker.image.abstract(1600, 900),
       content: 'Second '.repeat(1000),
       summary: 'A lot of word `Second`',
+      tagList: ['a', 'e'],
     },
     {
       id: 3,
@@ -53,6 +55,7 @@ const data = {
       imageUrl: faker.image.abstract(1600, 900),
       content: 'White '.repeat(1000),
       summary: 'Just white',
+      tagList: ['a', 'b'],
     },
     {
       id: 4,
@@ -60,6 +63,7 @@ const data = {
       imageUrl: faker.image.abstract(1600, 900),
       content: faker.lorem.paragraphs(100, '\n\n'), // markdown
       summary: 'Hello',
+      tagList: ['a', 'b', 'c', 'd'],
     },
   ],
 };
@@ -85,6 +89,7 @@ const CreateNews = graphql.mutation<CreateNewsData, CreateNewsVars>(
       imageUrl,
       content,
       summary: 'TODO',
+      tagList: [],
     });
 
     return res(
