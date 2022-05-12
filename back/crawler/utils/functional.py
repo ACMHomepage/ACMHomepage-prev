@@ -22,10 +22,10 @@ def update(source, get_number):
         print(solved, i)
         params = {
             'query': '''mutation{
-                insertSolved(solved:%d, account:"%s", source:"leetcode"){
+                insertSolved(solved:%d, account:"%s", source:"%s"){
                     solved
                 }
             }
-            '''% (solved, i)
+            '''% (solved, i, source)
         }
         print(requests.post(url=GRAPHQL, params=params).json())
