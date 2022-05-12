@@ -25,8 +25,8 @@ export default () => {
     getNews(parseInt(newsId));
   }, []);
 
-  if (loading) return <div sx={utilMainPart}>Loading</div>;
-  if (error) return <div sx={utilMainPart}>Error</div>;
+  if (loading) return <div className={styles.wrapper}>Loading</div>;
+  if (error) return <div className={styles.wrapper}>Error</div>;
   if (!data) return null;
 
   // We use the newsId to get news data. if the array's length is not 1, must
@@ -43,6 +43,11 @@ export default () => {
       <div className={styles.news}>
         <img src={new_.imageUrl} className={styles.img} />
         <h1 className={styles.header}>{new_.title}</h1>
+        <div className={styles.tagList}>
+          {new_.tagList.map((tag, index) => (
+            <span className={styles.tag} key={index}>{tag}</span>
+          ))}
+        </div>
         <Markdown children={new_.content} className={styles.content} />
       </div>
     </div>
