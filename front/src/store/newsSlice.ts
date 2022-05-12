@@ -58,9 +58,11 @@ export const useCreateNews = () => {
 const GET_NEWS = gql`
   query GetNews($id: Int) {
     getNews(id: $id) {
+      id
       title
       content
       imageUrl
+      tagList
     }
   }
 `;
@@ -71,6 +73,7 @@ export interface GetNewsData {
     title: string;
     content: string;
     imageUrl: string;
+    tagList: string[];
   }[];
 }
 
