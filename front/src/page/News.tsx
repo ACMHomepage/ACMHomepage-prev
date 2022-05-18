@@ -6,6 +6,7 @@ import { utilMainPart } from '../config';
 import { useGetNews } from '../store/newsSlice';
 
 import Markdown from '../component/Markdown/Markdown';
+import TagList from '../component/TagList';
 
 import _404 from './404';
 
@@ -43,11 +44,7 @@ export default () => {
       <div className={styles.news}>
         <img src={new_.imageUrl} className={styles.img} />
         <h1 className={styles.header}>{new_.title}</h1>
-        <div className={styles.tagList}>
-          {new_.tagList.map((tag, index) => (
-            <span className={styles.tag} key={index}>{tag}</span>
-          ))}
-        </div>
+        <TagList tagList={new_.tagList} />
         <Markdown children={new_.content} className={styles.content} />
       </div>
     </div>

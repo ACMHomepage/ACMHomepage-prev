@@ -79,7 +79,7 @@ const GetNews = graphql.query('GetNews', (req, res, ctx) => {
 const CreateNews = graphql.mutation<CreateNewsData, CreateNewsVars>(
   'CreateNews',
   (req, res, ctx) => {
-    const { title, imageUrl, content } = req.variables;
+    const { title, imageUrl, content, tagList } = req.variables;
     console.log(req.variables);
 
     data._id++;
@@ -89,7 +89,7 @@ const CreateNews = graphql.mutation<CreateNewsData, CreateNewsVars>(
       imageUrl,
       content,
       summary: 'TODO',
-      tagList: [],
+      tagList,
     });
 
     return res(
