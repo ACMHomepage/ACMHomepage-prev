@@ -1,0 +1,13 @@
+@use "../../styles/color";
+
+.tagList {
+    padding: 0.5rem 1rem 0 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tag {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    border: 1px solid color.$border;
+}
