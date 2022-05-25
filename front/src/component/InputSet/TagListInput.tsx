@@ -4,7 +4,7 @@ import type { InputProps } from './Input';
 
 import styles from './styles/EmailInput.module.scss';//
 
-const EmailInput = (props: InputProps) => {
+const TagInput = (props: InputProps) => {
   const { onChange } = props;
 
   return (
@@ -19,4 +19,4 @@ const EmailInput = (props: InputProps) => {
   );
 };
 
-export default EmailInput;
+export default TagInput;
