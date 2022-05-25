@@ -2,7 +2,7 @@
 // TODO: I think that store error message into redux is a bad idea. We should
 // return it as the hooks result as well. We do not need `unloggedWithError`.
 
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, gql, useLazyQuery } from '@apollo/client';
 import { useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from '../hooks';
@@ -15,6 +15,8 @@ import {
   AuthStateEnum,
 } from '../store/authSlice';
 import type { UserData } from '../store/authSlice';
+import internal from 'stream';
+import { TypeInfo } from 'graphql';
 
 /******************************************************************************
  * Sign in part
@@ -38,13 +40,19 @@ export const SIGN_IN_MUTATION = gql`
 `;
 
 export interface SignInData {
-  signIn: UserData;
+  signIn: {
+    nickname: string;
+    email: string;
+    isAdmin: boolean;
+  };
 }
 
 export interface SignInVars {
   email: string;
   password: string;
 }
+
+
 
 /**
  * Hook useSignIn to sign in. It will talk to GraphQL server and update the
@@ -120,13 +128,17 @@ export const REGISTER_MUTATION = gql`
     register(nickname: $nickname, email: $email, password: $password) {
       nickname # string
       email # string
-      isAdmin # string
+      isAdmin # boolean
     }
   }
 `;
 
 export interface RegisterData {
-  register: UserData;
+  register: {
+    nickname: string;
+    email: string;
+    isAdmin: boolean;
+  };
 }
 
 export interface RegisterVars {
@@ -263,3 +275,47 @@ export const useSignOut = () => {
 
   return useCallback(() => signOutFunction(), [signOutFunction]);
 };
+
+
+/**
+ * Profile Part
+ */
+export const PROFILE_QUERY_NAME ="Profile";
+
+export const PROFILE_QUERY = gql`
+  query ${PROFILE_QUERY_NAME}($userId: int!) {
+    userById(userId: $userId) {
+      nickname
+      email
+    }
+  }
+`;
+
+export interface ProfileData {
+  userById: {
+    nickname: string;
+    email: string;
+  };
+}
+
+export interface ProfileVars {
+  userId: number;
+}
+
+/** 
+ * 
+*/
+
+export const useProfile = () =>{
+  const [getProfile, state] = useLazyQuery<
+    ProfileData,
+    ProfileVars
+  >(PROFILE_QUERY);
+
+  //get statue
+  const getProfileWithVar = async(userId: number): Promise<void> => {
+    await getProfile({ variables: { userId } });
+  }
+
+  return [getProfileWithVar, state] as [typeof getProfileWithVar, typeof state];
+}

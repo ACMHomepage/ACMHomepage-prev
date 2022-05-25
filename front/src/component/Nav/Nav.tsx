@@ -10,6 +10,7 @@ import Dropdown from './Dropdown';
 import SignButton from './SignButton';
 import PostNews from './PostNews';
 import Logo from './Logo';
+import Profile from './Profile';
 
 import styles from './styles/Nav.module.scss';
 
@@ -19,13 +20,14 @@ import styles from './styles/Nav.module.scss';
 export default () => {
   const auth = useSelector(selectAuth);
   let showPostNews = false;
-
+  let showProfile = false;
   if (auth.state === AuthStateEnum.LoggedWithInfo) {
     console.log(auth);
     if (auth.isAdmin) {
       console.log('yes');
       showPostNews = true;
     }
+    showProfile = true;
   }
 
   return (
@@ -38,6 +40,11 @@ export default () => {
         {showPostNews ? (
           <PostNews />
         ) : null}
+        {showProfile ?(
+          <Profile />
+        ) : null
+        }
+
         <Dropdown
           sx={merge(layout({ display: mRV({ _: 'block', md: 'none' }) }))}
         />

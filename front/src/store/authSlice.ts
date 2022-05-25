@@ -12,6 +12,7 @@ const IS_LOGGED_ITEM_KEY = `store-${SLICE_NAME}-isLogged`;
  * State types
  *****************************************************************************/
 export interface UserData {
+  id: number;
   nickname: string;
   email: string;
   isAdmin: boolean;
