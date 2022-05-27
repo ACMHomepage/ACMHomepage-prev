@@ -30,10 +30,8 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [
-        postcssPresetEnv,
-      ]
-    }
+      plugins: [postcssPresetEnv],
+    },
   },
   plugins: [svgr()],
 });

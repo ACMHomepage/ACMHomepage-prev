@@ -44,13 +44,11 @@ export default () => {
   // TODO: We do not show the helpful message in different state.
   return (
     <Header.Space sx={utilMainPart}>
-      <div className={styles.registerBox} >
-        <div className={styles.title}>
-          ACM Homepage
-        </div>
-        <NickNameInput onChange={e => setNickname(e.target.value)} />
-        <EmailInput onChange={e => setEmail(e.target.value)} />
-        <PasswordInput onChange={e => setPassword(e.target.value)} />
+      <div className={styles.registerBox}>
+        <div className={styles.title}>ACM Homepage</div>
+        <NickNameInput onChange={(e) => setNickname(e.target.value)} />
+        <EmailInput onChange={(e) => setEmail(e.target.value)} />
+        <PasswordInput onChange={(e) => setPassword(e.target.value)} />
         <div className={styles.buttonRow}>
           <button
             className={styles.registerButton}

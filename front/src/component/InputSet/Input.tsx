@@ -80,31 +80,50 @@ const input = {
   },
 };
 
-interface InputBaseProp extends React.InputHTMLAttributes<HTMLInputElement> { };
+interface InputBaseProp extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 export const InputBase = forwardRef((props: InputBaseProp, ref: Ref<any>) => {
   const [content, setContent] = useState('');
-  useImperativeHandle(ref, () => ({
-    getValue: () => {
-      return content;
-    },
-  }), [content]);
+  useImperativeHandle(
+    ref,
+    () => ({
+      getValue: () => {
+        return content;
+      },
+    }),
+    [content],
+  );
 
-  return <input ref={ref} onChange={e => setContent(e.target.value)} {...props} />;
+  return (
+    <input ref={ref} onChange={(e) => setContent(e.target.value)} {...props} />
+  );
 });
 
-interface TextareaBaseProp extends React.TextareaHTMLAttributes<HTMLTextAreaElement> { };
+interface TextareaBaseProp
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-export const TextareaBase = forwardRef((props: TextareaBaseProp, ref: Ref<any>) => {
-  const [content, setContent] = useState('');
-  useImperativeHandle(ref, () => ({
-    getValue: () => {
-      return content;
-    },
-  }), [content]);
+export const TextareaBase = forwardRef(
+  (props: TextareaBaseProp, ref: Ref<any>) => {
+    const [content, setContent] = useState('');
+    useImperativeHandle(
+      ref,
+      () => ({
+        getValue: () => {
+          return content;
+        },
+      }),
+      [content],
+    );
 
-  return <textarea ref={ref} onChange={e => setContent(e.target.value)} {...props} />;
-});
+    return (
+      <textarea
+        ref={ref}
+        onChange={(e) => setContent(e.target.value)}
+        {...props}
+      />
+    );
+  },
+);
 
 export interface InputProps {
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;

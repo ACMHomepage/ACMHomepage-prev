@@ -8,7 +8,7 @@ import type {
   SignInVars,
   SignOutData,
   ProfileData,
-  ProfileVars
+  ProfileVars,
 } from '../../api/auth';
 import {
   SIGN_IN_MUTATION_NAME,
@@ -105,17 +105,15 @@ export const signOut = graphql.mutation<SignOutData>(
 /**
  * Handle the profile GraphQL request.
  */
-export const proFile = graphql.query<ProfileData,ProfileVars>(
+export const proFile = graphql.query<ProfileData, ProfileVars>(
   PROFILE_QUERY_NAME,
   (req, res, ctx) => {
-    const {userId} = req.variables;
+    const { userId } = req.variables;
 
     // get the user by email
     const userArray = filter(data.users, (user) => user.id === userId);
     if (userArray.length === 0) {
-      return res(
-        ctx.errors([{ message: `The id ${userId} is not existed` }]),
-      );
+      return res(ctx.errors([{ message: `The id ${userId} is not existed` }]));
     } else if (userArray.length !== 1) {
       return res(ctx.errors([{ message: 'I am teapot.' }]));
     }
@@ -124,9 +122,9 @@ export const proFile = graphql.query<ProfileData,ProfileVars>(
     return res(
       ctx.data({
         userById: user,
-      })
-    )
-  }
+      }),
+    );
+  },
 );
 
 export default [signIn, register, signOut, proFile];

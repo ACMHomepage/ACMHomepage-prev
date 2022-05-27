@@ -9,14 +9,10 @@ import { selectAuth, AuthStateEnum } from '../../store/authSlice';
 
 const Profile = () => {
   const auth = useSelector(selectAuth);
-  if (auth.state !== AuthStateEnum.LoggedWithInfo)
-    return null;
+  if (auth.state !== AuthStateEnum.LoggedWithInfo) return null;
   console.log(auth);
   return (
-    <LinkButton
-      to={ProfileUrl+'/'+auth.id}
-      className={styles.button}
-    >
+    <LinkButton to={ProfileUrl + '/' + auth.id} className={styles.button}>
       Profile
     </LinkButton>
   );

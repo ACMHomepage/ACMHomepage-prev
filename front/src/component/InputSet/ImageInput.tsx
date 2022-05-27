@@ -39,11 +39,7 @@ const Infomation = (props: {
     isNull(fileInputRef.current.files) ||
     fileInputRef.current.files.length == 0
   ) {
-    return (
-      <div className={styles.imageInput}>
-        Please upload images...
-      </div>
-    );
+    return <div className={styles.imageInput}>Please upload images...</div>;
   } else {
     return (
       <div className={styles.imageInput}>

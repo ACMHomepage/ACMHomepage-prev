@@ -10,8 +10,10 @@ export default (props: TagListProps) => {
   return (
     <div className={styles.tagList}>
       {tagList.map((tag, index) => (
-        <span className={styles.tag} key={index}>{tag}</span>
+        <span className={styles.tag} key={index}>
+          {tag}
+        </span>
       ))}
     </div>
-  )
+  );
 };

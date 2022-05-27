@@ -52,8 +52,6 @@ export interface SignInVars {
   password: string;
 }
 
-
-
 /**
  * Hook useSignIn to sign in. It will talk to GraphQL server and update the
  * redux store auto. That means you should use another hook `useSelector` from
@@ -276,11 +274,10 @@ export const useSignOut = () => {
   return useCallback(() => signOutFunction(), [signOutFunction]);
 };
 
-
 /**
  * Profile Part
  */
-export const PROFILE_QUERY_NAME ="Profile";
+export const PROFILE_QUERY_NAME = 'Profile';
 
 export const PROFILE_QUERY = gql`
   query ${PROFILE_QUERY_NAME}($userId: int!) {
@@ -302,20 +299,19 @@ export interface ProfileVars {
   userId: number;
 }
 
-/** 
- * 
-*/
+/**
+ *
+ */
 
-export const useProfile = () =>{
-  const [getProfile, state] = useLazyQuery<
-    ProfileData,
-    ProfileVars
-  >(PROFILE_QUERY);
+export const useProfile = () => {
+  const [getProfile, state] = useLazyQuery<ProfileData, ProfileVars>(
+    PROFILE_QUERY,
+  );
 
   //get statue
-  const getProfileWithVar = async(userId: number): Promise<void> => {
+  const getProfileWithVar = async (userId: number): Promise<void> => {
     await getProfile({ variables: { userId } });
-  }
+  };
 
   return [getProfileWithVar, state] as [typeof getProfileWithVar, typeof state];
-}
+};

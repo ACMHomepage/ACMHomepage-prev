@@ -1,7 +1,7 @@
 import { Menu as MenuIcon } from 'lucide-react';
 import { useState, useRef } from 'react';
 import type { ThemeUIStyleObject } from 'theme-ui';
-import { layout, } from '@acm-homepage/theme-shortcut';
+import { layout } from '@acm-homepage/theme-shortcut';
 
 import useOutsideListener from '../../util/outsideListener';
 

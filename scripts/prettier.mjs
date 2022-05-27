@@ -29,4 +29,4 @@ const path = [
 const file_glob = `{${path}}*.{${exts}}`;
 
 console.log('$ Format code.');
-await $`${prettier} ${flags} ${file_glob}`;
+await $`prettier ${flags} ${file_glob}`;

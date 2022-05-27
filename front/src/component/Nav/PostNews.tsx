@@ -6,10 +6,7 @@ import styles from './styles/PostNews.module.scss';
 
 const PostNews = () => {
   return (
-    <LinkButton
-      to={postNewsUrl}
-      className={styles.button}
-    >
+    <LinkButton to={postNewsUrl} className={styles.button}>
       Post News
     </LinkButton>
   );

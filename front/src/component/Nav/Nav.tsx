@@ -37,13 +37,8 @@ export default () => {
         <span className={styles.Space} />
         <DarkToggle />
         <SignButton />
-        {showPostNews ? (
-          <PostNews />
-        ) : null}
-        {showProfile ?(
-          <Profile />
-        ) : null
-        }
+        {showPostNews ? <PostNews /> : null}
+        {showProfile ? <Profile /> : null}
 
         <Dropdown
           sx={merge(layout({ display: mRV({ _: 'block', md: 'none' }) }))}

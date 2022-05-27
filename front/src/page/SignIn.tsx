@@ -38,7 +38,7 @@ const SignIn = () => {
     <Header.Space sx={utilMainPart}>
       <div className={styles.signBox}>
         <div className={styles.title}>ACM Homepage</div>
-        <EmailInput onChange={e => setEmail(e.target.value)} />
+        <EmailInput onChange={(e) => setEmail(e.target.value)} />
         <PasswordInput password={password} setPassword={setPassword} />
         <div className={styles.forgetPasswordRow}>
           <a>Forget password?</a>

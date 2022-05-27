@@ -30,11 +30,11 @@ export default () => {
         <Header>Post News</Header>
       </Header.Space>
       <div className={styles.form}>
-        <TitleInput onChange={e => setTitle(e.target.value)} />
+        <TitleInput onChange={(e) => setTitle(e.target.value)} />
         <ImageInput setDataURL={setImageDataURL} />
-        <ContentTextArea onChange={e => setContent(e.target.value)} />
-        
-        <TagListInput onChange={e => setTagList(toTagList(e.target.value))} />
+        <ContentTextArea onChange={(e) => setContent(e.target.value)} />
+
+        <TagListInput onChange={(e) => setTagList(toTagList(e.target.value))} />
         <TagList tagList={tagList} />
         <div className={styles.buttonRow}>
           <button
